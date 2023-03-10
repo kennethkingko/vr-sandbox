@@ -19,7 +19,8 @@ public class ObjectStateManager : MonoBehaviour
     public XRGrabInteractable interactor = null;
 
     public GameObject raycastOrigin;
-    public Vector3 raycastDirection; 
+    public Vector3 raycastDirection;
+    public float range;
     
     int layerMask = 1 << 8;
 
@@ -59,17 +60,28 @@ public class ObjectStateManager : MonoBehaviour
         this.SwitchState(objectIdleState);
     }
 
-    public void EmitRay()
+    public bool EmitRay()
     {
         RaycastHit hit;
+        bool isHitting;
+
+        isHitting = Physics.Linecast(this.raycastOrigin.transform.position, this.raycastOrigin.transform.position + (this.raycastDirection * range), out hit);
+
+        // Debug.DrawLine(this.raycastOrigin.transform.position, this.raycastOrigin.transform.position + (this.raycastDirection * range), Color.green);
         
-        if (Physics.Raycast(this.raycastOrigin.transform.position, this.raycastDirection, out hit, Mathf.Infinity, layerMask))
+        // if (isHitting)
+        // {
+        //     float deg = Vector3.Angle(this.raycastOrigin.transform.forward, hit.transform.position - this.raycastOrigin.transform.position);
+        //     Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ")");
+        // }
+
+        if (isHitting && hit.transform.name != this.transform.name)
         {
-            if (hit.transform.tag == "Objects")
-            {
-                this.SwitchState(this.objectGrabHoverState);
-            }
+            float deg = Vector3.Angle(this.raycastOrigin.transform.forward, hit.transform.position - this.raycastOrigin.transform.position);
+            Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ")");
+            return true;
         }
+        return false;
     }
 
 
