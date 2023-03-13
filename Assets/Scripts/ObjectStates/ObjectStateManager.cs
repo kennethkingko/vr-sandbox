@@ -64,7 +64,7 @@ public class ObjectStateManager : MonoBehaviour
 
     public bool IsHitObjectWithinAngle(RaycastHit hit, float theta)
     {
-        float deg = Vector3.Angle(hit.transform.position - this.raycastOrigin.transform.position, this.raycastOrigin.transform.position + (this.raycastDirection * range));
+        float deg = Mathf.Abs(Vector3.Angle(hit.transform.position - this.raycastOrigin.transform.position, this.raycastDirection));
 
         if (deg <= theta)
         {
@@ -89,10 +89,15 @@ public class ObjectStateManager : MonoBehaviour
 
         isHitting = Physics.Linecast(this.raycastOrigin.transform.position, this.raycastOrigin.transform.position + (this.raycastDirection * range), out hit);
 
+        if (isHitting)
+        {
+            Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ")");
+        }
+
         if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, angle))
         // if (isHitting && hit.transform.name != this.transform.name)
         {
-            float deg = Vector3.Angle(this.raycastOrigin.transform.position + (this.raycastDirection * range), hit.transform.position - this.raycastOrigin.transform.position);
+            float deg = Vector3.Angle(hit.transform.position - this.raycastOrigin.transform.position, this.raycastDirection);
             Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") ::" + this.raycastOrigin.transform.position + (this.raycastDirection * range));
             return true;
             Debug.Log(hit.transform.tag);
