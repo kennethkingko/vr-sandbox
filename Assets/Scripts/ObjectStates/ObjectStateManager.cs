@@ -16,6 +16,7 @@ public class ObjectStateManager : MonoBehaviour
     public ObjectGrabHoverState objectGrabHoverState = new ObjectGrabHoverState(); 
 
     public bool isGrabbed = false;
+    public bool isStatic;
     // public XRGrabInteractable interactor = null;
 
     public GameObject raycastOrigin;
@@ -63,7 +64,7 @@ public class ObjectStateManager : MonoBehaviour
 
     public bool IsHitObjectWithinAngle(RaycastHit hit, float theta)
     {
-        float deg = Vector3.Angle(this.raycastDirection, hit.transform.position - this.raycastOrigin.transform.position);
+        float deg = Vector3.Angle(hit.transform.position - this.raycastOrigin.transform.position, this.raycastOrigin.transform.position + (this.raycastDirection * range));
 
         if (deg <= theta)
         {
@@ -88,20 +89,13 @@ public class ObjectStateManager : MonoBehaviour
 
         isHitting = Physics.Linecast(this.raycastOrigin.transform.position, this.raycastOrigin.transform.position + (this.raycastDirection * range), out hit);
 
-        // Debug.DrawLine(this.raycastOrigin.transform.position, this.raycastOrigin.transform.position + (this.raycastDirection * range), Color.green);
-        
-        // if (isHitting)
-        // {
-        //     float deg = Vector3.Angle(this.raycastOrigin.transform.forward, hit.transform.position - this.raycastOrigin.transform.position);
-        //     Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ")");
-        // }
-
         if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, angle))
         // if (isHitting && hit.transform.name != this.transform.name)
         {
-            float deg = Vector3.Angle(this.raycastOrigin.transform.forward, hit.transform.position - this.raycastOrigin.transform.position);
+            float deg = Vector3.Angle(this.raycastOrigin.transform.position + (this.raycastDirection * range), hit.transform.position - this.raycastOrigin.transform.position);
             Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") ::" + this.raycastOrigin.transform.position + (this.raycastDirection * range));
             return true;
+            Debug.Log(hit.transform.tag);
         }
         return false;
     }

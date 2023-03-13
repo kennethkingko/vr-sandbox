@@ -1364,6 +1364,37 @@ Transform:
   m_Father: {fileID: 1898295862}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &573064579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 573064580}
+  m_Layer: 7
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &573064580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573064579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1557955512}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &593740077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2207,7 +2238,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_RotateAnchorAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Rotate Anchor
       m_Type: 0
@@ -2231,7 +2262,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -440298646266941818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_TranslateAnchorAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Translate Anchor
       m_Type: 0
@@ -2265,7 +2296,7 @@ MonoBehaviour:
   m_EnableMoveWhileSelecting: 1
   m_MoveFactor: 1
   m_GrabMoveAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Grab Move
       m_Type: 0
@@ -2886,7 +2917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138427955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.4, y: 1, z: 11.7}
+  m_LocalPosition: {x: 54.3, y: 1, z: 11.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3122,7 +3153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317937190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.08}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3918,7 +3949,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -8785819595477538065, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_RotateAnchorAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Rotate Anchor
       m_Type: 0
@@ -3942,7 +3973,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -8811388872089202044, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_TranslateAnchorAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Translate Anchor
       m_Type: 0
@@ -3976,7 +4007,7 @@ MonoBehaviour:
   m_EnableMoveWhileSelecting: 1
   m_MoveFactor: 1
   m_GrabMoveAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Grab Move
       m_Type: 0
@@ -4293,7 +4324,8 @@ Transform:
   m_LocalPosition: {x: -111.343, y: 100.32, z: -52.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 573064580}
   m_Father: {fileID: 986790977}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4313,6 +4345,7 @@ MonoBehaviour:
   onGrabMat: {fileID: 0}
   onRaycastMat: {fileID: 2100000, guid: d3293c07c46938149bd6b68f6f5ab4d1, type: 2}
   isGrabbed: 0
+  isStatic: 0
   raycastOrigin: {fileID: 0}
   raycastDirection: {x: 0, y: 0, z: 0}
   range: 0
@@ -4504,7 +4537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650187662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -112.311, y: 98.583015, z: -53.981354}
+  m_LocalPosition: {x: -112.311, y: 98.583015, z: -52.1}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4528,6 +4561,7 @@ MonoBehaviour:
   onGrabMat: {fileID: 2100000, guid: 3bb1daaf14b9332429e5f6e82862c03f, type: 2}
   onRaycastMat: {fileID: 2100000, guid: 346b953d31ee0b44bb7983a51eaae2cc, type: 2}
   isGrabbed: 0
+  isStatic: 0
   raycastOrigin: {fileID: 116276423}
   raycastDirection: {x: 0, y: 0, z: 1}
   range: 2
@@ -5132,6 +5166,7 @@ MonoBehaviour:
   onGrabMat: {fileID: 2100000, guid: 3bb1daaf14b9332429e5f6e82862c03f, type: 2}
   onRaycastMat: {fileID: 2100000, guid: 346b953d31ee0b44bb7983a51eaae2cc, type: 2}
   isGrabbed: 0
+  isStatic: 0
   raycastOrigin: {fileID: 1906730174}
   raycastDirection: {x: 0, y: 0, z: 1}
   range: 2
@@ -5372,7 +5407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901361768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -110.68588, y: 98.583015, z: -53.981354}
+  m_LocalPosition: {x: -110.68588, y: 98.583015, z: -52.1}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
