@@ -20,16 +20,17 @@ public class ObjectStateManager : MonoBehaviour
     // public XRGrabInteractable interactor = null;
 
     public GameObject raycastOrigin;
+    public GameObject colliderObject;
     public Vector3 raycastDirection;
     public float range;
     public float angle;
     
-    int layerMask = 1 << 8;
+    [SerializeField] private LayerMask _layerMask;
 
     // Start is called before the first frame update
     void Start()
     {
-        layerMask = ~layerMask;
+        _layerMask = LayerMask.GetMask("Colliders");
         this.currentState = objectIdleState;
         this.currentState.EnterState(this);
         this.GetComponent<MeshRenderer>().material = defaultMat;
@@ -62,9 +63,9 @@ public class ObjectStateManager : MonoBehaviour
         this.SwitchState(objectIdleState);
     }
 
-    public bool IsHitObjectWithinAngle(RaycastHit hit, float theta)
+    public bool IsHitObjectWithinAngle(RaycastHit hit, Vector3 start, Vector3 end, float theta)
     {
-        float deg = Mathf.Abs(Vector3.Angle(hit.transform.position - this.raycastOrigin.transform.position, this.raycastDirection));
+        float deg = Vector3.Angle(hit.transform.position - start, end - start);
 
         if (deg <= theta)
         {
@@ -86,21 +87,20 @@ public class ObjectStateManager : MonoBehaviour
     {
         RaycastHit hit;
         bool isHitting;
+        Vector3 start, end;
 
-        isHitting = Physics.Linecast(this.raycastOrigin.transform.position, this.raycastOrigin.transform.position + (this.raycastDirection * range), out hit);
+        start = this.raycastOrigin.transform.position;
+        end = this.raycastOrigin.transform.position + (this.raycastOrigin.transform.rotation * (this.raycastDirection * range));
 
-        if (isHitting)
-        {
-            Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ")");
-        }
+        isHitting = Physics.Linecast(start, end, out hit, _layerMask);
+        Debug.DrawLine(start, end, Color.green);
 
-        if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, angle))
+        if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, start, end, angle))
         // if (isHitting && hit.transform.name != this.transform.name)
         {
-            float deg = Vector3.Angle(hit.transform.position - this.raycastOrigin.transform.position, this.raycastDirection);
+            float deg = Vector3.Angle(hit.transform.position - start, end - start);
             Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") ::" + this.raycastOrigin.transform.position + (this.raycastDirection * range));
             return true;
-            Debug.Log(hit.transform.tag);
         }
         return false;
     }
