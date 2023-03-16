@@ -1374,6 +1374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 573064580}
   - component: {fileID: 573064581}
+  - component: {fileID: 573064582}
   m_Layer: 7
   m_Name: Collider
   m_TagString: Colliders
@@ -1409,6 +1410,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &573064582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573064579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9c8c43d17a69a42a4e32efe9f8ad8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 0}
+  isCompleted: 0
+  time: 5
+  distance: 1
 --- !u!1 &593740077
 GameObject:
   m_ObjectHideFlags: 0
@@ -4538,8 +4555,10 @@ MonoBehaviour:
   isGrabbed: 0
   isStatic: 0
   raycastOrigin: {fileID: 0}
-  colliderObject: {fileID: 573064579}
   raycastDirection: {x: 0, y: 0, z: 0}
+  colliderObjects:
+  - {fileID: 573064579}
+  currentInteractingObject: {fileID: 0}
   range: 0
   angle: 0
   _layerMask:
@@ -4874,8 +4893,9 @@ MonoBehaviour:
   isGrabbed: 0
   isStatic: 0
   raycastOrigin: {fileID: 116276423}
-  colliderObject: {fileID: 1669720674}
   raycastDirection: {x: 0, y: 0, z: 1}
+  colliderObjects: []
+  currentInteractingObject: {fileID: 0}
   range: 2
   angle: 20
   _layerMask:
@@ -5582,7 +5602,7 @@ GameObject:
   - component: {fileID: 1901361772}
   - component: {fileID: 1901361771}
   - component: {fileID: 1901361770}
-  - component: {fileID: 1901361769}
+  - component: {fileID: 1901361776}
   m_Layer: 6
   m_Name: SphereObject
   m_TagString: Objects
@@ -5590,31 +5610,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1901361769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901361768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62dee89c8bfa2ad44b1e0f235474fa9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMat: {fileID: 2100000, guid: ae3e63ce7a263ba46a6652b399f91861, type: 2}
-  onGrabMat: {fileID: 2100000, guid: 3bb1daaf14b9332429e5f6e82862c03f, type: 2}
-  onRaycastMat: {fileID: 2100000, guid: 346b953d31ee0b44bb7983a51eaae2cc, type: 2}
-  isGrabbed: 0
-  isStatic: 0
-  raycastOrigin: {fileID: 1906730174}
-  colliderObject: {fileID: 1910245989}
-  raycastDirection: {x: 0, y: 0, z: 1}
-  range: 2
-  angle: 20
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &1901361770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5658,7 +5653,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1901361769}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ObjectStateManager, Assembly-CSharp
         m_MethodName: EnterGrabbedState
         m_Mode: 1
@@ -5673,7 +5668,7 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1901361769}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ObjectStateManager, Assembly-CSharp
         m_MethodName: ExitGrabbedState
         m_Mode: 1
@@ -5860,6 +5855,32 @@ Transform:
   m_Father: {fileID: 986790977}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1901361776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901361768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dee89c8bfa2ad44b1e0f235474fa9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: ae3e63ce7a263ba46a6652b399f91861, type: 2}
+  onGrabMat: {fileID: 2100000, guid: 3bb1daaf14b9332429e5f6e82862c03f, type: 2}
+  onRaycastMat: {fileID: 2100000, guid: 346b953d31ee0b44bb7983a51eaae2cc, type: 2}
+  isGrabbed: 0
+  isStatic: 0
+  raycastOrigin: {fileID: 1906730174}
+  raycastDirection: {x: 0, y: 0, z: 1}
+  colliderObjects: []
+  currentInteractingObject: {fileID: 0}
+  range: 2
+  angle: 20
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1906730174
 GameObject:
   m_ObjectHideFlags: 0

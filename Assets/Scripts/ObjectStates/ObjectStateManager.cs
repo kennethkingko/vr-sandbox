@@ -20,8 +20,9 @@ public class ObjectStateManager : MonoBehaviour
     // public XRGrabInteractable interactor = null;
 
     public GameObject raycastOrigin;
-    public GameObject colliderObject;
     public Vector3 raycastDirection;
+    public List<GameObject> colliderObjects;
+    public GameObject currentInteractingObject;
     public float range;
     public float angle;
     
@@ -30,6 +31,7 @@ public class ObjectStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        colliderObjects = new List<GameObject>();
         _layerMask = LayerMask.GetMask("Colliders");
         this.currentState = objectIdleState;
         this.currentState.EnterState(this);
@@ -98,12 +100,13 @@ public class ObjectStateManager : MonoBehaviour
         if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, start, end, angle))
         // if (isHitting && hit.transform.name != this.transform.name)
         {
+            
             float deg = Vector3.Angle(hit.transform.position - start, end - start);
             Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") ::" + this.raycastOrigin.transform.position + (this.raycastDirection * range));
+            currentInteractingObject = hit.transform.gameObject;
             return true;
         }
+        currentInteractingObject = null;
         return false;
     }
-
-
 }

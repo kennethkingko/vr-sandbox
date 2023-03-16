@@ -15,6 +15,6 @@ public class ObjectIdleState : ObjectBaseState
 
     public override void UpdateState(ObjectStateManager osm)
     {
-        
+
     }
 }
