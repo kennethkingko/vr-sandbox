@@ -5099,7 +5099,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae3e63ce7a263ba46a6652b399f91861, type: 2}
+  - {fileID: 2100000, guid: fe5a8aa9419a4834db1810a744c1b68d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5653,7 +5653,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1901361776}
         m_TargetAssemblyTypeName: ObjectStateManager, Assembly-CSharp
         m_MethodName: EnterGrabbedState
         m_Mode: 1
@@ -5668,7 +5668,7 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1901361776}
         m_TargetAssemblyTypeName: ObjectStateManager, Assembly-CSharp
         m_MethodName: ExitGrabbedState
         m_Mode: 1

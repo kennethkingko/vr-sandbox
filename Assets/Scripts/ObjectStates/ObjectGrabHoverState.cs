@@ -11,6 +11,7 @@ public class ObjectGrabHoverState : ObjectBaseState
         this.iOsm.GetComponent<MeshRenderer>().material = osm.onRaycastMat;
         this.iOsm.isGrabbed = true;
         this.iOsm.currentInteractingObject.GetComponent<BaseActionComponent>().OnEntry(this.iOsm.gameObject);
+        this.iOsm.currentInteractingObject.GetComponent<BaseActionComponent>().CheckIfCompleted();
     }
 
     public override void UpdateState(ObjectStateManager osm)
@@ -19,8 +20,6 @@ public class ObjectGrabHoverState : ObjectBaseState
         {
             this.iOsm.SwitchState(this.iOsm.objectGrabbedState);
         }
-        // Debug.Log("Currently interacting with " + this.iOsm.currentInteractingObject.name);
-        this.iOsm.currentInteractingObject.GetComponent<BaseActionComponent>().CheckIfCompleted();
 
     }
 }
