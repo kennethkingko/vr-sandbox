@@ -24,6 +24,9 @@ public class InventoryVR : MonoBehaviour
     public GameObject Inventory;
     [SerializeField]
     public GameObject Anchor;
+
+    [SerializeField]
+    public GameObject Anchor_hand;
     [SerializeField]
     public GameObject buttonWorksTest;
     [SerializeField]
@@ -36,6 +39,8 @@ public class InventoryVR : MonoBehaviour
 
     public GameObject itemColliding;
     public GameObject slotColliding;
+
+    public bool debugHandIsFalse;
 
     [Header("=========")]
 
@@ -74,7 +79,10 @@ public class InventoryVR : MonoBehaviour
 
     void Update()
     {
-
+        // if(Anchor.transform.parent.gameObject.activeSelf){
+        //     Anchor_hand.transform.position = Anchor.transform.position;
+        // }
+        
         
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left,mainDevice);
         
@@ -103,8 +111,18 @@ public class InventoryVR : MonoBehaviour
         
         if (Inventory.activeSelf)
         {
-            Inventory.transform.position = Anchor.transform.position;
-            Inventory.transform.eulerAngles = new Vector3(Anchor.transform.eulerAngles.x + 15, Anchor.transform.eulerAngles.y, 0);
+            if (Anchor.transform.parent.gameObject.activeSelf){
+                debugHandIsFalse = true;
+                Inventory.transform.position = Vector3.Lerp(Inventory.transform.position,Anchor.transform.position,1);
+                Inventory.transform.eulerAngles = new Vector3(Anchor.transform.eulerAngles.x + 15, Anchor.transform.eulerAngles.y, 0);
+            } 
+            
+            if (Anchor_hand.transform.parent.gameObject.activeSelf && !Anchor.transform.parent.gameObject.activeSelf){
+                debugHandIsFalse = false;
+                Inventory.transform.position = Vector3.Lerp(Inventory.transform.position,Anchor_hand.transform.position,1);
+                Inventory.transform.eulerAngles = new Vector3(Anchor_hand.transform.eulerAngles.x + 15, Anchor_hand.transform.eulerAngles.y, 0);
+            }
+            
         }
 
 
