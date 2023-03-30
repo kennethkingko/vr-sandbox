@@ -102,7 +102,7 @@ public class ObjectStateManager : MonoBehaviour
         {
             
             float deg = Vector3.Angle(hit.transform.position - start, end - start);
-            Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") ::" + this.raycastOrigin.transform.position + (this.raycastDirection * range));
+            // Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") :: " + this.raycastOrigin.transform.position + (this.raycastDirection * range));
             currentInteractingObject = hit.transform.gameObject;
             return true;
         }
