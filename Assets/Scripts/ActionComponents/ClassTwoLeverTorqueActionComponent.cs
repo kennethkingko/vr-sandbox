@@ -16,17 +16,10 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
     }
+    
     public override void Update()
     {
-        if (!isCompleted)
-        {
-            if (interactingObject != null) CheckIfCompleted();
-        }
-
-        // if (Vector3.Distance(interactingObject.transform.position, gameObject.transform.position) > distance)
-        // {
-        //     interactingObject = null;
-        // }
+        if (!isCompleted && interactingObject != null) CheckIfCompleted();
     }
 
     public override void OnEntry(GameObject go)
@@ -34,7 +27,6 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         if (go != null)
         {
             interactingObject = go;
-            // entryTransform = go.transform;
             Vector3 pos = go.transform.position;
             Quaternion rot = go.transform.rotation;
             yAngle = rot.y;
@@ -72,10 +64,5 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             isCompleted = true;
             Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
         }
-        // if (currentTime >= time)
-        // {
-        //     isCompleted = true;
-        //     Debug.Log("Hover action completed");
-        // }
     }
 }
