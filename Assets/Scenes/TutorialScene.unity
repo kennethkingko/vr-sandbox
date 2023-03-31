@@ -1704,7 +1704,8 @@ MonoBehaviour:
   actionCollider: {fileID: 573064584}
   isCompleted: 0
   distance: 0.5
-  requiredAngle: 0
+  requiredAngle: 60
+  angle: 0
 --- !u!136 &573064584
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5807,7 +5808,8 @@ MonoBehaviour:
   actionCollider: {fileID: 1703046194}
   isCompleted: 0
   distance: 1
-  requiredAngle: 0
+  requiredAngle: 90
+  angle: 0
 --- !u!1 &1815445101
 GameObject:
   m_ObjectHideFlags: 0

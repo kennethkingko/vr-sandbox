@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 {
-    GameObject interactingObject;
+    [SerializeField] GameObject interactingObject;
     public float distance;
     public float requiredAngle;
-    float angle;
-    Transform entryTransform;
+    [SerializeField] float angle;
+    [SerializeField] Transform entryTransform;
+    float yAngle;
 
     public void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
+        interactingObject = null;
     }
     public override void Update()
     {
-        if (!isCompleted && interactingObject != null) CheckIfCompleted();
+        if (!isCompleted)
+        {
+            if (interactingObject != null) CheckIfCompleted();
+        }
+
+        // if (Vector3.Distance(interactingObject.transform.position, gameObject.transform.position) > distance)
+        // {
+        //     interactingObject = null;
+        // }
     }
 
     public override void OnEntry(GameObject go)
@@ -24,9 +34,10 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         if (go != null)
         {
             interactingObject = go;
-            entryTransform = interactingObject.transform;
-            Vector3 pos = interactingObject.transform.position;
-            Quaternion rot = interactingObject.transform.rotation;
+            // entryTransform = go.transform;
+            Vector3 pos = go.transform.position;
+            Quaternion rot = go.transform.rotation;
+            yAngle = rot.y;
             Debug.Log("Entry transform: " + pos + " " + rot);
         }
     }
@@ -47,13 +58,19 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
-            Debug.Log("Checking orientation: " + pos + " " + rot);
+
+            angle += rot.y - yAngle;
+            Debug.Log("Current angle: (" + rot.y + " - "+ yAngle +")");
+        }
+        else
+        {
+            interactingObject = null;
         }
 
         if (angle >= requiredAngle)
         {
             isCompleted = true;
-            Debug.Log("Turning action completed.");
+            Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
         }
         // if (currentTime >= time)
         // {
