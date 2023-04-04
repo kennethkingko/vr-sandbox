@@ -1665,6 +1665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573064580}
+  - component: {fileID: 573064585}
   - component: {fileID: 573064583}
   - component: {fileID: 573064584}
   m_Layer: 7
@@ -1696,16 +1697,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573064579}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 573064584}
   isCompleted: 0
+  interactingObject: {fileID: 0}
   distance: 0.5
   requiredAngle: 60
   angle: 0
+  entryTransform: {fileID: 0}
 --- !u!136 &573064584
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1720,6 +1723,25 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &573064585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573064579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 573064584}
+  isCompleted: 0
+  interactingObject: {fileID: 0}
+  distance: 0.5
+  requiredAngle: 90
+  angle: 0
+  entryTransform: {fileID: 0}
 --- !u!1 &593740077
 GameObject:
   m_ObjectHideFlags: 0
@@ -5807,9 +5829,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1703046194}
   isCompleted: 0
+  interactingObject: {fileID: 0}
   distance: 1
   requiredAngle: 90
   angle: 0
+  entryTransform: {fileID: 0}
 --- !u!1 &1815445101
 GameObject:
   m_ObjectHideFlags: 0
