@@ -11,12 +11,15 @@ public class SlotScriptV3 : MonoBehaviour
     public GameObject itemInSlot;
     public Image slotImage;
     public Color originalColor;
-    
+
     public InputDevice device;
 
     public InventoryVR inventoryScript;
 
     bool lastFrameGrabbed;
+
+    // current object to certain slot distance 
+    float omegalul;
 
     void Start()
     {
@@ -27,7 +30,8 @@ public class SlotScriptV3 : MonoBehaviour
         lastFrameGrabbed = false;
     }
 
-    void Update(){
+    void Update()
+    {
         // bool xValue;
         // if (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out xValue) && xValue)
         // {
@@ -37,21 +41,56 @@ public class SlotScriptV3 : MonoBehaviour
 
 
     private void OnTriggerStay(Collider other)
-    {   
+    {
 
         // Debug.Log("SLOTSCRIPTV3: ONTRIGGERSTAY");
-        if (itemInSlot != null) {
+        if (itemInSlot != null)
+        {
             Debug.Log("Item in slot not null");
             return;
         }
         GameObject obj = other.gameObject;
-        if (!isItem(obj)) {
+        if (!isItem(obj))
+        {
             Debug.Log("Item not designated an Item");
             return;
         }
-        if (obj.GetComponent<ColliderList>().getColliderList.Count > 1) {
-            Debug.Log("Collider count issue");
-            return;
+        if (obj.GetComponent<ColliderList>().getColliderList.Count > 1)
+        {
+            // Debug.Log("Collider count issue");
+
+            // return;
+
+            GameObject otherTemp = other.gameObject;
+            List<float> otherObjDistanceCollision = new List<float>();
+
+            foreach (GameObject x in obj.GetComponent<ColliderList>().getColliderList)
+            {
+
+                if (x == this.gameObject)
+                {
+                    omegalul = Vector3.Distance(otherTemp.transform.position, x.transform.position);
+                }
+                else
+                {
+                    otherObjDistanceCollision.Add(Vector3.Distance(otherTemp.transform.position, x.transform.position));
+                }
+
+                Debug.Log("Gameobj " + other.name + " detected collision with multiple slots, one of which is " + x);
+                Debug.Log("OBJ to Slot " + x + " Distance:" + (otherObjDistanceCollision));
+
+            }
+
+            foreach (float y in otherObjDistanceCollision)
+            {
+                if (omegalul > y)
+                {
+                    return;
+                }
+            }
+
+
+
         }
         if (!obj.GetComponent<XRItemInteractionScriptV2>().isGrabbing)
         {
@@ -61,18 +100,30 @@ public class SlotScriptV3 : MonoBehaviour
         // lastFrameGrabbed = obj.GetComponent<XRItemInteractionScriptV2>().isGrabbing;
     }
 
-    private void OnTriggerExit(Collider other){
+    private void OnTriggerExit(Collider other)
+    {
         Debug.Log("SLOTSCRIPTV3: ONTRIGGEREXIT");
-        if (other.gameObject.GetComponent<ItemScriptV3>().inSlot)
+        if (itemInSlot != null)
         {
-            other.gameObject.GetComponent<ItemScriptV3>().currentSlot.itemInSlot = null;
-            other.gameObject.transform.parent = null;
-            other.gameObject.GetComponent<ItemScriptV3>().inSlot = false;
-            other.gameObject.GetComponent<ItemScriptV3>().currentSlot.resetColor();
-            other.gameObject.GetComponent<ItemScriptV3>().currentSlot = null;
-            // other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            
+            if (other.gameObject.GetComponent<ItemScriptV3>().inSlot)
+            {
+                other.gameObject.GetComponent<ItemScriptV3>().currentSlot.itemInSlot = null;
+                // other.gameObject.transform.localScale = other.gameObject.GetComponent<ItemScriptV3>().defaultScale;
+                // other.gameObject.transform.localScale = other.gameObject.transform.localScale * 2f;
+                // other.gameObject.transform.parent = null;
+
+                other.transform.SetParent(null);
+                
+                other.gameObject.GetComponent<ItemScriptV3>().inSlot = false;
+                other.gameObject.GetComponent<ItemScriptV3>().currentSlot.resetColor();
+                other.gameObject.GetComponent<ItemScriptV3>().currentSlot = null;
+                
+                // other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
+            }
+
         }
+
     }
 
     bool isItem(GameObject obj)
@@ -82,10 +133,12 @@ public class SlotScriptV3 : MonoBehaviour
 
     // Update is called once per frame
 
-    public void insertItem(GameObject obj){
-        Debug.Log("INSERT ITEM METHOD: Successfully inserted "+obj.gameObject.name);
+    public void insertItem(GameObject obj)
+    {
+        Debug.Log("INSERT ITEM METHOD: Successfully inserted " + obj.gameObject.name);
         // obj.GetComponent<Rigidbody>().isKinematic = true;
         obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        obj.transform.localScale = obj.GetComponent<ItemScriptV3>().defaultScale * 0.5f;
         obj.transform.SetParent(this.gameObject.transform, true);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localEulerAngles = obj.GetComponent<ItemScriptV3>().slotRotation;
@@ -95,7 +148,8 @@ public class SlotScriptV3 : MonoBehaviour
         slotImage.color = Color.grey;
     }
 
-    public void resetColor(){
+    public void resetColor()
+    {
         slotImage.color = originalColor;
     }
 

@@ -18,6 +18,12 @@ public class ItemScriptV3 : MonoBehaviour
         defaultScale = transform.localScale;
     }
 
+    void FixedUpdate(){
+        if (!inSlot){
+            this.transform.localScale = defaultScale;
+        }
+    }
+
 
 }
 
