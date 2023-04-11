@@ -7,14 +7,20 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     [SerializeField] GameObject interactingObject;
     public float distance;
     public float requiredAngle;
+    public float thresholdAngle;
     [SerializeField] float angle;
     [SerializeField] Transform entryTransform;
     float yAngle;
+    Material currentMaterial;
+    Color completedColor;
+    bool isTurning = false;
 
     public void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
+        currentMaterial = gameObject.transform.parent.GetComponent<Renderer>().material;
+        completedColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     }
     
     public override void Update()
@@ -50,13 +56,21 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
-
-            angle += rot.y - yAngle;
+            float angleDiff = 0.0f;
+            if (Mathf.Abs(rot.y - angle) > thresholdAngle && !isTurning)
+            {
+                angleDiff = rot.y - yAngle;
+                isTurning = true;
+            } 
+            angle += angleDiff;
+            currentMaterial.color = Color.Lerp(currentMaterial.color, completedColor, angle / requiredAngle);
+            Debug.Log("Current color: " + currentMaterial.color);
             Debug.Log("Current angle: (" + rot.y + " - "+ yAngle +")");
         }
         else
         {
             interactingObject = null;
+            isTurning = false;
         }
 
         if (angle >= requiredAngle)
