@@ -29,7 +29,9 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             interactingObject = go;
             Vector3 pos = go.transform.position;
             Quaternion rot = go.transform.rotation;
-            yAngle = rot.y;
+            //yAngle = rot.y;
+
+            yAngle = rot.eulerAngles.y;
             Debug.Log("Entry transform: " + pos + " " + rot);
         }
     }
@@ -51,8 +53,13 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
 
-            angle += rot.y - yAngle;
-            Debug.Log("Current angle: (" + rot.y + " - "+ yAngle +")");
+            //angle += rot.y - yAngle;
+
+            //like in TwistingActionComponent, works more accurately
+            //only comfortable until about 45 degrees tho
+            //clockwise is negative
+            angle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
+            Debug.Log("Current angle: (" + angle + " = " + rot.y + " - "+ yAngle +")");
         }
         else
         {
