@@ -11,11 +11,12 @@ public class ObjectGrabbedState : ObjectBaseState
         this.iOsm = osm;
         this.iOsm.GetComponent<MeshRenderer>().material = osm.onGrabMat;
         this.iOsm.isGrabbed = true;
+        Debug.Log("Holding a " + this.iOsm.gameObject.name);
     }
 
     public override void UpdateState(ObjectStateManager osm)
     {
-        if(this.iOsm.EmitRay() && !(this.iOsm.currentState is ObjectGrabHoverState))
+        if(this.iOsm.EmitRay() && this.iOsm.isTriggerOn && !(this.iOsm.currentState is ObjectGrabHoverState))
         {
             this.iOsm.SwitchState(this.iOsm.objectGrabHoverState);
         }

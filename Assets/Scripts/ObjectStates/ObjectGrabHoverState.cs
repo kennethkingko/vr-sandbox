@@ -16,7 +16,7 @@ public class ObjectGrabHoverState : ObjectBaseState
     public override void UpdateState(ObjectStateManager osm)
     {
         this.iOsm.currentInteractingObject.GetComponent<BaseActionComponent>().CheckIfCompleted();
-        if (!this.iOsm.EmitRay())
+        if (!this.iOsm.EmitRay() || !this.iOsm.isTriggerOn)
         {
             this.iOsm.SwitchState(this.iOsm.objectGrabbedState);
         }

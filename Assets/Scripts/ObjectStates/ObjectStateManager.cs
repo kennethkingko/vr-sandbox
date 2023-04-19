@@ -25,6 +25,7 @@ public class ObjectStateManager : MonoBehaviour
     public GameObject currentInteractingObject;
     public float range;
     public float angle;
+    public bool isTriggerOn;
     
     [SerializeField] private LayerMask _layerMask;
 
@@ -65,6 +66,16 @@ public class ObjectStateManager : MonoBehaviour
         this.SwitchState(objectIdleState);
     }
 
+    public void TriggerPressed()
+    {
+        this.isTriggerOn = true;
+    }
+
+    public void TriggerReleased()
+    {
+        this.isTriggerOn = false;
+    }
+
     public bool IsHitObjectWithinAngle(RaycastHit hit, Vector3 start, Vector3 end, float theta)
     {
         float deg = Vector3.Angle(hit.transform.position - start, end - start);
@@ -102,7 +113,7 @@ public class ObjectStateManager : MonoBehaviour
         {
             
             float deg = Vector3.Angle(hit.transform.position - start, end - start);
-            // Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") :: " + this.raycastOrigin.transform.position + (this.raycastDirection * range));
+            Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") :: " + this.raycastOrigin.transform.position + (this.raycastDirection * range));
             currentInteractingObject = hit.transform.gameObject;
             return true;
         }

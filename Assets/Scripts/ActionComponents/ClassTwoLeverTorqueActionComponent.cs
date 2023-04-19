@@ -18,7 +18,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
-        currentMaterial = gameObject.transform.parent.GetComponent<Renderer>().material;
+        // currentMaterial = gameObject.transform.parent.GetComponent<Renderer>().material;
         completedColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     }
     
@@ -56,11 +56,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
             float angleDiff = 0.0f;
-            if (Mathf.Abs(rot.y - angle) > thresholdAngle && !isTurning)
-            {
-                angleDiff = rot.y - yAngle;
-                isTurning = true;
-            } 
+            angleDiff = rot.y - yAngle;
             angle += angleDiff;
             gameObject.transform.RotateAround(gameObject.transform.position, gameObject.transform.up, angle);
             // currentMaterial.color = Color.Lerp(currentMaterial.color, completedColor, angle / requiredAngle);
