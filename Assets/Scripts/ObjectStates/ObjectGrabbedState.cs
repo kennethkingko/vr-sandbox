@@ -16,7 +16,7 @@ public class ObjectGrabbedState : ObjectBaseState
 
     public override void UpdateState(ObjectStateManager osm)
     {
-        if(this.iOsm.EmitRay() && this.iOsm.isTriggerOn && !(this.iOsm.currentState is ObjectGrabHoverState))
+        if(this.iOsm.EmitRay() && this.iOsm.isTriggerOn)
         {
             this.iOsm.SwitchState(this.iOsm.objectGrabHoverState);
         }

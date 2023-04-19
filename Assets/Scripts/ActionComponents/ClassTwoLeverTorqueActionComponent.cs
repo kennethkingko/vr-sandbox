@@ -9,7 +9,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     public float requiredAngle;
     public float thresholdAngle;
     [SerializeField] float angle;
-    float yAngle;
+    float yAngle, diffAngle;
     Material currentMaterial;
     Color completedColor;
     bool isTurning = false;
@@ -34,7 +34,8 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             interactingObject = go;
             Vector3 pos = go.transform.position;
             Quaternion rot = go.transform.rotation;
-            yAngle = rot.y;
+            yAngle = rot.eulerAngles.y;
+            diffAngle = 0.0f;
             Debug.Log("Entry transform: " + pos + " " + rot);
         }
     }
@@ -55,16 +56,15 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
-            float angleDiff = 0.0f;
-            angleDiff = rot.y - yAngle;
-            angle += angleDiff;
             gameObject.transform.RotateAround(gameObject.transform.position, gameObject.transform.up, angle);
+            diffAngle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
             // currentMaterial.color = Color.Lerp(currentMaterial.color, completedColor, angle / requiredAngle);
             // Debug.Log("Current color: " + currentMaterial.color);
-            Debug.Log("Current angle: (" + rot.y + " - "+ yAngle +")");
+            Debug.Log("Current angle: (" + angle +")");
         }
         else
         {
+            angle += diffAngle;
             interactingObject = null;
             isTurning = false;
         }
