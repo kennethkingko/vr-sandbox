@@ -9,7 +9,6 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     public float requiredAngle;
     public float thresholdAngle;
     [SerializeField] float angle;
-    [SerializeField] Transform entryTransform;
     float yAngle;
     Material currentMaterial;
     Color completedColor;
@@ -63,8 +62,9 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
                 isTurning = true;
             } 
             angle += angleDiff;
-            currentMaterial.color = Color.Lerp(currentMaterial.color, completedColor, angle / requiredAngle);
-            Debug.Log("Current color: " + currentMaterial.color);
+            gameObject.transform.RotateAround(gameObject.transform.position, gameObject.transform.up, angle);
+            // currentMaterial.color = Color.Lerp(currentMaterial.color, completedColor, angle / requiredAngle);
+            // Debug.Log("Current color: " + currentMaterial.color);
             Debug.Log("Current angle: (" + rot.y + " - "+ yAngle +")");
         }
         else
