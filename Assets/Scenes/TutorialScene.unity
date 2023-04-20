@@ -1609,7 +1609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &452773725
 Transform:
   m_ObjectHideFlags: 0
@@ -7181,9 +7181,9 @@ GameObject:
   - component: {fileID: 2057061133}
   - component: {fileID: 2057061134}
   - component: {fileID: 2057061135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7196,7 +7196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057061132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0.0551}
+  m_LocalPosition: {x: 0, y: -0, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7213,7 +7213,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.025
+  m_Radius: 0.035
   m_Height: 0.075
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -7233,7 +7233,7 @@ MonoBehaviour:
   isCompleted: 0
   interactingObject: {fileID: 0}
   distance: 1
-  requiredAngle: 90
+  requiredAngle: 45
   thresholdAngle: 1
   angle: 0
 --- !u!1 &2097133643
@@ -7421,8 +7421,8 @@ Transform:
   m_GameObject: {fileID: 1554493261774019265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.06549327, y: 0.6381073, z: -0.3050003}
-  m_LocalScale: {x: 1.5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 6.666667, z: 6.666667}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 89405881}
   m_Father: {fileID: 1863746309}
@@ -7450,7 +7450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMat: {fileID: 2100000, guid: 16bddc6a67513734b8770be2760da33e, type: 2}
   onGrabMat: {fileID: 2100000, guid: 16bddc6a67513734b8770be2760da33e, type: 2}
-  onRaycastMat: {fileID: 2100000, guid: 16bddc6a67513734b8770be2760da33e, type: 2}
+  onRaycastMat: {fileID: 2100000, guid: 3bb1daaf14b9332429e5f6e82862c03f, type: 2}
   isGrabbed: 0
   isStatic: 0
   raycastOrigin: {fileID: 89405880}
@@ -7678,9 +7678,9 @@ GameObject:
   - component: {fileID: 5601985586009390817}
   - component: {fileID: 8795982662972846404}
   - component: {fileID: 6770437363189237134}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bolt
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7693,7 +7693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5113151939294717019}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.085617065, y: 0.6319809, z: -0.412}
+  m_LocalPosition: {x: 0.085617065, y: 0.508, z: -0.869}
   m_LocalScale: {x: 0.33333334, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
