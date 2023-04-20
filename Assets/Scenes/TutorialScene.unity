@@ -1334,7 +1334,7 @@ Transform:
   m_Children:
   - {fileID: 1527814675}
   m_Father: {fileID: 1863746309}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &338618994
 MonoBehaviour:
@@ -2157,8 +2157,8 @@ MonoBehaviour:
   interactingObject: {fileID: 0}
   distance: 0.5
   requiredAngle: 60
-  thresholdAngle: 0
   angle: 0
+  entryTransform: {fileID: 0}
 --- !u!136 &573064584
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3458,6 +3458,7 @@ Transform:
   - {fileID: 1994474484}
   - {fileID: 1690558582}
   - {fileID: 5601985586009390817}
+  - {fileID: 2222944016506749051}
   - {fileID: 1863746309}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -3526,8 +3527,8 @@ MonoBehaviour:
   interactingObject: {fileID: 0}
   distance: 0.5
   requiredAngle: 60
-  thresholdAngle: 0
   angle: 0
+  entryTransform: {fileID: 0}
 --- !u!1 &1101739565
 GameObject:
   m_ObjectHideFlags: 0
@@ -5957,7 +5958,7 @@ Transform:
   - {fileID: 116276424}
   - {fileID: 1669720675}
   m_Father: {fileID: 1863746309}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1650187664
 MonoBehaviour:
@@ -6669,8 +6670,8 @@ MonoBehaviour:
   interactingObject: {fileID: 0}
   distance: 1
   requiredAngle: 90
-  thresholdAngle: 0.5
   angle: 0
+  entryTransform: {fileID: 0}
 --- !u!1 &1815445101
 GameObject:
   m_ObjectHideFlags: 0
@@ -6942,12 +6943,11 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2222944016506749051}
   - {fileID: 338618993}
   - {fileID: 1901361775}
   - {fileID: 1650187663}
   m_Father: {fileID: 986790977}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1898295861
 GameObject:
@@ -7257,7 +7257,7 @@ Transform:
   - {fileID: 1906730175}
   - {fileID: 1910245990}
   m_Father: {fileID: 1863746309}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1901361776
 MonoBehaviour:
@@ -7741,8 +7741,8 @@ MonoBehaviour:
   interactingObject: {fileID: 0}
   distance: 0
   requiredAngle: 45
-  thresholdAngle: 1
   angle: 0
+  entryTransform: {fileID: 0}
 --- !u!1 &2097133643
 GameObject:
   m_ObjectHideFlags: 0
@@ -7926,14 +7926,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554493261774019265}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06549327, y: 0.6381073, z: -0.3050003}
-  m_LocalScale: {x: 2, y: 6.666667, z: 6.666667}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -110.91941, y: 100.10411, z: -54.22271}
+  m_LocalScale: {x: 6, y: 6.666667, z: 6.666667}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 89405881}
-  m_Father: {fileID: 1863746309}
-  m_RootOrder: 0
+  m_Father: {fileID: 986790977}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2987751717345955806
 MeshFilter:
