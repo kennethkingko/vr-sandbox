@@ -56,8 +56,22 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
-            gameObject.transform.RotateAround(gameObject.transform.position, gameObject.transform.up, angle);
-            diffAngle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
+            diffAngle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);            
+                        
+            GameObject parentObject = gameObject.transform.parent.gameObject;
+            //parentObject.transform.RotateAround(parentObject.transform.position, parentObject.transform.forward, diffAngle);
+            // parentObject.transform.Rotate(0, 0, -diffAngle, Space.Self);
+            Debug.Log("diffAngle: " + diffAngle);
+            Debug.Log("change: " + Mathf.Abs(diffAngle - parentObject.transform.eulerAngles.y));
+
+            if (Mathf.Abs(diffAngle - parentObject.transform.eulerAngles.y)> 3) {
+                parentObject.transform.eulerAngles = new Vector3(
+                parentObject.transform.eulerAngles.x,
+                parentObject.transform.eulerAngles.y,
+                -diffAngle);
+                Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
+            }           
+            
             // currentMaterial.color = Color.Lerp(currentMaterial.color, completedColor, angle / requiredAngle);
             // Debug.Log("Current color: " + currentMaterial.color);
             Debug.Log("Current angle: (" + angle +")");
