@@ -13,6 +13,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     Material currentMaterial;
     Color completedColor;
     bool isTurning = false;
+    float parentZ;
 
     public void Start()
     {
@@ -20,6 +21,8 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         interactingObject = null;
         // currentMaterial = gameObject.transform.parent.GetComponent<Renderer>().material;
         completedColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        GameObject parentObject = gameObject.transform.parent.gameObject;
+        parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.z;
     }
     
     public override void Update()
@@ -62,13 +65,13 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             //parentObject.transform.RotateAround(parentObject.transform.position, parentObject.transform.forward, diffAngle);
             // parentObject.transform.Rotate(0, 0, -diffAngle, Space.Self);
             Debug.Log("diffAngle: " + diffAngle);
-            Debug.Log("change: " + Mathf.Abs(diffAngle - parentObject.transform.eulerAngles.y));
+            Debug.Log("change: " + Mathf.Abs((parentZ-diffAngle) - parentObject.transform.eulerAngles.z));
 
-            if (Mathf.Abs(diffAngle - parentObject.transform.eulerAngles.y)> 3) {
+            if (Mathf.Abs((parentZ-diffAngle) - parentObject.transform.eulerAngles.z)> 3) {
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
                 parentObject.transform.eulerAngles.y,
-                -diffAngle);
+                parentZ-diffAngle);
                 Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
             }           
             
