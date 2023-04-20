@@ -66,7 +66,7 @@ public class TwistActionComponent : BaseActionComponent
             angle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
             Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
             GameObject parentObject = gameObject.transform.parent.gameObject;
-            if (Mathf.Abs((parentZ-angle) - parentObject.transform.eulerAngles.z)> 3) {
+            if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1) {
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
                 parentObject.transform.eulerAngles.y,

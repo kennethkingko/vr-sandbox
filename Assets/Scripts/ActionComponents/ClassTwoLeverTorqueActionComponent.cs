@@ -7,22 +7,15 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     [SerializeField] GameObject interactingObject;
     public float distance;
     public float requiredAngle;
-    public float thresholdAngle;
     [SerializeField] float angle;
-    float yAngle, diffAngle;
-    Material currentMaterial;
-    Color completedColor;
-    bool isTurning = false;
+    [SerializeField] Transform entryTransform;
+    float yAngle;
     float parentZ;
 
     public void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
-        // currentMaterial = gameObject.transform.parent.GetComponent<Renderer>().material;
-        completedColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-        GameObject parentObject = gameObject.transform.parent.gameObject;
-        parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.z;
     }
     
     public override void Update()
@@ -37,9 +30,12 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             interactingObject = go;
             Vector3 pos = go.transform.position;
             Quaternion rot = go.transform.rotation;
+            //yAngle = rot.y;
+
             yAngle = rot.eulerAngles.y;
-            diffAngle = 0.0f;
             Debug.Log("Entry transform: " + pos + " " + rot);
+            GameObject parentObject = gameObject.transform.parent.gameObject;
+            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.y; 
         }
     }
 
@@ -59,31 +55,28 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
-            diffAngle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);            
-                        
-            GameObject parentObject = gameObject.transform.parent.gameObject;
-            //parentObject.transform.RotateAround(parentObject.transform.position, parentObject.transform.forward, diffAngle);
-            // parentObject.transform.Rotate(0, 0, -diffAngle, Space.Self);
-            Debug.Log("diffAngle: " + diffAngle);
-            Debug.Log("change: " + Mathf.Abs((parentZ-diffAngle) - parentObject.transform.eulerAngles.z));
 
-            if (Mathf.Abs((parentZ-diffAngle) - parentObject.transform.eulerAngles.z)> 3) {
+            //angle += rot.y - yAngle;
+
+            //like in TwistingActionComponent, works more accurately
+            //only comfortable until about 45 degrees tho
+            //clockwise is negative
+            angle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
+            Debug.Log("Current angle: (" + angle +")");            
+
+            GameObject parentObject = gameObject.transform.parent.gameObject;
+            Debug.Log("parentObject: " + parentObject.transform.eulerAngles);
+
+            if (Mathf.Abs((parentZ-angle) - parentObject.transform.eulerAngles.y)> 3) {
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
-                parentObject.transform.eulerAngles.y,
-                parentZ-diffAngle);
-                Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
-            }           
-            
-            // currentMaterial.color = Color.Lerp(currentMaterial.color, completedColor, angle / requiredAngle);
-            // Debug.Log("Current color: " + currentMaterial.color);
-            Debug.Log("Current angle: (" + angle +")");
+                parentZ-angle,                
+                parentObject.transform.eulerAngles.z);                
+            }
         }
         else
         {
-            angle += diffAngle;
             interactingObject = null;
-            isTurning = false;
         }
 
         if (angle >= requiredAngle)
