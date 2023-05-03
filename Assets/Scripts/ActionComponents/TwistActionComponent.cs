@@ -21,18 +21,18 @@ public class TwistActionComponent : BaseActionComponent
 
     public override void Update()
     {
-        if (!isCompleted && interactingObject != null) CheckIfCompleted();
+        if (!this.isCompleted && interactingObject != null) CheckIfCompleted();
     }
 
     public override void OnEntry(GameObject go)
     {
-        if (go != null)
+        if (go != null && !this.isCompleted)
         {
             interactingObject = go;
             Vector3 pos = go.transform.position;
             Quaternion rot = go.transform.rotation;
             // zAngle = rot.z;
-            zAngle = rot.eulerAngles.z;
+            zAngle = rot.eulerAngles.z + angle;
             Debug.Log("Entry transform: " + pos + " " + rot);            
             GameObject parentObject = gameObject.transform.parent.gameObject;
             parentZ = gameObject.gameObject.transform.eulerAngles.z; 
@@ -55,7 +55,6 @@ public class TwistActionComponent : BaseActionComponent
         Debug.Log("Check if completed");
         if (interactingObject.GetComponent<ObjectStateManager>().currentState is ObjectGrabHoverState)
         {
-            Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
 
             //angle += rot.z - zAngle;
@@ -81,7 +80,7 @@ public class TwistActionComponent : BaseActionComponent
 
         if (angle >= requiredAngle)
         {
-            isCompleted = true;
+            this.isCompleted = true;
             Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
         }
     }

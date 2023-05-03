@@ -108,12 +108,12 @@ public class ObjectStateManager : MonoBehaviour
         isHitting = Physics.Linecast(start, end, out hit, _layerMask);
         Debug.DrawLine(start, end, Color.green);
 
-        if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, start, end, angle))
+        if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, start, end, angle) && hit.transform.tag == "Colliders")
         // if (isHitting && hit.transform.name != this.transform.name)
         {
             
             float deg = Vector3.Angle(hit.transform.position - start, end - start);
-            // Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") :: " + this.raycastOrigin.transform.position + (this.raycastDirection * range));
+            Debug.Log(this.transform.name + " hits: " + hit.transform.name + "(" + hit.distance + ", " + deg + ") :: " + this.raycastOrigin.transform.position + (this.raycastDirection * range));
             currentInteractingObject = hit.transform.gameObject;
             return true;
         }

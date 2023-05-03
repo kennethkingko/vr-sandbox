@@ -10,7 +10,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     [SerializeField] float angle;
     [SerializeField] Transform entryTransform;
     float yAngle;
-    float parenty;
+    float parentY;
 
     public void Start()
     {
@@ -32,10 +32,10 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             Quaternion rot = go.transform.rotation;
             //yAngle = rot.y;
 
-            yAngle = rot.eulerAngles.y;
+            yAngle = rot.eulerAngles.y + angle;
             Debug.Log("Entry transform: " + pos + " " + rot);
             GameObject parentObject = gameObject.transform.parent.gameObject;
-            parenty = gameObject.transform.eulerAngles.y; 
+            parentY = gameObject.transform.parent.gameObject.transform.eulerAngles.y; 
         }
     }
 
@@ -64,13 +64,14 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             angle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
             Debug.Log("Current angle: (" + angle +")");            
 
-            Debug.Log("parentObject: " + gameObject.transform.eulerAngles);
+            GameObject parentObject = gameObject.transform.parent.gameObject;
+            Debug.Log("parentObject: " + parentObject.transform.eulerAngles);
 
-            if (Mathf.Abs((parenty-angle) - gameObject.transform.eulerAngles.y)> 3) {
-                gameObject.transform.eulerAngles = new Vector3(
-                gameObject.transform.eulerAngles.x,
-                parenty-angle,                
-                gameObject.transform.eulerAngles.z);                
+            if (Mathf.Abs((parentY-angle) - parentObject.transform.eulerAngles.y)> 3) {
+                parentObject.transform.eulerAngles = new Vector3(
+                parentObject.transform.eulerAngles.x,
+                parentY-angle,                
+                parentObject.transform.eulerAngles.z);                
             }
         }
         else
@@ -81,7 +82,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         if (angle >= requiredAngle)
         {
             isCompleted = true;
-            Debug.Log("Turning action completed on " + gameObject.transform.name);
+            Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
         }
     }
 }
