@@ -35,7 +35,7 @@ public class TwistActionComponent : BaseActionComponent
             zAngle = rot.eulerAngles.z;
             Debug.Log("Entry transform: " + pos + " " + rot);            
             GameObject parentObject = gameObject.transform.parent.gameObject;
-            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.z; 
+            parentZ = gameObject.gameObject.transform.eulerAngles.z; 
             
         }
     }

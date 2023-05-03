@@ -10,7 +10,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     [SerializeField] float angle;
     [SerializeField] Transform entryTransform;
     float yAngle;
-    float parentZ;
+    float parenty;
 
     public void Start()
     {
@@ -35,7 +35,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             yAngle = rot.eulerAngles.y;
             Debug.Log("Entry transform: " + pos + " " + rot);
             GameObject parentObject = gameObject.transform.parent.gameObject;
-            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.y; 
+            parenty = gameObject.transform.eulerAngles.y; 
         }
     }
 
@@ -64,14 +64,13 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             angle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
             Debug.Log("Current angle: (" + angle +")");            
 
-            GameObject parentObject = gameObject.transform.parent.gameObject;
-            Debug.Log("parentObject: " + parentObject.transform.eulerAngles);
+            Debug.Log("parentObject: " + gameObject.transform.eulerAngles);
 
-            if (Mathf.Abs((parentZ-angle) - parentObject.transform.eulerAngles.y)> 3) {
-                parentObject.transform.eulerAngles = new Vector3(
-                parentObject.transform.eulerAngles.x,
-                parentZ-angle,                
-                parentObject.transform.eulerAngles.z);                
+            if (Mathf.Abs((parenty-angle) - gameObject.transform.eulerAngles.y)> 3) {
+                gameObject.transform.eulerAngles = new Vector3(
+                gameObject.transform.eulerAngles.x,
+                parenty-angle,                
+                gameObject.transform.eulerAngles.z);                
             }
         }
         else
@@ -82,7 +81,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         if (angle >= requiredAngle)
         {
             isCompleted = true;
-            Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
+            Debug.Log("Turning action completed on " + gameObject.transform.name);
         }
     }
 }
