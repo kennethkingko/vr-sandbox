@@ -17,7 +17,6 @@ public class ObjectStateManager : MonoBehaviour
 
     public bool isGrabbed = false;
     public bool isStatic;
-    // public XRGrabInteractable interactor = null;
 
     public GameObject raycastOrigin;
     public Vector3 raycastDirection;
@@ -26,8 +25,16 @@ public class ObjectStateManager : MonoBehaviour
     public float range;
     public float angle;
     public bool isTriggerOn;
+
+    private XRGrabInteractable interactable;
     
     [SerializeField] private LayerMask _layerMask;
+
+    void Awake()
+    {
+        gameObject.AddComponent<XRGrabInteractable>();
+        interactable = gameObject.GetComponent<XRGrabInteractable>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,13 +55,22 @@ public class ObjectStateManager : MonoBehaviour
     void Update()
     {
         this.currentState.UpdateState(this);
+
+        if (interactable.isSelected)
+        {
+            EnterGrabbedState();
+        }
+        if (!interactable.isSelected)
+        {
+            ExitGrabbedState();
+        }
     }
 
     public void SwitchState(ObjectBaseState state)
     {
         this.currentState = state;
         this.currentState.EnterState(this);
-    }
+    } 
 
     public void EnterGrabbedState()
     {
