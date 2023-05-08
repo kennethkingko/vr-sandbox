@@ -10,6 +10,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
     [SerializeField] float angle;
     [SerializeField] Transform entryTransform;
     float yAngle;
+    float parentZ;
 
     public void Start()
     {
@@ -33,6 +34,8 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 
             yAngle = rot.eulerAngles.y;
             Debug.Log("Entry transform: " + pos + " " + rot);
+            GameObject parentObject = gameObject.transform.parent.gameObject;
+            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.y; 
         }
     }
 
@@ -59,7 +62,17 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             //only comfortable until about 45 degrees tho
             //clockwise is negative
             angle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
-            Debug.Log("Current angle: (" + angle + " = " + rot.y + " - "+ yAngle +")");
+            Debug.Log("Current angle: (" + angle +")");            
+
+            GameObject parentObject = gameObject.transform.parent.gameObject;
+            Debug.Log("parentObject: " + parentObject.transform.eulerAngles);
+
+            if (Mathf.Abs((parentZ-angle) - parentObject.transform.eulerAngles.y)> 3) {
+                parentObject.transform.eulerAngles = new Vector3(
+                parentObject.transform.eulerAngles.x,
+                parentZ-angle,                
+                parentObject.transform.eulerAngles.z);                
+            }
         }
         else
         {

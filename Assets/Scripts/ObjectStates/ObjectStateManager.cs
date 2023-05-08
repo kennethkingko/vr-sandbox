@@ -25,6 +25,7 @@ public class ObjectStateManager : MonoBehaviour
     public GameObject currentInteractingObject;
     public float range;
     public float angle;
+    public bool isTriggerOn;
     
     [SerializeField] private LayerMask _layerMask;
 
@@ -63,6 +64,16 @@ public class ObjectStateManager : MonoBehaviour
     public void ExitGrabbedState()
     {
         this.SwitchState(objectIdleState);
+    }
+
+    public void TriggerPressed()
+    {
+        this.isTriggerOn = true;
+    }
+
+    public void TriggerReleased()
+    {
+        this.isTriggerOn = false;
     }
 
     public bool IsHitObjectWithinAngle(RaycastHit hit, Vector3 start, Vector3 end, float theta)

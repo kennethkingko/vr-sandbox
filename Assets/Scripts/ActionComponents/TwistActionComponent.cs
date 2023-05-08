@@ -11,6 +11,7 @@ public class TwistActionComponent : BaseActionComponent
     [SerializeField] float angle;
     [SerializeField] Transform entryTransform;
     float zAngle;
+    float parentZ;
     
     void Start()
     {
@@ -32,7 +33,10 @@ public class TwistActionComponent : BaseActionComponent
             Quaternion rot = go.transform.rotation;
             // zAngle = rot.z;
             zAngle = rot.eulerAngles.z;
-            Debug.Log("Entry transform: " + pos + " " + rot);
+            Debug.Log("Entry transform: " + pos + " " + rot);            
+            GameObject parentObject = gameObject.transform.parent.gameObject;
+            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.z; 
+            
         }
     }
 
@@ -61,6 +65,14 @@ public class TwistActionComponent : BaseActionComponent
             // clockwise is positive
             angle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
             Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
+            GameObject parentObject = gameObject.transform.parent.gameObject;
+            if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1) {
+                parentObject.transform.eulerAngles = new Vector3(
+                parentObject.transform.eulerAngles.x,
+                parentObject.transform.eulerAngles.y,
+                parentZ+angle);
+                Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
+            }
         }
         else
         {
