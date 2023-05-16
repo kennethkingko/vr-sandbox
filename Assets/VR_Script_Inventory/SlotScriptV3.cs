@@ -37,6 +37,10 @@ public class SlotScriptV3 : MonoBehaviour
         // {
         //     Debug.Log("SLOTSCRIPTV3: RH Grip button is pressed.");
         // }
+
+        if (!this.itemInSlot){
+            resetColor();
+        }
     }
 
 
@@ -46,13 +50,13 @@ public class SlotScriptV3 : MonoBehaviour
         // Debug.Log("SLOTSCRIPTV3: ONTRIGGERSTAY");
         if (itemInSlot != null)
         {
-            Debug.Log("Item in slot not null");
+            // Debug.Log("Item in slot not null");
             return;
         }
         GameObject obj = other.gameObject;
         if (!isItem(obj))
         {
-            Debug.Log("Item not designated an Item");
+            // Debug.Log("Item not designated an Item");
             return;
         }
         if (obj.GetComponent<ColliderList>().getColliderList.Count > 1)
@@ -151,6 +155,28 @@ public class SlotScriptV3 : MonoBehaviour
     public void resetColor()
     {
         slotImage.color = originalColor;
+    }
+
+
+    public void ManualTriggerReleaseItem(GameObject other)
+    {
+        if (itemInSlot != null)
+        {
+            if (other.gameObject.GetComponent<ItemScriptV3>().inSlot)
+            {
+                other.gameObject.GetComponent<ItemScriptV3>().currentSlot.itemInSlot = null;
+                other.transform.SetParent(null);
+                other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                
+                other.gameObject.GetComponent<ItemScriptV3>().inSlot = false;
+                other.gameObject.GetComponent<ItemScriptV3>().currentSlot.resetColor();
+                other.gameObject.GetComponent<ItemScriptV3>().currentSlot = null;
+                
+
+            }
+
+        }
+
     }
 
 }
