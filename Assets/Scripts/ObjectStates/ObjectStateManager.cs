@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
+
 public class ObjectStateManager : MonoBehaviour
 {
-    public ObjectBaseState currentState;
+    
+    [SerializeField] public ObjectBaseState currentState;
     public Material defaultMat;
     public Material onGrabMat;
     public Material onRaycastMat;
@@ -29,7 +31,6 @@ public class ObjectStateManager : MonoBehaviour
     private XRGrabInteractable interactable;
     
     [SerializeField] private LayerMask _layerMask;
-
     void Awake()
     {
         gameObject.AddComponent<XRGrabInteractable>();
@@ -56,7 +57,19 @@ public class ObjectStateManager : MonoBehaviour
     {
         this.currentState.UpdateState(this);
 
-        if (interactable.isSelected)
+        HandleGrabState();
+        HandleTrigger();
+    }
+
+    public void SwitchState(ObjectBaseState state)
+    {
+        this.currentState = state;
+        this.currentState.EnterState(this);
+    }
+
+    public void HandleGrabState()
+    {
+        if (interactable.isSelected && this.currentState is ObjectIdleState)
         {
             EnterGrabbedState();
         }
@@ -64,12 +77,6 @@ public class ObjectStateManager : MonoBehaviour
         {
             ExitGrabbedState();
         }
-    }
-
-    public void SwitchState(ObjectBaseState state)
-    {
-        this.currentState = state;
-        this.currentState.EnterState(this);
     } 
 
     public void EnterGrabbedState()
@@ -80,6 +87,27 @@ public class ObjectStateManager : MonoBehaviour
     public void ExitGrabbedState()
     {
         this.SwitchState(objectIdleState);
+    }
+
+    public void HandleTrigger()
+    {
+        var devices = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand, devices);
+        
+        foreach (var device in devices)
+        {
+            bool featureValue;
+            if (device.TryGetFeatureValue(CommonUsages.triggerButton, out featureValue) && featureValue)
+            {
+                Debug.Log("Trigger on!");
+                this.isTriggerOn = true;
+            }
+            else
+            {
+                this.isTriggerOn = false;
+            }
+        }   
+        
     }
 
     public void TriggerPressed()

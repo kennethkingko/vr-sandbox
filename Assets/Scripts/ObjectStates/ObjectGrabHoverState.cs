@@ -13,13 +13,15 @@ public class ObjectGrabHoverState : ObjectBaseState
         this.iOsm.isGrabbed = true;
         bsc = this.iOsm.currentInteractingObject.GetComponent<BaseActionComponent>();
         bsc.OnEntry(this.iOsm.gameObject);
+        Debug.Log("Interaction start...");
     }
 
     public override void UpdateState(ObjectStateManager osm)
     {
+        Debug.Log("Currently interacting!");
         if (!bsc.isCompleted)
         {
-            this.iOsm.currentInteractingObject.GetComponent<BaseActionComponent>().CheckIfCompleted();
+            bsc.CheckIfCompleted();
         }
         if (!this.iOsm.EmitRay() || !this.iOsm.isTriggerOn)
         {
