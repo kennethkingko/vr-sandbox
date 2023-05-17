@@ -8,10 +8,12 @@ public class TwistActionComponent : BaseActionComponent
     [SerializeField] GameObject interactingObject;
     public float distance;
     public float requiredAngle;
+    public float minimumTurnAngle;
     [SerializeField] float angle;
     [SerializeField] Transform entryTransform;
     float zAngle;
     float parentZ;
+    int turnCount;
     
     void Start()
     {
@@ -33,7 +35,7 @@ public class TwistActionComponent : BaseActionComponent
             Quaternion rot = go.transform.rotation;
             // zAngle = rot.z;
             zAngle = rot.eulerAngles.z + angle;
-            Debug.Log("Entry transform: " + pos + " " + rot);            
+            // Debug.Log("Entry transform: " + pos + " " + rot);            
             GameObject parentObject = gameObject.transform.parent.gameObject;
             parentZ = parentObject.transform.eulerAngles.z; 
             
@@ -41,17 +43,21 @@ public class TwistActionComponent : BaseActionComponent
     }
 
     //when is this used?
-    public bool CheckAction()
+    public float CheckAction()
     {
-        bool distanceCheck = false;
+        float actedAngle = 0.0f;
+        Quaternion rot = interactingObject.transform.rotation;
 
-        distanceCheck = Vector3.Distance(interactingObject.transform.position, gameObject.transform.position) <= distance;
+        // Change the computation here
+        actedAngle = Mathf.Clamp(zAngle - rot.eulerAngles.z, 0, 360);
+        // actedAngle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
 
-        return distanceCheck;
+        return actedAngle;
     }
 
     public override void CheckIfCompleted()
     {   
+        float actedAngle = 0.0f;
         Debug.Log("Check if completed");
         if (interactingObject.GetComponent<ObjectStateManager>().currentState is ObjectGrabHoverState)
         {
@@ -62,18 +68,18 @@ public class TwistActionComponent : BaseActionComponent
             // works more accurately but angle has to be less than 180/greater than -180
             // problem is if it goes in the wrong direction, once it reaches 180, will immediately switch to the other direction
             // clockwise is positive
-            angle = Mathf.MoveTowards(zAngle, rot.eulerAngles.z, Time.deltaTime);
+            actedAngle = CheckAction();
             Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
             GameObject parentObject = gameObject.transform.parent.gameObject;
-            if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1) {
+            if (Mathf.Abs((parentZ + actedAngle) - parentObject.transform.eulerAngles.z)> 1) {
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
                 parentObject.transform.eulerAngles.y,
-                parentZ+angle);
-                Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
+                parentZ+actedAngle);
+                // Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
             }
+            angle = actedAngle;
         }
-
         if (angle >= requiredAngle)
         {
             this.isCompleted = true;
