@@ -9,7 +9,7 @@ public class ObjectIdleState : ObjectBaseState
     public override void EnterState(ObjectStateManager osm)
     {
         this.iOsm = osm;
-        this.iOsm.GetComponent<MeshRenderer>().material = osm.defaultMat;
+        // this.iOsm.GetComponent<MeshRenderer>().material = osm.defaultMat;
         this.iOsm.isGrabbed = false;
     }
 

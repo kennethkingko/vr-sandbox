@@ -28,9 +28,10 @@ public class ObjectStateManager : MonoBehaviour
     public float angle;
     public bool isTriggerOn;
 
-    private XRGrabInteractable interactable;
+    protected XRGrabInteractable interactable;
     
-    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] protected LayerMask _layerMask;
+
     void Awake()
     {
         gameObject.AddComponent<XRGrabInteractable>();
@@ -44,7 +45,7 @@ public class ObjectStateManager : MonoBehaviour
         _layerMask = LayerMask.GetMask("Colliders");
         this.currentState = objectIdleState;
         this.currentState.EnterState(this);
-        this.GetComponent<MeshRenderer>().material = defaultMat;
+        // this.GetComponent<MeshRenderer>().material = defaultMat;
     }
 
     // private void Awake()

@@ -9,7 +9,7 @@ public class ObjectGrabbedState : ObjectBaseState
     public override void EnterState(ObjectStateManager osm)
     {
         this.iOsm = osm;
-        this.iOsm.GetComponent<MeshRenderer>().material = osm.onGrabMat;
+        // this.iOsm.GetComponent<MeshRenderer>().material = osm.onGrabMat;
         this.iOsm.isGrabbed = true;
         Debug.Log("Holding a " + this.iOsm.gameObject.name);
     }

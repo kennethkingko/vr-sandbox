@@ -5925,7 +5925,7 @@ MonoBehaviour:
   interactingObject: {fileID: 0}
   distance: 0.5
   requiredAngle: 420
-  minimumTurnAngle: 90
+  minimumTurnAngle: 45
   angle: 0
   entryTransform: {fileID: 0}
 --- !u!1 &1630639286
