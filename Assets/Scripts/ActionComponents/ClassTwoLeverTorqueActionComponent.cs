@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The ClassTwoLeverTorqueActionComponent is an action component that mimics wrench-like action where torque is applied in a class-two level manner. Computation is made by checking the rotation along the y-component of the interacting object.
+/// </summary>
 public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 {
-    [SerializeField] GameObject interactingObject;
+    // Values needed for the action to be completed
     public float distance;
     public float requiredAngle;
+    
     [SerializeField] float angle;
-    [SerializeField] Transform entryTransform;
+    [SerializeField] GameObject interactingObject;
+
     float yAngle;
     float parentY;
 
@@ -18,11 +23,13 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         interactingObject = null;
     }
     
+    // Might need to be refactored for optimization
     public override void Update()
     {
         if (!isCompleted && interactingObject != null) CheckIfCompleted();
     }
 
+    // Function check to store the initial values of the interacting object
     public override void OnEntry(GameObject go)
     {
         if (go != null)

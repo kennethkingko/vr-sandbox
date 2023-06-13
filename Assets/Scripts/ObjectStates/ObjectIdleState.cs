@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The ObjectIdleState is the default state of the object when existing in the world.
+/// </summary>
 public class ObjectIdleState : ObjectBaseState
 {
     ObjectStateManager iOsm;

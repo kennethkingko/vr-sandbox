@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The TwistActionComponent is an action component that mimics twisting action like opening a doorknob or using a screwdriver. Computation is made by checking the rotation along the z-component of the interacting object.
+/// </summary>
 public class TwistActionComponent : BaseActionComponent
 {
-
-    [SerializeField] GameObject interactingObject;
+    // Values needed for the acttion to be completed
     public float distance;
     public float requiredAngle;
-    public float minimumTurnAngle;
+    
     [SerializeField] float angle;
-    [SerializeField] Transform entryTransform;
+    [SerializeField] GameObject interactingObject;
+
     float zAngle;
     float parentZ;
-    int turnCount;
     
     void Start()
     {

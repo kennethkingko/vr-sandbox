@@ -4,41 +4,46 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-
+/// <summary>
+/// The ObjectStateManager is the generic state manager for objects that will interact with action components in the world. Object regarded as tools should utilize this generic state manager to which many other actions can derive from. This state manager can be used as a superclass for other tools that require unique interactions.
+/// </summary>
 public class ObjectStateManager : MonoBehaviour
 {
-    
+    // Checking of current state, and changes on materials if necessary, can be changed as needed
     [SerializeField] public ObjectBaseState currentState;
     public Material defaultMat;
     public Material onGrabMat;
     public Material onRaycastMat;
 
+    // Declaration of states
     public ObjectIdleState objectIdleState = new ObjectIdleState();
     public ObjectGrabbedState objectGrabbedState = new ObjectGrabbedState(); 
     public ObjectGrabHoverState objectGrabHoverState = new ObjectGrabHoverState(); 
 
+    // Checking of controls
     public bool isGrabbed = false;
     public bool isStatic;
+    public bool isTriggerOn;
 
+    // Variables for how sensitive this state manager should detect interaction
+    public GameObject currentInteractingObject;
     public GameObject raycastOrigin;
     public Vector3 raycastDirection;
     public List<GameObject> colliderObjects;
-    public GameObject currentInteractingObject;
     public float range;
     public float angle;
-    public bool isTriggerOn;
 
     protected XRGrabInteractable interactable;
     
     [SerializeField] protected LayerMask _layerMask;
 
+    // Generates its own XRGrabInteractable to avoid separate dependency and declaration
     void Awake()
     {
         gameObject.AddComponent<XRGrabInteractable>();
         interactable = gameObject.GetComponent<XRGrabInteractable>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         colliderObjects = new List<GameObject>();
@@ -48,12 +53,6 @@ public class ObjectStateManager : MonoBehaviour
         // this.GetComponent<MeshRenderer>().material = defaultMat;
     }
 
-    // private void Awake()
-    // {
-    //     interactor = GetComponent<XRGrabInteractable>();
-    // }
-
-    // Update is called once per frame
     void Update()
     {
         this.currentState.UpdateState(this);
@@ -62,12 +61,14 @@ public class ObjectStateManager : MonoBehaviour
         HandleTrigger();
     }
 
+    // All switch handlings are handled a state manager level
     public void SwitchState(ObjectBaseState state)
     {
         this.currentState = state;
         this.currentState.EnterState(this);
     }
 
+    // Handler function if the object is grabbeed
     public void HandleGrabState()
     {
         if (interactable.isSelected && this.currentState is ObjectIdleState)
@@ -90,6 +91,7 @@ public class ObjectStateManager : MonoBehaviour
         this.SwitchState(objectIdleState);
     }
 
+    // Handle function to check if the trigger button on controllers are held
     public void HandleTrigger()
     {
         var devices = new List<InputDevice>();
@@ -121,6 +123,13 @@ public class ObjectStateManager : MonoBehaviour
         this.isTriggerOn = false;
     }
 
+    // Customizable object check whether this object is interacting with the corresponding action component
+    public bool IsObjectCorrect()
+    {
+        return true;
+    }
+
+    // Mathematical function check whether this object is within the angle of interaction
     public bool IsHitObjectWithinAngle(RaycastHit hit, Vector3 start, Vector3 end, float theta)
     {
         float deg = Vector3.Angle(hit.transform.position - start, end - start);
@@ -132,6 +141,7 @@ public class ObjectStateManager : MonoBehaviour
         return false;
     }
 
+    // Mathematical function check whether this object is within the range of interaction
     public bool IsObjectWithinDistance(RaycastHit hit, float distance)
     {
         if (hit.distance <= distance)
@@ -141,6 +151,7 @@ public class ObjectStateManager : MonoBehaviour
         return false;
     }
 
+    // Collision implementation of this object and another object, returns true if there is (a) there is collision, (b) it is not hitting itself, (c) the boolean checks are true, and (d) hitting the correct tags (colliders)
     public bool EmitRay()
     {
         RaycastHit hit;
@@ -153,8 +164,7 @@ public class ObjectStateManager : MonoBehaviour
         isHitting = Physics.Linecast(start, end, out hit, _layerMask);
         Debug.DrawLine(start, end, Color.green);
 
-        if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, start, end, angle) && hit.transform.tag == "Colliders")
-        // if (isHitting && hit.transform.name != this.transform.name)
+        if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, start, end, angle) && IsObjectCorrect() && hit.transform.tag == "Colliders")
         {
             
             float deg = Vector3.Angle(hit.transform.position - start, end - start);

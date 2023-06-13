@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The HoverActionComponent is an action component that mimics hover action when the interacting object is near to the action component. Uses distance and time for computation of completion. This is a sample action component only.
+/// </summary>
 public class HoverActionComponent : BaseActionComponent
 {
     GameObject interactingObject;

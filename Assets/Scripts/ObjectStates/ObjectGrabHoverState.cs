@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The ObjectGrabHoverState is the state where interaction with an action component is possible. This allows intentionality on actions performed on action components. Transitions back to ObjectGrabState when the trigger button is released.
+/// </summary>
 public class ObjectGrabHoverState : ObjectBaseState
 {
     ObjectStateManager iOsm;
