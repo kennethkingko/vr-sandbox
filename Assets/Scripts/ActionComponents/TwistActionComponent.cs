@@ -25,41 +25,37 @@ public class TwistActionComponent : BaseActionComponent
 
     public override void Update()
     {
-        if (!this.isCompleted && interactingObject != null) CheckIfCompleted();
+        if (!isCompleted && interactingObject != null) CheckIfCompleted();
     }
 
     public override void OnEntry(GameObject go)
     {
-        if (go != null && !this.isCompleted)
+        if (go != null)
         {
             interactingObject = go;
             Vector3 pos = go.transform.position;
             Quaternion rot = go.transform.rotation;
             // zAngle = rot.z;
-            zAngle = rot.eulerAngles.z + angle;
-            // Debug.Log("Entry transform: " + pos + " " + rot);            
+            zAngle = rot.eulerAngles.z;
+            //Debug.Log("Entry transform: " + pos + " " + rot);            
             GameObject parentObject = gameObject.transform.parent.gameObject;
-            parentZ = parentObject.transform.eulerAngles.z; 
+            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.z; 
             
         }
     }
 
     //when is this used?
-    public float CheckAction()
+    public bool CheckAction()
     {
-        float actedAngle = 0.0f;
-        Quaternion rot = interactingObject.transform.rotation;
+        bool distanceCheck = false;
 
-        // Change the computation here
-        actedAngle = Mathf.Clamp(zAngle - rot.eulerAngles.z, 0, 360);
-        // actedAngle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
+        distanceCheck = Vector3.Distance(interactingObject.transform.position, gameObject.transform.position) <= distance;
 
-        return actedAngle;
+        return distanceCheck;
     }
 
     public override void CheckIfCompleted()
     {   
-        float actedAngle = 0.0f;
         Debug.Log("Check if completed");
         if (interactingObject.GetComponent<ObjectStateManager>().currentState is ObjectGrabHoverState)
         {
@@ -70,21 +66,25 @@ public class TwistActionComponent : BaseActionComponent
             // works more accurately but angle has to be less than 180/greater than -180
             // problem is if it goes in the wrong direction, once it reaches 180, will immediately switch to the other direction
             // clockwise is positive
-            actedAngle = CheckAction();
-            Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
+            angle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
+            //Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
             GameObject parentObject = gameObject.transform.parent.gameObject;
-            if (Mathf.Abs((parentZ + actedAngle) - parentObject.transform.eulerAngles.z)> 1) {
+            if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1) {
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
                 parentObject.transform.eulerAngles.y,
-                parentZ+actedAngle);
-                // Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
+                parentZ+angle);
+                Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
             }
-            angle = actedAngle;
         }
+        else
+        {
+            interactingObject = null;
+        }
+
         if (angle >= requiredAngle)
         {
-            this.isCompleted = true;
+            isCompleted = true;
             Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
         }
     }
