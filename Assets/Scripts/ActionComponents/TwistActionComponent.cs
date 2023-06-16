@@ -15,12 +15,20 @@ public class TwistActionComponent : BaseActionComponent
     [SerializeField] GameObject interactingObject;
 
     float zAngle;
+    
     float parentZ;
+    float parentZPos;
+    float parentZPosInitial;
+    float objectLength;
+    GameObject parentObject;
     
     void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
+        parentObject = gameObject.transform.parent.gameObject;
+        objectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
+        parentZPosInitial = parentObject.transform.position.z; 
     }
 
     public override void Update()
@@ -37,9 +45,9 @@ public class TwistActionComponent : BaseActionComponent
             Quaternion rot = go.transform.rotation;
             // zAngle = rot.z;
             zAngle = rot.eulerAngles.z;
-            //Debug.Log("Entry transform: " + pos + " " + rot);            
-            GameObject parentObject = gameObject.transform.parent.gameObject;
-            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.z; 
+            //Debug.Log("Entry transform: " + pos + " " + rot);        
+            parentZ = parentObject.transform.eulerAngles.z; 
+            parentZPos = parentObject.transform.position.z; 
             
         }
     }
@@ -56,7 +64,7 @@ public class TwistActionComponent : BaseActionComponent
 
     public override void CheckIfCompleted()
     {   
-        Debug.Log("Check if completed");
+        //Debug.Log("Check if completed");
         if (interactingObject.GetComponent<ObjectStateManager>().currentState is ObjectGrabHoverState)
         {
             Quaternion rot = interactingObject.transform.rotation;
@@ -68,24 +76,32 @@ public class TwistActionComponent : BaseActionComponent
             // clockwise is positive
             angle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
             //Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
-            GameObject parentObject = gameObject.transform.parent.gameObject;
             if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1) {
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
                 parentObject.transform.eulerAngles.y,
                 parentZ+angle);
                 Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
+
+                parentObject.transform.position = new Vector3(
+                parentObject.transform.position.x,
+                parentObject.transform.position.y,
+                parentZPos + (objectLength/6)/(360/angle));
             }
+
+            Debug.Log("Limit: " + (parentZPosInitial + objectLength) + " - Current: " + parentObject.transform.position.z);
         }
         else
         {
             interactingObject = null;
         }
 
-        if (angle >= requiredAngle)
+        if (parentObject.transform.position.z >= parentZPosInitial + objectLength)
         {
             isCompleted = true;
             Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
+            Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
+            gameObjectsRigidBody.useGravity = true;
         }
     }
 
