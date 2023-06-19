@@ -8,6 +8,12 @@ using UnityEngine;
 public class TwistActionComponent : BaseActionComponent
 {
     // Values needed for the acttion to be completed
+    public bool simpler;
+    public int numTimesReq;
+    public int numTimesCurrent;
+    public float minAngle;
+    public bool checkedAlready;
+    
     public float distance;
     public float requiredAngle;
     
@@ -48,7 +54,7 @@ public class TwistActionComponent : BaseActionComponent
             //Debug.Log("Entry transform: " + pos + " " + rot);        
             parentZ = parentObject.transform.eulerAngles.z; 
             parentZPos = parentObject.transform.position.z; 
-            
+            checkedAlready = false;
         }
     }
 
@@ -76,17 +82,32 @@ public class TwistActionComponent : BaseActionComponent
             // clockwise is positive
             angle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
             //Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
-            if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1) {
-                parentObject.transform.eulerAngles = new Vector3(
-                parentObject.transform.eulerAngles.x,
-                parentObject.transform.eulerAngles.y,
-                parentZ+angle);
-                Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
+            if (simpler)
+            {
+                if (angle >= minAngle && !checkedAlready)
+                {
+                    numTimesCurrent += 1;
+                    parentObject.transform.position = new Vector3(
+                    parentObject.transform.position.x,
+                    parentObject.transform.position.y,
+                    parentZPos + (objectLength/numTimesReq));
+                    checkedAlready = true;
+                }
+            }
+            else
+            {
+                if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1) {
+                    parentObject.transform.eulerAngles = new Vector3(
+                    parentObject.transform.eulerAngles.x,
+                    parentObject.transform.eulerAngles.y,
+                    parentZ+angle);
+                    Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
 
-                parentObject.transform.position = new Vector3(
-                parentObject.transform.position.x,
-                parentObject.transform.position.y,
-                parentZPos + (objectLength/6)/(360/angle));
+                    parentObject.transform.position = new Vector3(
+                    parentObject.transform.position.x,
+                    parentObject.transform.position.y,
+                    parentZPos + (objectLength/6)/(360/angle));
+                }
             }
 
             Debug.Log("Limit: " + (parentZPosInitial + objectLength) + " - Current: " + parentObject.transform.position.z);
@@ -96,12 +117,25 @@ public class TwistActionComponent : BaseActionComponent
             interactingObject = null;
         }
 
-        if (parentObject.transform.position.z >= parentZPosInitial + objectLength)
+        if (simpler)
         {
-            isCompleted = true;
-            Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
-            Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
-            gameObjectsRigidBody.useGravity = true;
+            if (numTimesCurrent >= numTimesReq)
+            {
+                isCompleted = true;
+                Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
+                Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
+                gameObjectsRigidBody.useGravity = true;
+            }
+        }
+        else
+        {
+            if (parentObject.transform.position.z >= parentZPosInitial + objectLength)
+            {
+                isCompleted = true;
+                Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
+                Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
+                gameObjectsRigidBody.useGravity = true;
+            }
         }
     }
 

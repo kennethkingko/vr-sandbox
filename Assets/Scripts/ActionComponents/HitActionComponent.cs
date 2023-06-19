@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HitActionComponent : BaseActionComponent
 {
+    public bool simpler;
     [SerializeField] GameObject interactingObject;
     public float distance;
     /* public float requiredTotalForce;
@@ -27,12 +28,10 @@ public class HitActionComponent : BaseActionComponent
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null; 
-        parentObject = gameObject.transform.parent.gameObject;   
-        // accumulatedForce = 0;    
+        parentObject = gameObject.transform.parent.gameObject; 
         accumulatedHits = 0;
         currentPower = 0;
         objectHeight = parentObject.GetComponent<Renderer>().bounds.size.z;
-        //destroyedVersion.SetActive(false);
     }
 
     public override void Update()
@@ -47,8 +46,8 @@ public class HitActionComponent : BaseActionComponent
             interactingObject = go;
             Vector3 pos = go.transform.position;
 
-            /* // simple version
-            accumulatedHits += 1; */
+            // simpler version
+            accumulatedHits += 1;
 
             // complex version
             posStart = interactingObject.transform.position;
@@ -83,34 +82,41 @@ public class HitActionComponent : BaseActionComponent
             // Debug.Log("accumulated Hits: " + accumulatedHits);
 
             // complex version
-            if (Vector3.Distance(pos, gameObject.transform.position) < (objectHeight/2)+10 && !hitAlready)
+            if (!simpler)
             {
-                float timeEnd = Time.time;
-                float power = Vector3.Distance(posStart, gameObject.transform.position)/ (timeEnd-timeStart);
-                Debug.Log(power + " hit! ");
-                currentPower += power;
-                hitAlready = true;
-            }
+                if (Vector3.Distance(pos, gameObject.transform.position) < (objectHeight/2)+range && !hitAlready)
+                {
+                    float timeEnd = Time.time;
+                    float power = Vector3.Distance(posStart, gameObject.transform.position);
+                    currentPower += power;
+                    Debug.Log("hit: " + currentPower);
+                    hitAlready = true;
+                }
+            }            
         }
         else
         {
             interactingObject = null;
         }
         
-        /* // simple version
-        if (accumulatedHits >= requiredHits)
+        if (simpler)
         {
-            isCompleted = true;
-            Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
-            DestroyObject();
-        } */
-
-        // complex version
-        if (currentPower >= totalPower)
-        {
-            isCompleted = true;
-            Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
-            DestroyObject();
+            // simpler version
+            if (accumulatedHits >= requiredHits)
+            {
+                isCompleted = true;
+                Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
+                DestroyObject();
+            }
+        }
+        else {
+            // complex version
+            if (currentPower >= totalPower)
+            {
+                isCompleted = true;
+                Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
+                DestroyObject();
+            }
         }
     }
 
