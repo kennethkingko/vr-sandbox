@@ -11,6 +11,14 @@ public class HitActionComponent : BaseActionComponent
     public float minimumForce; */
     public int requiredHits;
     int accumulatedHits;
+    
+    Vector3 posStart;
+    float timeStart;
+    float objectHeight;
+    public float range;
+    bool hitAlready;
+    public float totalPower;
+    float currentPower;
 
     GameObject parentObject;
     public GameObject destroyedVersion;
@@ -22,6 +30,9 @@ public class HitActionComponent : BaseActionComponent
         parentObject = gameObject.transform.parent.gameObject;   
         // accumulatedForce = 0;    
         accumulatedHits = 0;
+        currentPower = 0;
+        objectHeight = parentObject.GetComponent<Renderer>().bounds.size.z;
+        //destroyedVersion.SetActive(false);
     }
 
     public override void Update()
@@ -35,7 +46,14 @@ public class HitActionComponent : BaseActionComponent
         {
             interactingObject = go;
             Vector3 pos = go.transform.position;
-            accumulatedHits += 1;
+
+            /* // simple version
+            accumulatedHits += 1; */
+
+            // complex version
+            posStart = interactingObject.transform.position;
+            timeStart = Time.time;
+            hitAlready = false;
         }
     }
 
@@ -50,6 +68,7 @@ public class HitActionComponent : BaseActionComponent
     }
 
     public void DestroyObject() {
+        //destroyedVersion.SetActive(true);
         Instantiate(destroyedVersion, parentObject.transform.position, parentObject.transform.rotation);
         Destroy(parentObject);
     }
@@ -61,15 +80,33 @@ public class HitActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
-            Debug.Log("accumulated Hits: " + accumulatedHits);
+            // Debug.Log("accumulated Hits: " + accumulatedHits);
 
+            // complex version
+            if (Vector3.Distance(pos, gameObject.transform.position) < (objectHeight/2)+10 && !hitAlready)
+            {
+                float timeEnd = Time.time;
+                float power = Vector3.Distance(posStart, gameObject.transform.position)/ (timeEnd-timeStart);
+                Debug.Log(power + " hit! ");
+                currentPower += power;
+                hitAlready = true;
+            }
         }
         else
         {
             interactingObject = null;
         }
-
+        
+        /* // simple version
         if (accumulatedHits >= requiredHits)
+        {
+            isCompleted = true;
+            Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
+            DestroyObject();
+        } */
+
+        // complex version
+        if (currentPower >= totalPower)
         {
             isCompleted = true;
             Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
