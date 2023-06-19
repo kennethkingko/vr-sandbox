@@ -79,7 +79,7 @@ public class HitActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
-            // Debug.Log("accumulated Hits: " + accumulatedHits);
+            Debug.Log("accumulated Hits: " + accumulatedHits);
 
             // complex version
             if (!simpler)

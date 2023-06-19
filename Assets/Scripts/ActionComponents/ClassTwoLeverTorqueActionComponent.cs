@@ -9,10 +9,6 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 {
     // Values needed for the action to be completed
     public bool simpler;
-    public int numTimesReq;
-    public int numTimesCurrent;
-    public float minAngle;
-    public bool checkedAlready;
     public float requiredAngle;
 
     public float distance;
@@ -36,7 +32,6 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         parentObject = gameObject.transform.parent.gameObject;
         objectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
         parentZPosInitial = parentObject.transform.position.z; 
-        numTimesCurrent = 0;
     }
     
     // Might need to be refactored for optimization
@@ -60,7 +55,6 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             //Debug.Log("Entry transform: " + pos + " " + rot);
             parentY = parentObject.transform.eulerAngles.y; 
             parentZPos = parentObject.transform.position.z;
-            checkedAlready = false; 
             
         }
     }
@@ -95,61 +89,41 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
                 parentY-angle,                
                 parentObject.transform.eulerAngles.z);                
             } */
-            if (simpler)
-            {
-                Debug.Log("angle: " + angle);
-                if (angle <= minAngle && !checkedAlready)
-                {
-                    numTimesCurrent += 1;
-                    parentObject.transform.position = new Vector3(
-                    parentObject.transform.position.x,
-                    parentObject.transform.position.y,
-                    parentZPos + (objectLength/numTimesReq));
-                    checkedAlready = true;
-                }
-            }
-            else
-            {
-                if (angle < 0) {
-                    if (Mathf.Abs((parentY-angle) - parentObject.transform.eulerAngles.y)> 3) {
-                        parentObject.transform.eulerAngles = new Vector3(
-                        parentObject.transform.eulerAngles.x,
-                        parentObject.transform.eulerAngles.y,
-                        parentY-angle);           
 
-                        parentObject.transform.position = new Vector3(
-                        parentObject.transform.position.x,
-                        parentObject.transform.position.y,
-                        parentZPos - (objectLength/6)/(360/angle));     
-                    }
-                    Debug.Log("Angle: " + angle + " - Current: " + parentObject.transform.position.z);
+            if (Mathf.Abs((parentY-angle) - parentObject.transform.eulerAngles.y)> 3) {
+                parentObject.transform.eulerAngles = new Vector3(
+                parentObject.transform.eulerAngles.x,
+                parentObject.transform.eulerAngles.y,
+                parentY-angle);           
+
+                float addedZ = 0;
+                if (simpler)
+                {
+                    addedZ = (objectLength/requiredAngle)*angle;
                 }
-            }            
+                else
+                {
+                    addedZ = (objectLength/6)/(360/angle);
+                }
+
+                parentObject.transform.position = new Vector3(
+                parentObject.transform.position.x,
+                parentObject.transform.position.y,
+                parentZPos - addedZ);     
+            }
+            Debug.Log("Angle: " + angle + " - Current: " + parentObject.transform.position.z);           
         }
         else
         {
             interactingObject = null;
         }
 
-        if (simpler)
+        if (parentObject.transform.position.z >= parentZPosInitial + objectLength - 0.1)
         {
-            if (numTimesCurrent >= numTimesReq)
-            {
-                isCompleted = true;
-                Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
-                Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
-                gameObjectsRigidBody.useGravity = true;
-            }
-        }
-        else
-        {
-            if (parentObject.transform.position.z >= parentZPosInitial + objectLength - 0.1)
-            {
-                isCompleted = true;
-                Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
-                Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
-                gameObjectsRigidBody.useGravity = true;
-            }
+            isCompleted = true;
+            Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
+            Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
+            gameObjectsRigidBody.useGravity = true;
         }
     }
 }
