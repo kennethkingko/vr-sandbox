@@ -6249,7 +6249,7 @@ MonoBehaviour:
   raycastOrigin: {fileID: 1811455387}
   raycastDirection: {x: 1, y: 0, z: 0}
   colliderObjects: []
-  range: 0.15
+  range: 1
   angle: 60
   _layerMask:
     serializedVersion: 2
@@ -13643,6 +13643,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23138808514560662, guid: 3ed1d09056bbc6c4ebaaee7449559051, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92b7113c175399548ba5044b4b5484db, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed1d09056bbc6c4ebaaee7449559051, type: 3}
 --- !u!4 &1303793755 stripped
@@ -15084,7 +15088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1630639287
 RectTransform:
   m_ObjectHideFlags: 0

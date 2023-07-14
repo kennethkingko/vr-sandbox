@@ -32,4 +32,9 @@ public class ObjectGrabHoverState : ObjectBaseState
         }
 
     }
+
+    public void ForceSwitchState()
+    {
+        this.iOsm.SwitchState(this.iOsm.objectGrabbedState);
+    }
 }

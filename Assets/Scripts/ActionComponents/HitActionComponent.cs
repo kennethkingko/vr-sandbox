@@ -23,6 +23,9 @@ public class HitActionComponent : BaseActionComponent
 
     GameObject parentObject;
     public GameObject destroyedVersion;
+    public ParticleSystem particleSys;
+    public float emissionMin;
+    public float emissionMax;
 
     void Start()
     {
@@ -46,13 +49,19 @@ public class HitActionComponent : BaseActionComponent
             interactingObject = go;
             Vector3 pos = go.transform.position;
 
-            // simpler version
-            accumulatedHits += 1;
-
-            // complex version
-            posStart = interactingObject.transform.position;
-            timeStart = Time.time;
-            hitAlready = false;
+            if (simpler)
+            {
+                // simpler version
+                accumulatedHits += 1;
+                particleSys.Play();
+            }
+            else
+            {
+                // complex version
+                posStart = interactingObject.transform.position;
+                timeStart = Time.time;
+                hitAlready = false;
+            }
         }
     }
 
@@ -80,19 +89,28 @@ public class HitActionComponent : BaseActionComponent
             Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
             Debug.Log("accumulated Hits: " + accumulatedHits);
+            var em = particleSys.emission;
 
             // complex version
-            if (!simpler)
+            if (simpler)
             {
-                if (Vector3.Distance(pos, gameObject.transform.position) < (objectHeight/2)+range && !hitAlready)
+                em.rateOverTime = emissionMin + ((emissionMax-emissionMin)*(accumulatedHits/requiredHits));
+
+            } 
+            else
+            {
+                if (Vector3.Distance(pos, gameObject.transform.position) < range && !hitAlready)
                 {
                     float timeEnd = Time.time;
                     float power = Vector3.Distance(posStart, gameObject.transform.position);
+                    Debug.Log("power: " + power);
                     currentPower += power;
                     Debug.Log("hit: " + currentPower);
-                    hitAlready = true;
+                    hitAlready = true;                    
+                    em.rateOverTime = emissionMin + ((emissionMax-emissionMin)*(power/10));
+                    particleSys.Play();
                 }
-            }            
+            }         
         }
         else
         {
@@ -106,6 +124,7 @@ public class HitActionComponent : BaseActionComponent
             {
                 isCompleted = true;
                 Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
+                particleSys.Play();
                 DestroyObject();
             }
         }
@@ -115,6 +134,7 @@ public class HitActionComponent : BaseActionComponent
             {
                 isCompleted = true;
                 Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
+                particleSys.Play();
                 DestroyObject();
             }
         }

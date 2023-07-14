@@ -6,19 +6,23 @@ public class ReceiverManager : MonoBehaviour
 {
     public List<BaseActionComponent> receiverObjects;
     int numReceiverObjects;
+    bool isCompleted;
         
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("numReceiverObjects = " + receiverObjects.Count);
+        isCompleted = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (receiverObjects.Count == 0)
+        if (receiverObjects.Count == 0 && !isCompleted)
         {
             ReceiverAction();
+            isCompleted = true;
+            this.enabled = false;
         }
         else
         {

@@ -21,6 +21,7 @@ public class ObjectStateManager : MonoBehaviour
     public ObjectGrabHoverState objectGrabHoverState = new ObjectGrabHoverState(); 
 
     // Checking of controls
+    public bool isEnabled = true;
     public bool isGrabbed = false;
     public bool isStatic;
     public bool isTriggerOn;
@@ -68,6 +69,12 @@ public class ObjectStateManager : MonoBehaviour
         this.currentState.EnterState(this);
     }
 
+    public void EnableInteractable(bool isEnabled)
+    {
+        this.isEnabled = isEnabled;
+        interactable.enabled = isEnabled;
+    }
+
     // Handler function if the object is grabbeed
     public void HandleGrabState()
     {
@@ -102,7 +109,7 @@ public class ObjectStateManager : MonoBehaviour
             bool featureValue;
             if (device.TryGetFeatureValue(CommonUsages.triggerButton, out featureValue) && featureValue)
             {
-                Debug.Log("Trigger on!");
+                //Debug.Log("Trigger on!");
                 this.isTriggerOn = true;
             }
             else
