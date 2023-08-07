@@ -646,6 +646,17 @@
                 },
                 {
                     "name": "",
+                    "id": "bf4ff5ad-d404-4599-b37b-934f82566917",
+                    "path": "<MetaAimHand>{LeftHand}/middlePressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "49a23327-a116-48c0-8af9-0d2c50c15a88",
                     "path": "<XRController>{LeftHand}/grip",
                     "interactions": "",
@@ -659,6 +670,17 @@
                     "name": "",
                     "id": "304be843-4b23-45d9-89fa-005ac163d9b9",
                     "path": "<MetaAimHand>{LeftHand}/pinchStrengthIndex",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Select Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00407b8f-38da-483f-acac-aebb26e7b6f1",
+                    "path": "<MetaAimHand>{LeftHand}/pinchStrengthMiddle",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",

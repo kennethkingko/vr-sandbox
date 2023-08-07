@@ -42,4 +42,8 @@ public class ColliderList : MonoBehaviour
         }
 
     }
+
+    public void resetColliderList(){
+        m_colliders.Clear();
+    }
 }

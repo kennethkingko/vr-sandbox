@@ -5,11 +5,10 @@ using System.Text;
 using Unity.Collections;
 using Unity.XR.CoreUtils;
 using UnityEngine.XR.Management;
-using TMPro;
 
 namespace UnityEngine.XR.Hands.Samples.VisualizerSample
 {
-    public class HandVisualizer : MonoBehaviour
+    public class ModifiedHandVisualizer : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("If this is enabled, this component will enable the Input System internal feature flag 'USE_OPTIMIZED_CONTROLS'. You must have at least version 1.5.0 of the Input System and have its backend enabled for this to take effect.")]
@@ -76,19 +75,7 @@ namespace UnityEngine.XR.Hands.Samples.VisualizerSample
 
         [SerializeField]
 
-        GameObject wristTest_hands;
-
-        [SerializeField]
-
         GameObject inventorySystem;
-
-        [SerializeField]
-
-        GameObject debugTextWorldSpace;
-
-        public float accessTimerValue = 0.5f;
-
-        public bool mutexInteractCheck = false;
 
         public enum VelocityType
         {
@@ -238,7 +225,6 @@ namespace UnityEngine.XR.Hands.Samples.VisualizerSample
                 bool conditionB = m_Subsystem.leftHand.GetJoint(XRHandJointID.LittleTip).TryGetPose(out Pose l_little_pose);
                 bool conditionC = m_Subsystem.leftHand.GetJoint(XRHandJointID.RingTip).TryGetPose(out Pose l_ring_pose);
                 bool conditionD = m_Subsystem.leftHand.GetJoint(XRHandJointID.IndexTip).TryGetPose(out Pose l_index_pose);
-                bool conditionE = m_Subsystem.leftHand.GetJoint(XRHandJointID.ThumbTip).TryGetPose(out Pose l_thumb_pose);
                 bool conditionPalm = m_Subsystem.leftHand.GetJoint(XRHandJointID.Palm).TryGetPose(out Pose l_palm_pose);
 
                 float distanceMid_Palm = Vector3.Distance(l_mid_pose.position, l_palm_pose.position);
@@ -246,76 +232,18 @@ namespace UnityEngine.XR.Hands.Samples.VisualizerSample
                 float distanceRing_Palm = Vector3.Distance(l_ring_pose.position, l_palm_pose.position);
                 float distanceIndex_Palm = Vector3.Distance(l_index_pose.position, l_palm_pose.position);
 
-                float distanceMiddle_Thumb = Vector3.Distance(l_mid_pose.position, l_thumb_pose.position);
-
                 // displayTransform is some GameObject's Transform component
                 // Debug.Log("Current L middlefinger: " + l_mid_pose.position);
 
-                // Debug.Log(distanceMid_Palm +" | "+ distanceLittle_Palm +" | "+ distanceRing_Palm +" | "+ distanceIndex_Palm);
-                // Debug.Log(l_palm_pose.rotation.eulerAngles);
-                debugTextWorldSpace.GetComponent<TextMeshProUGUI>().text = mutexInteractCheck + " | " + accessTimerValue;
-                //l_palm_pose.rotation.eulerAngles.ToString()
-                // inventoryRuntime.lastPressTime <= 0
+                Debug.Log(distanceMid_Palm +" | "+ distanceLittle_Palm +" | "+ distanceRing_Palm +" | "+ distanceIndex_Palm);
 
-                // Gripped hands: distanceMid_Palm < 0.05 && distanceLittle_Palm < 0.05 && distanceRing_Palm < 0.05 && distanceIndex_Palm < 0.06
-                // Open inventory: distanceMiddle_Thumb < 0.05 
-
-
-                if (distanceMiddle_Thumb < 0.03)
+                if (distanceMid_Palm < 0.05 && distanceLittle_Palm < 0.05 && distanceRing_Palm < 0.05 && distanceIndex_Palm < 0.06 && inventoryRuntime.lastPressTime <= 0)
                 {
-
-                    if (accessTimerValue <= 0 && !mutexInteractCheck)
-                    {
-
-                        if ((inventoryRuntime.currentSelectedInventorySystem != "shelf" && inventoryRuntime.currentSelectedInventorySystem != "magnetic" && inventoryRuntime.currentSelectedInventorySystem != "magicbox"))
-                        {
-                            testLimaw.SetActive(!testLimaw.activeSelf);
-                            if (testLimaw.activeSelf)
-                            {
-                                inventoryRuntime.debugLog.GetComponent<TextMeshProUGUI>().text = "Opened inventory";
-                            }
-                            else
-                            {
-                                inventoryRuntime.debugLog.GetComponent<TextMeshProUGUI>().text = "Closed inventory";
-                            }
-                            mutexInteractCheck = true;
-                            inventoryRuntime.lastPressTime = inventoryRuntime.buttonDelay;
-                            // accessTimerValue = 0.5f;
-                        }
-
-                    }
-                    else
-                    {
-                        accessTimerValue -= Time.deltaTime;
-                    }
-
-                }
-                else
-                {
-                    accessTimerValue = 0.5f;
-                    if (mutexInteractCheck)
-                    {
-                        mutexInteractCheck = !mutexInteractCheck;
-                    }
+                    testLimaw.SetActive(!testLimaw.activeSelf);
+                    inventoryRuntime.lastPressTime = inventoryRuntime.buttonDelay;
                 }
 
-                inventoryRuntime.progressBarProgress = (0.5f - accessTimerValue) * 2;
-
-
-                // Wrist check
-                if (l_palm_pose.rotation.eulerAngles.z > 240f && l_palm_pose.rotation.eulerAngles.z < 360f)
-                {
-                    wristTest_hands.SetActive(true);
-                }
-                else
-                {
-                    wristTest_hands.SetActive(false);
-                }
-
-                // wristTest.transform.position = l_palm_pose.position + new Vector3(0f,0.5f,-0.15f);
-                // wristTest.transform.rotation = l_palm_pose.rotation;
-
-                // testLimaw.transform.rotation = l_palm_pose.rotation;
+                testLimaw.transform.rotation = l_palm_pose.rotation;
 
             }
 
