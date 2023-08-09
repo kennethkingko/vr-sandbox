@@ -2,21 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The TwistActionComponent is an action component that mimics twisting action like opening a doorknob or using a screwdriver. Computation is made by checking the rotation along the z-component of the interacting object.
+/// </summary>
 public class TwistActionComponent : BaseActionComponent
 {
-
-    [SerializeField] GameObject interactingObject;
-    public float distance;
+    // Values needed for the acttion to be completed
+    public bool simpler;
     public float requiredAngle;
-    [SerializeField] float angle;
-    [SerializeField] Transform entryTransform;
+    
+    public float distance;
+    
+    float angle;
+    GameObject interactingObject;
+
     float zAngle;
+    
     float parentZ;
+    float parentZPos;
+    float parentZPosInitial;
+    float objectLength;
+    GameObject parentObject;
     
     void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
-        interactingObject = null;        
+        interactingObject = null;
+        parentObject = gameObject.transform.parent.gameObject;
+        objectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
+        parentZPosInitial = parentObject.transform.position.z; 
     }
 
     public override void Update()
@@ -33,10 +47,9 @@ public class TwistActionComponent : BaseActionComponent
             Quaternion rot = go.transform.rotation;
             // zAngle = rot.z;
             zAngle = rot.eulerAngles.z;
-            Debug.Log("Entry transform: " + pos + " " + rot);            
-            GameObject parentObject = gameObject.transform.parent.gameObject;
-            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.z; 
-            
+            //Debug.Log("Entry transform: " + pos + " " + rot);        
+            parentZ = parentObject.transform.eulerAngles.z; 
+            parentZPos = parentObject.transform.position.z; 
         }
     }
 
@@ -52,10 +65,9 @@ public class TwistActionComponent : BaseActionComponent
 
     public override void CheckIfCompleted()
     {   
-        Debug.Log("Check if completed");
+        //Debug.Log("Check if completed");
         if (interactingObject.GetComponent<ObjectStateManager>().currentState is ObjectGrabHoverState)
         {
-            Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
 
             //angle += rot.z - zAngle;
@@ -64,25 +76,42 @@ public class TwistActionComponent : BaseActionComponent
             // problem is if it goes in the wrong direction, once it reaches 180, will immediately switch to the other direction
             // clockwise is positive
             angle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
-            Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
-            GameObject parentObject = gameObject.transform.parent.gameObject;
-            if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1) {
+            //Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
+            if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1)
+            {
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
                 parentObject.transform.eulerAngles.y,
                 parentZ+angle);
                 Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
+                float addedZ = 0;
+                if (simpler)
+                {
+                    addedZ = (objectLength/requiredAngle)*angle;
+                }
+                else
+                {
+                    addedZ = (objectLength/6)/(360/angle);
+                }
+                parentObject.transform.position = new Vector3(
+                parentObject.transform.position.x,
+                parentObject.transform.position.y,
+                parentZPos + addedZ);
             }
+            
+            Debug.Log("Limit: " + (parentZPosInitial + objectLength) + " - Current: " + parentObject.transform.position.z);
         }
         else
         {
             interactingObject = null;
         }
 
-        if (angle >= requiredAngle)
+        if (parentObject.transform.position.z >= parentZPosInitial + objectLength)
         {
             isCompleted = true;
             Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
+            Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
+            gameObjectsRigidBody.useGravity = true;
         }
     }
 

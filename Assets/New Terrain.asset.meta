@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 037a8acb49a1cba47a971b5fbb410e4a
+=======
+guid: 7c142dc392e47da4396a2fd875133d77
+>>>>>>> origin/kkk-branch
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 15600000

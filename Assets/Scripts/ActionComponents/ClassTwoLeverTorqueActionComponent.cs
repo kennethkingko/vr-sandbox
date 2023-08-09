@@ -2,27 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The ClassTwoLeverTorqueActionComponent is an action component that mimics wrench-like action where torque is applied in a class-two level manner. Computation is made by checking the rotation along the y-component of the interacting object.
+/// </summary>
 public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 {
-    [SerializeField] GameObject interactingObject;
-    public float distance;
+    // Values needed for the action to be completed
+    public bool simpler;
     public float requiredAngle;
+
+    public float distance;
+    
     [SerializeField] float angle;
-    [SerializeField] Transform entryTransform;
+    [SerializeField] GameObject interactingObject;
+
     float yAngle;
-    float parentZ;
+    float parentY;
+
+    float parentZPos;
+    float parentZPosInitial;
+    float objectLength;
+    GameObject parentObject;
 
     public void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
+        
+        parentObject = gameObject.transform.parent.gameObject;
+        objectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
+        parentZPosInitial = parentObject.transform.position.z; 
     }
     
+    // Might need to be refactored for optimization
     public override void Update()
     {
         if (!isCompleted && interactingObject != null) CheckIfCompleted();
     }
 
+    // Function check to store the initial values of the interacting object
     public override void OnEntry(GameObject go)
     {
         if (go != null)
@@ -32,10 +50,12 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             Quaternion rot = go.transform.rotation;
             //yAngle = rot.y;
 
+            //yAngle = rot.eulerAngles.y + angle;
             yAngle = rot.eulerAngles.y;
-            Debug.Log("Entry transform: " + pos + " " + rot);
-            GameObject parentObject = gameObject.transform.parent.gameObject;
-            parentZ = gameObject.transform.parent.gameObject.transform.eulerAngles.y; 
+            //Debug.Log("Entry transform: " + pos + " " + rot);
+            parentY = parentObject.transform.eulerAngles.y; 
+            parentZPos = parentObject.transform.position.z;
+            
         }
     }
 
@@ -50,10 +70,9 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 
     public override void CheckIfCompleted()
     {   
-        Debug.Log("Check if completed");
+        // Debug.Log("Check if completed");
         if (interactingObject.GetComponent<ObjectStateManager>().currentState is ObjectGrabHoverState)
         {
-            Vector3 pos = interactingObject.transform.position;
             Quaternion rot = interactingObject.transform.rotation;
 
             //angle += rot.y - yAngle;
@@ -62,27 +81,49 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             //only comfortable until about 45 degrees tho
             //clockwise is negative
             angle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
-            Debug.Log("Current angle: (" + angle +")");            
+            //Debug.Log("Current angle: (" + angle +")");            
 
-            GameObject parentObject = gameObject.transform.parent.gameObject;
-            Debug.Log("parentObject: " + parentObject.transform.eulerAngles);
-
-            if (Mathf.Abs((parentZ-angle) - parentObject.transform.eulerAngles.y)> 3) {
+            /* if (Mathf.Abs((parentY-angle) - parentObject.transform.eulerAngles.y)> 3) {
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
-                parentZ-angle,                
+                parentY-angle,                
                 parentObject.transform.eulerAngles.z);                
+            } */
+
+            if (Mathf.Abs((parentY-angle) - parentObject.transform.eulerAngles.y)> 3) {
+                parentObject.transform.eulerAngles = new Vector3(
+                parentObject.transform.eulerAngles.x,
+                parentObject.transform.eulerAngles.y,
+                parentY-angle);           
+
+                float addedZ = 0;
+                if (simpler)
+                {
+                    addedZ = (objectLength/requiredAngle)*angle;
+                }
+                else
+                {
+                    addedZ = (objectLength/6)/(360/angle);
+                }
+
+                parentObject.transform.position = new Vector3(
+                parentObject.transform.position.x,
+                parentObject.transform.position.y,
+                parentZPos - addedZ);     
             }
+            Debug.Log("Angle: " + angle + " - Current: " + parentObject.transform.position.z);           
         }
         else
         {
             interactingObject = null;
         }
 
-        if (angle >= requiredAngle)
+        if (parentObject.transform.position.z >= parentZPosInitial + objectLength - 0.1)
         {
             isCompleted = true;
             Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
+            Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
+            gameObjectsRigidBody.useGravity = true;
         }
     }
 }
