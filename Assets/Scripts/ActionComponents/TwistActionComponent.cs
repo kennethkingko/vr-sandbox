@@ -10,7 +10,7 @@ public class TwistActionComponent : BaseActionComponent
     // Values needed for the acttion to be completed
     public bool simpler;
     public float requiredAngle;
-    
+    public Vector3 boundsDirection;
     public float distance;
     
     float angle;
@@ -23,14 +23,30 @@ public class TwistActionComponent : BaseActionComponent
     float parentZPosInitial;
     float objectLength;
     GameObject parentObject;
+
+    float totalZAdded;
     
     void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
         parentObject = gameObject.transform.parent.gameObject;
-        objectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
         parentZPosInitial = parentObject.transform.position.z; 
+        totalZAdded = 0;
+
+        if(boundsDirection.x > 0) {
+            objectLength = parentObject.GetComponent<Renderer>().bounds.size.x;
+        }
+        else if(boundsDirection.y > 0) {
+            objectLength = parentObject.GetComponent<Renderer>().bounds.size.y;
+        }
+        else if(boundsDirection.z > 0) {
+            objectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
+        }
+        else {
+            Debug.LogError("Must set bounds direction", gameObject.transform);
+        }        
+        //Debug.Log(gameObject.transform.parent.name + ": " + objectLength);
     }
 
     public override void Update()
@@ -84,6 +100,8 @@ public class TwistActionComponent : BaseActionComponent
                 parentObject.transform.eulerAngles.y,
                 parentZ+angle);
                 Debug.Log("parentObject: " + parentObject.transform.eulerAngles.y);
+
+                // object forward movement
                 float addedZ = 0;
                 if (simpler)
                 {
@@ -92,21 +110,18 @@ public class TwistActionComponent : BaseActionComponent
                 else
                 {
                     addedZ = (objectLength/6)/(360/angle);
-                }
-                parentObject.transform.position = new Vector3(
-                parentObject.transform.position.x,
-                parentObject.transform.position.y,
-                parentZPos + addedZ);
+                }                
+                addedZ = (objectLength/requiredAngle)*angle;
+                totalZAdded += addedZ;
+                parentObject.transform.position += transform.forward*addedZ;
             }
-            
-            Debug.Log("Limit: " + (parentZPosInitial + objectLength) + " - Current: " + parentObject.transform.position.z);
         }
         else
         {
             interactingObject = null;
         }
 
-        if (parentObject.transform.position.z >= parentZPosInitial + objectLength)
+        if (totalZAdded >= objectLength)
         {
             isCompleted = true;
             Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
