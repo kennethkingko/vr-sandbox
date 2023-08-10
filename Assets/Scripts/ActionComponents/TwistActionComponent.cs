@@ -14,6 +14,7 @@ public class TwistActionComponent : BaseActionComponent
     public float distance;
     
     float angle;
+    float currentAngleBuffer;  
     GameObject interactingObject;
 
     float zAngle;
@@ -66,6 +67,7 @@ public class TwistActionComponent : BaseActionComponent
             //Debug.Log("Entry transform: " + pos + " " + rot);        
             parentZ = parentObject.transform.eulerAngles.z; 
             parentZPos = parentObject.transform.position.z; 
+            currentAngleBuffer = 0;
         }
     }
 
@@ -86,15 +88,24 @@ public class TwistActionComponent : BaseActionComponent
         {
             Quaternion rot = interactingObject.transform.rotation;
 
-            //angle += rot.z - zAngle;
-
-            // works more accurately but angle has to be less than 180/greater than -180
-            // problem is if it goes in the wrong direction, once it reaches 180, will immediately switch to the other direction
-            // clockwise is positive
-            angle = Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
-            //Debug.Log("Current angle: (" + angle + " - " + rot.eulerAngles.z + " - "+ zAngle +")");
+            angle = currentAngleBuffer + Mathf.DeltaAngle(rot.eulerAngles.z, zAngle);
+            Debug.Log("Current angle: (" + Mathf.DeltaAngle(rot.eulerAngles.z, zAngle) +")");
+            Debug.Log("With Buffer: (" + angle +")");
+            Debug.Log("Buffer: (" + currentAngleBuffer +")");
             if (Mathf.Abs((parentZ+angle) - parentObject.transform.eulerAngles.z)> 1)
             {
+                if (Mathf.DeltaAngle(rot.eulerAngles.z, zAngle) > 175)
+                {
+                    currentAngleBuffer += 175;
+                    zAngle = rot.eulerAngles.z;
+                }
+                else if (Mathf.DeltaAngle(rot.eulerAngles.z, zAngle) < -175)
+                {
+                    currentAngleBuffer -= 175;
+                    zAngle = rot.eulerAngles.z;
+                }
+
+                // object rotation
                 parentObject.transform.eulerAngles = new Vector3(
                 parentObject.transform.eulerAngles.x,
                 parentObject.transform.eulerAngles.y,
@@ -112,8 +123,8 @@ public class TwistActionComponent : BaseActionComponent
                     addedZ = (objectLength/6)/(360/angle);
                 }                
                 addedZ = (objectLength/requiredAngle)*angle;
-                totalZAdded += addedZ;
-                parentObject.transform.position += transform.forward*addedZ;
+                //totalZAdded += addedZ;
+                //parentObject.transform.position += transform.forward*addedZ;
             }
         }
         else
