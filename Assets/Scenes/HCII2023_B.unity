@@ -5918,8 +5918,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 273516210}
   isCompleted: 0
-  requiredAngle: 100
+  requiredAngle: 360
   boundsDirection: {x: 0, y: 0, z: 1}
+  isClockwise: 0
+  isBackward: 0
+  stopMoveBuffer: 0.01
 --- !u!136 &273516210
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7083,6 +7086,9 @@ MonoBehaviour:
   isCompleted: 0
   requiredAngle: 720
   boundsDirection: {x: 0, y: 0, z: 1}
+  isClockwise: 1
+  isBackward: 0
+  stopMoveBuffer: 0
 --- !u!136 &688073253
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7283,6 +7289,9 @@ MonoBehaviour:
   isCompleted: 0
   requiredAngle: 720
   boundsDirection: {x: 1, y: 0, z: 0}
+  isClockwise: 1
+  isBackward: 0
+  stopMoveBuffer: 0
 --- !u!136 &783279839
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8234,6 +8243,9 @@ MonoBehaviour:
   isCompleted: 0
   requiredAngle: 720
   boundsDirection: {x: 0, y: 0, z: 1}
+  isClockwise: 1
+  isBackward: 0
+  stopMoveBuffer: 0
 --- !u!136 &834749594
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15038,6 +15050,9 @@ MonoBehaviour:
   isCompleted: 0
   requiredAngle: 720
   boundsDirection: {x: 1, y: 0, z: 0}
+  isClockwise: 1
+  isBackward: 0
+  stopMoveBuffer: 0
 --- !u!136 &1403845132
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15165,8 +15180,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1416075674}
   isCompleted: 0
-  requiredAngle: 100
+  requiredAngle: 360
   boundsDirection: {x: 0, y: 0, z: 1}
+  isClockwise: 0
+  isBackward: 0
+  stopMoveBuffer: 0.01
 --- !u!136 &1416075674
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15841,8 +15859,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1435828841}
   isCompleted: 0
-  requiredAngle: 100
+  requiredAngle: 360
   boundsDirection: {x: 0, y: 0, z: 1}
+  isClockwise: 0
+  isBackward: 0
+  stopMoveBuffer: 0.01
 --- !u!136 &1435828841
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21947,8 +21968,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1922970163}
   isCompleted: 0
-  requiredAngle: 100
+  requiredAngle: 360
   boundsDirection: {x: 0, y: 0, z: 1}
+  isClockwise: 0
+  isBackward: 0
+  stopMoveBuffer: 0.01
 --- !u!136 &1922970163
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -7,9 +7,14 @@ using UnityEngine;
 /// </summary>
 public class TwistActionComponent : BaseActionComponent
 {
-    // Values needed for the action to be completed
+    // Set in Inspector
     public float requiredAngle;
     public Vector3 boundsDirection;
+    public bool isClockwise;
+    public bool isBackward;
+    public float stopMoveBuffer = 0;
+
+    //
     GameObject interactingObject;
     float deltaAngle; 
     float deltaAngleBuffer;
@@ -92,12 +97,27 @@ public class TwistActionComponent : BaseActionComponent
             parentObject.transform.eulerAngles.y,
             parentObjAngleInitial + deltaAngle);
 
-
             // object forward movement
-            float addedZ = 0;
-            addedZ = (parentObjectLength/requiredAngle)*deltaAngle;
-            totalMoved += addedZ;
-            parentObject.transform.position += transform.forward*addedZ;
+            float move;
+            if (isClockwise)
+            {
+                move = (parentObjectLength/requiredAngle)*deltaAngle;
+            }
+            else
+            {
+                move = -(parentObjectLength/requiredAngle)*deltaAngle;
+            }
+            if (totalMoved + move > -stopMoveBuffer)
+            {
+                totalMoved += move;
+                if (isBackward) {
+                    parentObject.transform.position -= transform.forward*move;
+                }
+                else
+                {
+                    parentObject.transform.position += transform.forward*move;
+                }                
+            }     
         }
         else
         {
