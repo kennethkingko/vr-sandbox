@@ -7081,7 +7081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 688073253}
   isCompleted: 0
-  requiredAngle: 360
+  requiredAngle: 720
   boundsDirection: {x: 0, y: 0, z: 1}
 --- !u!136 &688073253
 CapsuleCollider:
@@ -7281,7 +7281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 783279839}
   isCompleted: 0
-  requiredAngle: 360
+  requiredAngle: 720
   boundsDirection: {x: 1, y: 0, z: 0}
 --- !u!136 &783279839
 CapsuleCollider:
@@ -8232,7 +8232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 834749594}
   isCompleted: 0
-  requiredAngle: 360
+  requiredAngle: 720
   boundsDirection: {x: 0, y: 0, z: 1}
 --- !u!136 &834749594
 CapsuleCollider:
@@ -15036,7 +15036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1403845132}
   isCompleted: 0
-  requiredAngle: 360
+  requiredAngle: 720
   boundsDirection: {x: 1, y: 0, z: 0}
 --- !u!136 &1403845132
 CapsuleCollider:
