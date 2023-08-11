@@ -9,6 +9,7 @@ public class TwistActionComponent : BaseActionComponent
 {
     // Set in Inspector
     public float requiredAngle;
+    public float angleSensitivity = 3;
     public Vector3 boundsDirection;
     public bool isClockwise;
     public bool isBackward;
@@ -16,7 +17,7 @@ public class TwistActionComponent : BaseActionComponent
 
     //
     GameObject interactingObject;
-    float deltaAngle; 
+    float totalDeltaAngle; 
     float deltaAngleBuffer;
     float interactingObjAngleInitial;
     float totalMoved;
@@ -79,44 +80,49 @@ public class TwistActionComponent : BaseActionComponent
            
             //delta angle gets the shortest angle between two angles (180, -180) E.g., what could be 190, will be -170
             //this handles within an interaction of action object entering before exiting receiver object, user's interaction is greater than 180 or less than -180
-            deltaAngle = deltaAngleBuffer + Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial);
-            if (Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial) > 175)
+            
+            float deltaAngle = Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial);
+            if (Mathf.Abs(deltaAngle) > angleSensitivity)
             {
-                deltaAngleBuffer += 175;
-                interactingObjAngleInitial = rot.eulerAngles.z;
-            }
-            else if (Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial) < -175)
-            {
-                deltaAngleBuffer -= 175;
-                interactingObjAngleInitial = rot.eulerAngles.z;
-            }
-           
-            // object rotation
-            parentObject.transform.eulerAngles = new Vector3(
-            parentObject.transform.eulerAngles.x,
-            parentObject.transform.eulerAngles.y,
-            parentObjAngleInitial + deltaAngle);
+                totalDeltaAngle = deltaAngleBuffer + deltaAngle;
+                if (deltaAngle > 175)
+                {
+                    deltaAngleBuffer += 175;
+                    interactingObjAngleInitial = rot.eulerAngles.z;
+                }
+                else if (deltaAngle < -175)
+                {
+                    deltaAngleBuffer -= 175;
+                    interactingObjAngleInitial = rot.eulerAngles.z;
+                }
+            
+                // object rotation
+                parentObject.transform.eulerAngles = new Vector3(
+                parentObject.transform.eulerAngles.x,
+                parentObject.transform.eulerAngles.y,
+                parentObjAngleInitial + totalDeltaAngle);
 
-            // object forward movement
-            float move;
-            if (isClockwise)
-            {
-                move = (parentObjectLength/requiredAngle)*deltaAngle;
-            }
-            else
-            {
-                move = -(parentObjectLength/requiredAngle)*deltaAngle;
-            }
-            if (totalMoved + move > -stopMoveBuffer)
-            {
-                totalMoved += move;
-                if (isBackward) {
-                    parentObject.transform.position -= transform.forward*move;
+                // object forward movement
+                float move;
+                if (isClockwise)
+                {
+                    move = (parentObjectLength/requiredAngle)*totalDeltaAngle;
                 }
                 else
                 {
-                    parentObject.transform.position += transform.forward*move;
-                }                
+                    move = -(parentObjectLength/requiredAngle)*totalDeltaAngle;
+                }
+                if (totalMoved + move > -stopMoveBuffer)
+                {
+                    totalMoved += move;
+                    if (isBackward) {
+                        parentObject.transform.position -= transform.forward*move;
+                    }
+                    else
+                    {
+                        parentObject.transform.position += transform.forward*move;
+                    }                
+                }
             }     
         }
         else
