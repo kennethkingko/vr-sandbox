@@ -3,16 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< Updated upstream
   tags: []
-=======
-  tags:
-  - Objects
-  - Colliders
-  - InventorySystem
-  - GrabbableItem
-  - SlottedItem
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -20,15 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< Updated upstream
   - 
   - 
   - 
-=======
-  - Objects
-  - Colliders
-  - HUD
->>>>>>> Stashed changes
   - 
   - 
   - 
