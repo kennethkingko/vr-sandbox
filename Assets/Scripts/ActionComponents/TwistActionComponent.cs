@@ -7,17 +7,11 @@ using UnityEngine;
 /// </summary>
 public class TwistActionComponent : BaseActionComponent
 {
-    // Set in Inspector
+    // Values needed for the action to be completed
     public float requiredAngle;
-    public float angleSensitivity = 3;
     public Vector3 boundsDirection;
-    public bool isClockwise;
-    public bool isBackward;
-    public float stopMoveBuffer = 0;
-
-    //
     GameObject interactingObject;
-    float totalDeltaAngle; 
+    float deltaAngle; 
     float deltaAngleBuffer;
     float interactingObjAngleInitial;
     float totalMoved;
@@ -80,50 +74,30 @@ public class TwistActionComponent : BaseActionComponent
            
             //delta angle gets the shortest angle between two angles (180, -180) E.g., what could be 190, will be -170
             //this handles within an interaction of action object entering before exiting receiver object, user's interaction is greater than 180 or less than -180
-            
-            float deltaAngle = Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial);
-            if (Mathf.Abs(deltaAngle) > angleSensitivity)
+            deltaAngle = deltaAngleBuffer + Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial);
+            if (Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial) > 175)
             {
-                totalDeltaAngle = deltaAngleBuffer + deltaAngle;
-                if (deltaAngle > 175)
-                {
-                    deltaAngleBuffer += 175;
-                    interactingObjAngleInitial = rot.eulerAngles.z;
-                }
-                else if (deltaAngle < -175)
-                {
-                    deltaAngleBuffer -= 175;
-                    interactingObjAngleInitial = rot.eulerAngles.z;
-                }
-            
-                // object rotation
-                parentObject.transform.eulerAngles = new Vector3(
-                parentObject.transform.eulerAngles.x,
-                parentObject.transform.eulerAngles.y,
-                parentObjAngleInitial + totalDeltaAngle);
+                deltaAngleBuffer += 175;
+                interactingObjAngleInitial = rot.eulerAngles.z;
+            }
+            else if (Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial) < -175)
+            {
+                deltaAngleBuffer -= 175;
+                interactingObjAngleInitial = rot.eulerAngles.z;
+            }
+           
+            // object rotation
+            parentObject.transform.eulerAngles = new Vector3(
+            parentObject.transform.eulerAngles.x,
+            parentObject.transform.eulerAngles.y,
+            parentObjAngleInitial + deltaAngle);
 
-                // object forward movement
-                float move;
-                if (isClockwise)
-                {
-                    move = (parentObjectLength/requiredAngle)*totalDeltaAngle;
-                }
-                else
-                {
-                    move = -(parentObjectLength/requiredAngle)*totalDeltaAngle;
-                }
-                if (totalMoved + move > -stopMoveBuffer)
-                {
-                    totalMoved += move;
-                    if (isBackward) {
-                        parentObject.transform.position -= transform.forward*move;
-                    }
-                    else
-                    {
-                        parentObject.transform.position += transform.forward*move;
-                    }                
-                }
-            }     
+
+            // object forward movement
+            float addedZ = 0;
+            addedZ = (parentObjectLength/requiredAngle)*deltaAngle;
+            totalMoved += addedZ;
+            parentObject.transform.position += transform.forward*addedZ;
         }
         else
         {
