@@ -7,31 +7,46 @@ using UnityEngine;
 /// </summary>
 public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 {
-    // Values needed for the action to be completed
-    public bool simpler;
+    // Set in Inspector
     public float requiredAngle;
+    public Vector3 boundsDirection;
+    public float stopMoveBuffer = 0;
 
-    public float distance;
-    
-    [SerializeField] float angle;
-    [SerializeField] GameObject interactingObject;
-
-    float yAngle;
-    float parentY;
-
-    float parentZPos;
-    float parentZPosInitial;
-    float objectLength;
+    //
+    GameObject interactingObject;
+    float totalDeltaAngle;
+    float deltaAngleBuffer;
+    float interactingObjAngleInitial;
+    float movedInitial;
+    float totalMoved;
+   
     GameObject parentObject;
+    float parentObjectLength;
+    float parentObjAngleInitial;
+    Vector3 parentPosInitial;
 
     public void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
-        
         parentObject = gameObject.transform.parent.gameObject;
-        objectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
-        parentZPosInitial = parentObject.transform.position.z; 
+        totalMoved = 0;
+
+        // to get length of object 
+        // if object at an angle, may need to manually input size instead
+        if(boundsDirection.x > 0) {
+            parentObjectLength = parentObject.GetComponent<Renderer>().bounds.size.x;
+        }
+        else if(boundsDirection.y > 0) {
+            parentObjectLength = parentObject.GetComponent<Renderer>().bounds.size.y;
+        }
+        else if(boundsDirection.z > 0) {
+            parentObjectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
+        }
+        else {
+            Debug.LogError("Must set bounds direction", gameObject.transform);
+        }        
+        //Debug.Log(gameObject.transform.parent.name + ": " + parentObjectLength);
     }
     
     // Might need to be refactored for optimization
@@ -48,24 +63,14 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             interactingObject = go;
             Vector3 pos = go.transform.position;
             Quaternion rot = go.transform.rotation;
-            //yAngle = rot.y;
-
-            //yAngle = rot.eulerAngles.y + angle;
-            yAngle = rot.eulerAngles.y;
-            //Debug.Log("Entry transform: " + pos + " " + rot);
-            parentY = parentObject.transform.eulerAngles.y; 
-            parentZPos = parentObject.transform.position.z;
+            interactingObjAngleInitial = rot.eulerAngles.z;
+            //Debug.Log("Entry transform: " + pos + " " + rot);        
+            parentObjAngleInitial = parentObject.transform.eulerAngles.z;
+            deltaAngleBuffer = 0;
+            parentPosInitial = parentObject.transform.position;
+            movedInitial = totalMoved;
             
         }
-    }
-
-    public bool CheckAction()
-    {
-        bool distanceCheck = false;
-
-        distanceCheck = Vector3.Distance(interactingObject.transform.position, gameObject.transform.position) <= distance;
-
-        return distanceCheck;
     }
 
     public override void CheckIfCompleted()
@@ -74,51 +79,53 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         if (interactingObject.GetComponent<ObjectStateManager>().currentState is ObjectGrabHoverState)
         {
             Quaternion rot = interactingObject.transform.rotation;
-
-            //angle += rot.y - yAngle;
-
-            //like in TwistingActionComponent, works more accurately
-            //only comfortable until about 45 degrees tho
-            //clockwise is negative
-            angle = Mathf.DeltaAngle(rot.eulerAngles.y, yAngle);
-            //Debug.Log("Current angle: (" + angle +")");            
-
-            /* if (Mathf.Abs((parentY-angle) - parentObject.transform.eulerAngles.y)> 3) {
-                parentObject.transform.eulerAngles = new Vector3(
-                parentObject.transform.eulerAngles.x,
-                parentY-angle,                
-                parentObject.transform.eulerAngles.z);                
-            } */
-
-            if (Mathf.Abs((parentY-angle) - parentObject.transform.eulerAngles.y)> 3) {
-                parentObject.transform.eulerAngles = new Vector3(
-                parentObject.transform.eulerAngles.x,
-                parentObject.transform.eulerAngles.y,
-                parentY-angle);           
-
-                float addedZ = 0;
-                if (simpler)
-                {
-                    addedZ = (objectLength/requiredAngle)*angle;
-                }
-                else
-                {
-                    addedZ = (objectLength/6)/(360/angle);
-                }
-
-                parentObject.transform.position = new Vector3(
-                parentObject.transform.position.x,
-                parentObject.transform.position.y,
-                parentZPos - addedZ);     
+           
+            //delta angle gets the shortest angle between two angles (180, -180) E.g., what could be 190, will be -170
+            //this handles within an interaction of action object entering before exiting receiver object, user's interaction is greater than 180 or less than -180
+            
+            float deltaAngle = Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial);
+            totalDeltaAngle = deltaAngleBuffer + deltaAngle;
+            if (deltaAngle > 175)
+            {
+                deltaAngleBuffer += 175;
+                interactingObjAngleInitial = rot.eulerAngles.z;
             }
-            Debug.Log("Angle: " + angle + " - Current: " + parentObject.transform.position.z);           
+            else if (deltaAngle < -175)
+            {
+                deltaAngleBuffer -= 175;
+                interactingObjAngleInitial = rot.eulerAngles.z;
+            }
+           
+            // object rotation
+            parentObject.transform.eulerAngles = new Vector3(
+            parentObject.transform.eulerAngles.x,
+            parentObject.transform.eulerAngles.y,
+            parentObjAngleInitial + deltaAngle);
+
+
+            // object forward movement
+                       
+            float move = -(parentObjectLength/requiredAngle)*totalDeltaAngle;
+            if (movedInitial + move > -stopMoveBuffer)
+            {   
+                Vector3 move3d = transform.forward*move;
+                parentObject.transform.position = new Vector3(
+                parentPosInitial.x + move3d.x,
+                parentPosInitial.y + move3d.y,
+                parentPosInitial.z + move3d.z); 
+                totalMoved = movedInitial + move;
+                
+                Debug.Log("Angle: " + totalDeltaAngle);
+                Debug.Log("Move: " + move + " - " + move3d);
+                Debug.Log("Ratios: " + (totalDeltaAngle/requiredAngle) + " - " + (move/parentObjectLength));
+            }           
         }
         else
         {
             interactingObject = null;
         }
 
-        if (parentObject.transform.position.z >= parentZPosInitial + objectLength - 0.1)
+        if (totalMoved >= parentObjectLength)
         {
             isCompleted = true;
             Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
