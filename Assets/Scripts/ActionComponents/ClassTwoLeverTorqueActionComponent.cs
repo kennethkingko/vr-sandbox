@@ -100,7 +100,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             parentObject.transform.eulerAngles = new Vector3(
             parentObject.transform.eulerAngles.x,
             parentObject.transform.eulerAngles.y,
-            parentObjAngleInitial + deltaAngle);
+            parentObjAngleInitial + totalDeltaAngle);
 
 
             // object forward movement
