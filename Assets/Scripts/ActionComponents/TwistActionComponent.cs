@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,17 +14,19 @@ public class TwistActionComponent : BaseActionComponent
     public float stopMoveBuffer = 0;
 
     //
-    GameObject interactingObject;
-    float totalDeltaAngle;
+    GameObject interactingObject;    
     float deltaAngleBuffer;
     float interactingObjAngleInitial;
     float movedInitial;
     float totalMoved;
-   
+    float parentObjectLength;    
     GameObject parentObject;
-    float parentObjectLength;
-    float parentObjAngleInitial;
-    Vector3 parentPosInitial;
+
+    public float parentObjAngleInitial;
+    public float totalDeltaAngle;
+    public Vector3 parentPosInitial;
+    public Vector3 move3d;
+    public event Action Feedback;
    
     void Start()
     {
@@ -69,9 +72,9 @@ public class TwistActionComponent : BaseActionComponent
             deltaAngleBuffer = 0;
             parentPosInitial = parentObject.transform.position;
             movedInitial = totalMoved;
+            move3d.Set(0, 0, 0);
         }
     }
-
 
     public override void CheckIfCompleted()
     {  
@@ -96,29 +99,16 @@ public class TwistActionComponent : BaseActionComponent
                 interactingObjAngleInitial = rot.eulerAngles.z;
             }
            
-            // object rotation
-            parentObject.transform.eulerAngles = new Vector3(
-            parentObject.transform.eulerAngles.x,
-            parentObject.transform.eulerAngles.y,
-            parentObjAngleInitial + totalDeltaAngle);
-
-
-            // object forward movement
-                       
             float move = -(parentObjectLength/requiredAngle)*totalDeltaAngle;
             if (movedInitial + move > -stopMoveBuffer)
             {   
-                Vector3 move3d = transform.forward*move;
-                parentObject.transform.position = new Vector3(
-                parentPosInitial.x + move3d.x,
-                parentPosInitial.y + move3d.y,
-                parentPosInitial.z + move3d.z); 
-                totalMoved = movedInitial + move;
-                
-                Debug.Log("Angle: " + totalDeltaAngle);
-                Debug.Log("Move: " + move + " - " + move3d);
-                Debug.Log("Ratios: " + (totalDeltaAngle/requiredAngle) + " - " + (move/parentObjectLength));
+                move3d = transform.forward*move;
+                totalMoved = movedInitial + move;             
+                //Debug.Log("Angle: " + totalDeltaAngle);
+                //Debug.Log("Move: " + move + " - " + move3d);
+                //Debug.Log("Ratios: " + (totalDeltaAngle/requiredAngle) + " - " + (move/parentObjectLength));
             }
+            Feedback?.Invoke();
         }
         else
         {
