@@ -5972,6 +5972,7 @@ GameObject:
   - component: {fileID: 273516210}
   - component: {fileID: 273516209}
   - component: {fileID: 273516211}
+  - component: {fileID: 273516212}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -6011,7 +6012,6 @@ MonoBehaviour:
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -6051,7 +6051,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionComponent: {fileID: 273516209}
+--- !u!114 &273516212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273516207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &308097283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
@@ -7359,6 +7370,7 @@ GameObject:
   - component: {fileID: 688073253}
   - component: {fileID: 688073252}
   - component: {fileID: 688073254}
+  - component: {fileID: 688073255}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -7398,7 +7410,6 @@ MonoBehaviour:
   requiredAngle: 360
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -7438,7 +7449,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionComponent: {fileID: 688073252}
+--- !u!114 &688073255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688073250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &691419010
 GameObject:
   m_ObjectHideFlags: 0
@@ -7603,6 +7625,7 @@ GameObject:
   - component: {fileID: 783279839}
   - component: {fileID: 783279838}
   - component: {fileID: 783279840}
+  - component: {fileID: 783279841}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -7642,7 +7665,6 @@ MonoBehaviour:
   requiredAngle: 360
   boundsDirection: {x: 1, y: 0, z: 0}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -7682,7 +7704,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionComponent: {fileID: 783279838}
+--- !u!114 &783279841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783279836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &789432092
 GameObject:
   m_ObjectHideFlags: 0
@@ -8688,7 +8721,6 @@ MonoBehaviour:
   requiredAngle: 360
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -8728,7 +8760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionComponent: {fileID: 834749593}
 --- !u!1001 &848708694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15776,7 +15807,6 @@ MonoBehaviour:
   requiredAngle: 360
   boundsDirection: {x: 1, y: 0, z: 0}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -15816,7 +15846,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionComponent: {fileID: 1403845131}
 --- !u!1 &1406629234
 GameObject:
   m_ObjectHideFlags: 0
@@ -15902,6 +15931,7 @@ GameObject:
   - component: {fileID: 1416075674}
   - component: {fileID: 1416075673}
   - component: {fileID: 1416075675}
+  - component: {fileID: 1416075676}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -15941,7 +15971,6 @@ MonoBehaviour:
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -15981,7 +16010,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionComponent: {fileID: 1416075673}
+--- !u!114 &1416075676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416075671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1427054628
 GameObject:
   m_ObjectHideFlags: 0
@@ -16659,6 +16699,7 @@ GameObject:
   - component: {fileID: 1435828841}
   - component: {fileID: 1435828840}
   - component: {fileID: 1435828842}
+  - component: {fileID: 1435828843}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -16698,7 +16739,6 @@ MonoBehaviour:
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -16738,7 +16778,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionComponent: {fileID: 1435828840}
+--- !u!114 &1435828843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435828838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1455595341
 GameObject:
   m_ObjectHideFlags: 0
@@ -17210,7 +17261,6 @@ MonoBehaviour:
   requiredAngle: 360
   boundsDirection: {x: 0, y: 1, z: 0}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -22962,6 +23012,7 @@ GameObject:
   - component: {fileID: 1922970163}
   - component: {fileID: 1922970162}
   - component: {fileID: 1922970164}
+  - component: {fileID: 1922970165}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -23001,7 +23052,6 @@ MonoBehaviour:
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
-  parentObject: {fileID: 0}
   parentObjAngleInitial: 0
   totalDeltaAngle: 0
   parentPosInitial: {x: 0, y: 0, z: 0}
@@ -23041,7 +23091,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionComponent: {fileID: 1922970162}
+--- !u!114 &1922970165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922970160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966380066
 GameObject:
   m_ObjectHideFlags: 0
