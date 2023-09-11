@@ -26,7 +26,6 @@ public class TwistActionComponent : BaseActionComponent
     public float totalDeltaAngle;
     public Vector3 parentPosInitial;
     public Vector3 move3d;
-    public event Action Feedback;
    
     void Start()
     {
@@ -34,6 +33,8 @@ public class TwistActionComponent : BaseActionComponent
         interactingObject = null;
         parentObject = gameObject.transform.parent.gameObject;
         totalMoved = 0;
+        percentageCompleted = 0;
+        requirement = requiredAngle;
 
         // to get length of object 
         // if object at an angle, may need to manually input size instead
@@ -107,8 +108,9 @@ public class TwistActionComponent : BaseActionComponent
                 //Debug.Log("Angle: " + totalDeltaAngle);
                 //Debug.Log("Move: " + move + " - " + move3d);
                 //Debug.Log("Ratios: " + (totalDeltaAngle/requiredAngle) + " - " + (move/parentObjectLength));
-            }
-            Feedback?.Invoke();
+                percentageCompleted = totalMoved/parentObjectLength;
+            }            
+            ShowFeedback();
         }
         else
         {
@@ -119,8 +121,7 @@ public class TwistActionComponent : BaseActionComponent
         {
             isCompleted = true;
             Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
-            Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
-            gameObjectsRigidBody.useGravity = true;
+            ShowOutcome();
         }
     }
 }

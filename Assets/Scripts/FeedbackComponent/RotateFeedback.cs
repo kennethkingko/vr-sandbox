@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class RotateFeedback : MonoBehaviour
 {
-    TwistActionComponent actionComponent;
+    BaseActionComponent actionComponent;
     GameObject parentObject;
+    float parentObjAngleInitial;
     // Start is called before the first frame update
     void Start()
     {
-        actionComponent = gameObject.GetComponent<TwistActionComponent>();
+        actionComponent = gameObject.GetComponent<BaseActionComponent>();
         parentObject = gameObject.transform.parent.gameObject;
-
+        parentObjAngleInitial = parentObject.transform.eulerAngles.z;
         actionComponent.Feedback += RotateMoveForward;
     }
 
@@ -21,6 +22,6 @@ public class RotateFeedback : MonoBehaviour
         parentObject.transform.eulerAngles = new Vector3(
         parentObject.transform.eulerAngles.x,
         parentObject.transform.eulerAngles.y,
-        actionComponent.parentObjAngleInitial + actionComponent.totalDeltaAngle);
+        parentObjAngleInitial - (actionComponent.percentageCompleted*actionComponent.requirement));
     }
 }
