@@ -13,15 +13,15 @@ public class RotateFeedback : MonoBehaviour
         actionComponent = gameObject.GetComponent<BaseActionComponent>();
         parentObject = gameObject.transform.parent.gameObject;
         parentObjAngleInitial = parentObject.transform.eulerAngles.z;
-        actionComponent.Feedback += RotateMoveForward;
+        actionComponent.Feedback += Rotate;
     }
 
-    void RotateMoveForward()
+    void Rotate()
     {
         // object rotation
         parentObject.transform.eulerAngles = new Vector3(
         parentObject.transform.eulerAngles.x,
         parentObject.transform.eulerAngles.y,
-        parentObjAngleInitial - (actionComponent.percentageCompleted*actionComponent.requirement));
+        parentObjAngleInitial + actionComponent.currentProgress);
     }
 }

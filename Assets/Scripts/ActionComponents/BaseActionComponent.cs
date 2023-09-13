@@ -10,8 +10,9 @@ public abstract class BaseActionComponent : MonoBehaviour
 {
     public Collider actionCollider;
     public bool isCompleted;
-    public float percentageCompleted;
     public float requirement;
+    public float currentProgress;
+    public float totalProgress;
 
     public event Action Feedback;
     public event Action Outcome;

@@ -9,48 +9,22 @@ using UnityEngine;
 public class TwistActionComponent : BaseActionComponent
 {
     // Set in Inspector
-    public float requiredAngle;
-    public Vector3 boundsDirection;
     public float stopMoveBuffer = 0;
-
-    //
+    // requirement = required angle
+    
+    // currentProgress = deltaAngle + deltaAngleBuffer
+    // totalProgress = pastProgress + currentProgress
     GameObject interactingObject;    
     float deltaAngleBuffer;
     float interactingObjAngleInitial;
-    float movedInitial;
-    float totalMoved;
-    float parentObjectLength;    
-    GameObject parentObject;
-
-    public float parentObjAngleInitial;
-    public float totalDeltaAngle;
-    public Vector3 parentPosInitial;
-    public Vector3 move3d;
+    float pastProgress;
    
     void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null;
-        parentObject = gameObject.transform.parent.gameObject;
-        totalMoved = 0;
-        percentageCompleted = 0;
-        requirement = requiredAngle;
-
-        // to get length of object 
-        // if object at an angle, may need to manually input size instead
-        if(boundsDirection.x > 0) {
-            parentObjectLength = parentObject.GetComponent<Renderer>().bounds.size.x;
-        }
-        else if(boundsDirection.y > 0) {
-            parentObjectLength = parentObject.GetComponent<Renderer>().bounds.size.y;
-        }
-        else if(boundsDirection.z > 0) {
-            parentObjectLength = parentObject.GetComponent<Renderer>().bounds.size.z;
-        }
-        else {
-            Debug.LogError("Must set bounds direction", gameObject.transform);
-        }        
-        //Debug.Log(gameObject.transform.parent.name + ": " + parentObjectLength);
+        currentProgress = 0;
+        totalProgress = 0;
     }
 
 
@@ -69,11 +43,8 @@ public class TwistActionComponent : BaseActionComponent
             Quaternion rot = go.transform.rotation;
             interactingObjAngleInitial = rot.eulerAngles.z;
             //Debug.Log("Entry transform: " + pos + " " + rot);        
-            parentObjAngleInitial = parentObject.transform.eulerAngles.z;
             deltaAngleBuffer = 0;
-            parentPosInitial = parentObject.transform.position;
-            movedInitial = totalMoved;
-            move3d.Set(0, 0, 0);
+            pastProgress = totalProgress;
         }
     }
 
@@ -88,7 +59,6 @@ public class TwistActionComponent : BaseActionComponent
             //this handles within an interaction of action object entering before exiting receiver object, user's interaction is greater than 180 or less than -180
             
             float deltaAngle = Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial);
-            totalDeltaAngle = deltaAngleBuffer + deltaAngle;
             if (deltaAngle > 175)
             {
                 deltaAngleBuffer += 175;
@@ -99,25 +69,22 @@ public class TwistActionComponent : BaseActionComponent
                 deltaAngleBuffer -= 175;
                 interactingObjAngleInitial = rot.eulerAngles.z;
             }
-           
-            float move = -(parentObjectLength/requiredAngle)*totalDeltaAngle;
-            if (movedInitial + move > -stopMoveBuffer)
-            {   
-                move3d = transform.forward*move;
-                totalMoved = movedInitial + move;             
-                //Debug.Log("Angle: " + totalDeltaAngle);
-                //Debug.Log("Move: " + move + " - " + move3d);
-                //Debug.Log("Ratios: " + (totalDeltaAngle/requiredAngle) + " - " + (move/parentObjectLength));
-                percentageCompleted = totalMoved/parentObjectLength;
-            }            
-            ShowFeedback();
+            currentProgress = deltaAngleBuffer + deltaAngle;
+
+            if(pastProgress - currentProgress > -stopMoveBuffer)
+            {
+                totalProgress = pastProgress - currentProgress;
+                Debug.Log("current progress: " + currentProgress);
+                Debug.Log("total progress: " + totalProgress);
+                ShowFeedback();
+            }               
         }
         else
         {
             interactingObject = null;
         }
 
-        if (totalMoved >= parentObjectLength)
+        if (totalProgress >= requirement)
         {
             isCompleted = true;
             Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);

@@ -6011,15 +6011,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 273516210}
   isCompleted: 0
-  percentageCompleted: 0
-  requirement: 0
-  requiredAngle: 180
-  boundsDirection: {x: 0, y: 0, z: 1}
-  stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 1
 --- !u!136 &273516210
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6432,8 +6427,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 382078491}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
@@ -7195,8 +7191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 581740945}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
@@ -7403,8 +7400,8 @@ GameObject:
   - component: {fileID: 688073253}
   - component: {fileID: 688073252}
   - component: {fileID: 688073254}
-  - component: {fileID: 688073255}
   - component: {fileID: 688073256}
+  - component: {fileID: 688073257}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -7441,15 +7438,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 688073253}
   isCompleted: 0
-  percentageCompleted: 0
-  requirement: 0
-  requiredAngle: 360
-  boundsDirection: {x: 0, y: 0, z: 1}
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
   stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
 --- !u!136 &688073253
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7485,19 +7477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &688073255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688073250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundsDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &688073256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7510,6 +7489,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a478d649700d0104cbd8fefc3252ef85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &688073257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688073250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundsDirection: {x: 0, y: 0, z: 1}
 --- !u!1 &691419010
 GameObject:
   m_ObjectHideFlags: 0
@@ -7557,8 +7549,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 691419013}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
@@ -7654,8 +7647,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 710706989}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   simpler: 1
   interactingObject: {fileID: 0}
   distance: 0
@@ -7678,8 +7672,8 @@ GameObject:
   - component: {fileID: 783279839}
   - component: {fileID: 783279838}
   - component: {fileID: 783279840}
-  - component: {fileID: 783279841}
   - component: {fileID: 783279842}
+  - component: {fileID: 783279843}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -7716,15 +7710,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 783279839}
   isCompleted: 0
-  percentageCompleted: 0
-  requirement: 0
-  requiredAngle: 360
-  boundsDirection: {x: 1, y: 0, z: 0}
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
   stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
 --- !u!136 &783279839
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7760,19 +7749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &783279841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783279836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundsDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &783279842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7785,6 +7761,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a478d649700d0104cbd8fefc3252ef85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &783279843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783279836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundsDirection: {x: 1, y: 0, z: 0}
 --- !u!1 &789432092
 GameObject:
   m_ObjectHideFlags: 0
@@ -8713,8 +8702,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 828966488}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
@@ -8754,6 +8744,7 @@ GameObject:
   - component: {fileID: 834749593}
   - component: {fileID: 834749595}
   - component: {fileID: 834749596}
+  - component: {fileID: 834749597}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -8790,15 +8781,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 834749594}
   isCompleted: 0
-  percentageCompleted: 0
-  requirement: 0
-  requiredAngle: 360
-  boundsDirection: {x: 0, y: 0, z: 1}
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
   stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
 --- !u!136 &834749594
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8846,6 +8832,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a478d649700d0104cbd8fefc3252ef85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &834749597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834749591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundsDirection: {x: 0, y: 0, z: 1}
 --- !u!1001 &848708694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9332,8 +9331,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1006873439}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   simpler: 1
   interactingObject: {fileID: 0}
   distance: 0
@@ -9683,8 +9683,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1041454186}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 60
   boundsDirection: {x: 0, y: 0, z: 0}
   stopMoveBuffer: 0
@@ -14931,8 +14932,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1244140773}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   simpler: 1
   interactingObject: {fileID: 0}
   distance: 0
@@ -15597,8 +15599,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1337759344}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 1, y: 0, z: 0}
   stopMoveBuffer: 0.01
@@ -15863,6 +15866,7 @@ GameObject:
   - component: {fileID: 1403845131}
   - component: {fileID: 1403845133}
   - component: {fileID: 1403845134}
+  - component: {fileID: 1403845135}
   m_Layer: 7
   m_Name: TwistCollider1
   m_TagString: Colliders
@@ -15899,15 +15903,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1403845132}
   isCompleted: 0
-  percentageCompleted: 0
-  requirement: 0
-  requiredAngle: 360
-  boundsDirection: {x: 1, y: 0, z: 0}
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
   stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
 --- !u!136 &1403845132
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15955,6 +15954,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a478d649700d0104cbd8fefc3252ef85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1403845135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403845129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd734495bf7c01498617cdc9092c57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundsDirection: {x: 1, y: 0, z: 0}
 --- !u!1 &1406629234
 GameObject:
   m_ObjectHideFlags: 0
@@ -16002,8 +16014,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1406629237}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
@@ -16081,15 +16094,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1416075674}
   isCompleted: 0
-  percentageCompleted: 0
-  requirement: 0
-  requiredAngle: 180
-  boundsDirection: {x: 0, y: 0, z: 1}
-  stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 1
 --- !u!136 &1416075674
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16878,15 +16886,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1435828841}
   isCompleted: 0
-  percentageCompleted: 0
-  requirement: 0
-  requiredAngle: 180
-  boundsDirection: {x: 0, y: 0, z: 1}
-  stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 1
 --- !u!136 &1435828841
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17144,8 +17147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1519795244}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 1, y: 0, z: 0}
   stopMoveBuffer: 0.01
@@ -17429,15 +17433,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1640101877}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
-  requiredAngle: 360
-  boundsDirection: {x: 0, y: 1, z: 0}
+  currentProgress: 0
+  totalProgress: 0
   stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
 --- !u!136 &1640101877
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22908,8 +22907,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1723562980}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   simpler: 1
   interactingObject: {fileID: 0}
   distance: 0
@@ -23226,15 +23226,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1922970163}
   isCompleted: 0
-  percentageCompleted: 0
-  requirement: 0
-  requiredAngle: 180
-  boundsDirection: {x: 0, y: 0, z: 1}
-  stopMoveBuffer: 0.01
-  parentObjAngleInitial: 0
-  totalDeltaAngle: 0
-  parentPosInitial: {x: 0, y: 0, z: 0}
-  move3d: {x: 0, y: 0, z: 0}
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 1
 --- !u!136 &1922970163
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23622,8 +23617,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 2020217207}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 0, y: 1, z: 0}
   stopMoveBuffer: 0.01
@@ -28875,8 +28871,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 2118491303}
   isCompleted: 0
-  percentageCompleted: 0
   requirement: 0
+  currentProgress: 0
+  totalProgress: 0
   requiredAngle: 180
   boundsDirection: {x: 0, y: 0, z: 1}
   stopMoveBuffer: 0.01
