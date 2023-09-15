@@ -5,7 +5,8 @@ using UnityEngine;
 public class HitActionComponent : BaseActionComponent
 {
     public bool simpler;
-    [SerializeField] GameObject interactingObject;
+    public float minDistance;
+    GameObject interactingObject;
 
     Vector3 posStart;
     float timeStart;
@@ -57,9 +58,9 @@ public class HitActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             float actorReceiverDistance = Vector3.Distance(pos, gameObject.transform.position);
-            //Debug.Log("Hammer -> Obj: " + actorReceiverDistance + " - " + (actorReceiverDistance < range));
-            //Debug.Log("Start -> End Pos: " + Vector3.Distance(posStart, gameObject.transform.position) + " - " + (actorReceiverDistance < Vector3.Distance(posStart, gameObject.transform.position)));
-            if (!hitAlready && actorReceiverDistance < range && actorReceiverDistance < Vector3.Distance(posStart, gameObject.transform.position))
+            float startEndDistance = Vector3.Distance(posStart, pos);
+            Debug.Log("Dist: " + startEndDistance);
+            if (!hitAlready && actorReceiverDistance < range && actorReceiverDistance < Vector3.Distance(posStart, gameObject.transform.position) && startEndDistance > minDistance)
             {
                 if(simpler)
                 {
@@ -68,8 +69,8 @@ public class HitActionComponent : BaseActionComponent
                 else{
                     float timeEnd = Time.time;
                     float timeTotal = timeEnd-timeStart;
-                    float startEndDistance = Vector3.Distance(posStart, pos);
-                    currentPower += timeTotal/startEndDistance;
+                    
+                    currentPower += startEndDistance/timeTotal;
                 }
                 hitAlready = true;
                 particleSys.Play();
