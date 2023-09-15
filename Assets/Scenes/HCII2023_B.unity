@@ -7589,6 +7589,8 @@ GameObject:
   - component: {fileID: 710706988}
   - component: {fileID: 710706990}
   - component: {fileID: 710706989}
+  - component: {fileID: 710706992}
+  - component: {fileID: 710706991}
   m_Layer: 7
   m_Name: Vase-HitCollider
   m_TagString: Colliders
@@ -7647,16 +7649,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 710706989}
   isCompleted: 0
-  requirement: 0
+  requirement: 5
   currentProgress: 0
   totalProgress: 0
   simpler: 0
   minDistance: 0.01
   range: 0.7
-  requiredPower: 5
-  destroyedVersion: {fileID: 4033047640253013502, guid: 36a27f772c487fb439a24fd7f485ef9b, type: 3}
+--- !u!114 &710706991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710706987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bbcf4266be59746b020b67bd8733b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newObject: {fileID: 320485401}
+--- !u!114 &710706992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710706987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763c47a667f4b1e4da52ec33bc098432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   particleSys: {fileID: 144448585}
-  emissionMin: 3
+  emissionMin: 5
   emissionMax: 30
 --- !u!1 &783279836
 GameObject:
@@ -9271,6 +9296,8 @@ GameObject:
   - component: {fileID: 1006873438}
   - component: {fileID: 1006873440}
   - component: {fileID: 1006873439}
+  - component: {fileID: 1006873442}
+  - component: {fileID: 1006873441}
   m_Layer: 7
   m_Name: Rock-HitCollider
   m_TagString: Colliders
@@ -9329,17 +9356,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1006873439}
   isCompleted: 0
-  requirement: 0
+  requirement: 5
   currentProgress: 0
   totalProgress: 0
   simpler: 0
   minDistance: 0.01
   range: 0.7
-  requiredPower: 5
-  destroyedVersion: {fileID: 9053410899814500564, guid: 735f7ee5b52880840b215d9b383d96ca, type: 3}
+--- !u!114 &1006873441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006873437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bbcf4266be59746b020b67bd8733b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newObject: {fileID: 9053410899814500564, guid: 735f7ee5b52880840b215d9b383d96ca, type: 3}
+--- !u!114 &1006873442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006873437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763c47a667f4b1e4da52ec33bc098432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   particleSys: {fileID: 1665955662}
-  emissionMin: 3
-  emissionMax: 25
+  emissionMin: 5
+  emissionMax: 30
 --- !u!1 &1010166327
 GameObject:
   m_ObjectHideFlags: 0
@@ -14892,6 +14942,8 @@ GameObject:
   - component: {fileID: 1244140770}
   - component: {fileID: 1244140772}
   - component: {fileID: 1244140773}
+  - component: {fileID: 1244140775}
+  - component: {fileID: 1244140774}
   m_Layer: 7
   m_Name: Rock-HitCollider
   m_TagString: Colliders
@@ -14928,17 +14980,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1244140773}
   isCompleted: 0
-  requirement: 0
+  requirement: 5
   currentProgress: 0
   totalProgress: 0
   simpler: 0
   minDistance: 0.01
   range: 1
-  requiredPower: 5
-  destroyedVersion: {fileID: 585551102174562319, guid: 42064b9e6b006a645b973f6dfb6be065, type: 3}
-  particleSys: {fileID: 1147486782}
-  emissionMin: 3
-  emissionMax: 25
 --- !u!64 &1244140773
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14961,6 +15008,34 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4013275331872712965, guid: 16df43487a5261e43a1b95c354be0d89, type: 3}
+--- !u!114 &1244140774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244140769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bbcf4266be59746b020b67bd8733b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newObject: {fileID: 585551102174562319, guid: 42064b9e6b006a645b973f6dfb6be065, type: 3}
+--- !u!114 &1244140775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244140769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763c47a667f4b1e4da52ec33bc098432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSys: {fileID: 1147486782}
+  emissionMin: 5
+  emissionMax: 30
 --- !u!1 &1253585996
 GameObject:
   m_ObjectHideFlags: 0
@@ -22865,6 +22940,8 @@ GameObject:
   - component: {fileID: 1723562977}
   - component: {fileID: 1723562979}
   - component: {fileID: 1723562980}
+  - component: {fileID: 1723562982}
+  - component: {fileID: 1723562981}
   m_Layer: 7
   m_Name: Vase-HitCollider
   m_TagString: Colliders
@@ -22901,17 +22978,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1723562980}
   isCompleted: 0
-  requirement: 0
+  requirement: 5
   currentProgress: 0
   totalProgress: 0
   simpler: 0
   minDistance: 0.01
   range: 0.7
-  requiredPower: 5
-  destroyedVersion: {fileID: 4033047640253013502, guid: 36a27f772c487fb439a24fd7f485ef9b, type: 3}
-  particleSys: {fileID: 2103111314}
-  emissionMin: 3
-  emissionMax: 30
 --- !u!64 &1723562980
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22934,6 +23006,34 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8246494051924840529, guid: 25685ac1f5824f24a9ef53005873f080, type: 3}
+--- !u!114 &1723562981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723562976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bbcf4266be59746b020b67bd8733b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newObject: {fileID: 320485401}
+--- !u!114 &1723562982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723562976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763c47a667f4b1e4da52ec33bc098432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSys: {fileID: 2103111314}
+  emissionMin: 5
+  emissionMax: 30
 --- !u!1 &1811455387
 GameObject:
   m_ObjectHideFlags: 0
@@ -29091,7 +29191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3349045744330547624, guid: 8be90d50bc29b5046893ba21bf90dce8, type: 3}
       propertyPath: requirement
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3349045744330547624, guid: 8be90d50bc29b5046893ba21bf90dce8, type: 3}
       propertyPath: requiredHits

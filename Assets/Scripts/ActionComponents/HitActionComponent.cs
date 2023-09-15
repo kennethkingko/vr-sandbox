@@ -12,21 +12,12 @@ public class HitActionComponent : BaseActionComponent
     float timeStart;
     public float range;
     bool hitAlready;
-    public float requiredPower;
-    float currentPower;
-
-    GameObject parentObject;
-    public GameObject destroyedVersion;
-    public ParticleSystem particleSys;
-    public float emissionMin;
-    public float emissionMax;
 
     void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
-        interactingObject = null; 
-        parentObject = gameObject.transform.parent.gameObject;
-        currentPower = 0;
+        interactingObject = null;
+        totalProgress = 0;
     }
 
     public override void Update()
@@ -43,13 +34,8 @@ public class HitActionComponent : BaseActionComponent
             posStart = interactingObject.transform.position;
             hitAlready = false;
             timeStart = Time.time;
+            currentProgress = 0;
         }
-    }
-
-    public void DestroyObject() {
-        //destroyedVersion.SetActive(true);
-        Instantiate(destroyedVersion, parentObject.transform.position, parentObject.transform.rotation);
-        Destroy(parentObject);
     }
 
     public override void CheckIfCompleted()
@@ -64,39 +50,28 @@ public class HitActionComponent : BaseActionComponent
             {
                 if(simpler)
                 {
-                    currentPower += 1;
+                    currentProgress = 1;
                 }
                 else{
                     float timeEnd = Time.time;
                     float timeTotal = timeEnd-timeStart;
-                    
-                    currentPower += startEndDistance/timeTotal;
+                    currentProgress = startEndDistance/timeTotal;
                 }
+                totalProgress += currentProgress;
                 hitAlready = true;
-                particleSys.Play();
-                Debug.Log("current power: " + currentPower);
-
-                /* if (simpler)
-                {
-                    //em.rateOverTime = emissionMin + ((emissionMax-emissionMin)*(accumulatedHits/requiredHits));
-                } 
-                else
-                {                    
-                    //em.rateOverTime = emissionMin + ((emissionMax-emissionMin)*(power/10));
-                    
-                }          */
+                //Debug.Log("totalProgress: " + totalProgress);
+                ShowFeedback();
             }
         }
         else
         {
             interactingObject = null;
         }
-        if (currentPower >= requiredPower)
+        if (totalProgress >= requirement)
         {
             isCompleted = true;
             Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
-            particleSys.Play();
-            DestroyObject();
+            ShowOutcome();
         }
     }
 
