@@ -4,23 +4,14 @@ using UnityEngine;
 
 public class HitActionComponent : BaseActionComponent
 {
-    
-
     public bool simpler;
     [SerializeField] GameObject interactingObject;
-    public float distance;
-    /* public float requiredTotalForce;
-    public float accumulatedForce;
-    public float minimumForce; */
-    public int requiredHits;
-    int accumulatedHits;
-    
+
     Vector3 posStart;
     float timeStart;
-    float objectHeight;
     public float range;
     bool hitAlready;
-    public float totalPower;
+    public float requiredPower;
     float currentPower;
 
     GameObject parentObject;
@@ -33,10 +24,8 @@ public class HitActionComponent : BaseActionComponent
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null; 
-        parentObject = gameObject.transform.parent.gameObject; 
-        accumulatedHits = 0;
+        parentObject = gameObject.transform.parent.gameObject;
         currentPower = 0;
-        objectHeight = parentObject.GetComponent<Renderer>().bounds.size.z;
     }
 
     public override void Update()
@@ -56,16 +45,6 @@ public class HitActionComponent : BaseActionComponent
         }
     }
 
-    //when is this used?
-    public bool CheckAction()
-    {
-        bool distanceCheck = false;
-
-        distanceCheck = Vector3.Distance(interactingObject.transform.position, gameObject.transform.position) <= distance;
-
-        return distanceCheck;
-    }
-
     public void DestroyObject() {
         //destroyedVersion.SetActive(true);
         Instantiate(destroyedVersion, parentObject.transform.position, parentObject.transform.rotation);
@@ -78,59 +57,45 @@ public class HitActionComponent : BaseActionComponent
         {
             Vector3 pos = interactingObject.transform.position;
             float actorReceiverDistance = Vector3.Distance(pos, gameObject.transform.position);
-            Debug.Log("Hammer -> Obj: " + actorReceiverDistance + " - " + (actorReceiverDistance < range));
-            Debug.Log("Start -> End Pos: " + Vector3.Distance(posStart, gameObject.transform.position) + " - " + (actorReceiverDistance < Vector3.Distance(posStart, gameObject.transform.position)));
+            //Debug.Log("Hammer -> Obj: " + actorReceiverDistance + " - " + (actorReceiverDistance < range));
+            //Debug.Log("Start -> End Pos: " + Vector3.Distance(posStart, gameObject.transform.position) + " - " + (actorReceiverDistance < Vector3.Distance(posStart, gameObject.transform.position)));
             if (!hitAlready && actorReceiverDistance < range && actorReceiverDistance < Vector3.Distance(posStart, gameObject.transform.position))
             {
-                accumulatedHits += 1;
-                Debug.Log("Accumulated Hits: " + accumulatedHits);
-                hitAlready = true;
-                if (simpler)
+                if(simpler)
                 {
-                    
-                    
+                    currentPower += 1;
+                }
+                else{
+                    float timeEnd = Time.time;
+                    float timeTotal = timeEnd-timeStart;
+                    float startEndDistance = Vector3.Distance(posStart, pos);
+                    currentPower += timeTotal/startEndDistance;
+                }
+                hitAlready = true;
+                particleSys.Play();
+                Debug.Log("current power: " + currentPower);
+
+                /* if (simpler)
+                {
                     //em.rateOverTime = emissionMin + ((emissionMax-emissionMin)*(accumulatedHits/requiredHits));
-                    particleSys.Play();
                 } 
                 else
-                {
-                   
-                    float timeEnd = Time.time;
-                    float power = Vector3.Distance(posStart, gameObject.transform.position);
-                    Debug.Log("power: " + power);
-                    currentPower += power;
-                    Debug.Log("hit: " + currentPower);
-                    hitAlready = true;                    
+                {                    
                     //em.rateOverTime = emissionMin + ((emissionMax-emissionMin)*(power/10));
-                    particleSys.Play();
-                }         
+                    
+                }          */
             }
         }
         else
         {
             interactingObject = null;
         }
-        
-        if (simpler)
+        if (currentPower >= requiredPower)
         {
-            // simpler version
-            if (accumulatedHits >= requiredHits)
-            {
-                isCompleted = true;
-                Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
-                particleSys.Play();
-                DestroyObject();
-            }
-        }
-        else {
-            // complex version
-            if (currentPower >= totalPower)
-            {
-                isCompleted = true;
-                Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
-                particleSys.Play();
-                DestroyObject();
-            }
+            isCompleted = true;
+            Debug.Log("Hitting action completed on " + gameObject.transform.parent.name);
+            particleSys.Play();
+            DestroyObject();
         }
     }
 
