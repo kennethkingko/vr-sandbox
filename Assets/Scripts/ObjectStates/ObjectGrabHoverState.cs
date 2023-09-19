@@ -12,7 +12,10 @@ public class ObjectGrabHoverState : ObjectBaseState
     public override void EnterState(ObjectStateManager osm)
     {
         this.iOsm = osm;
-        //this.iOsm.GetComponent<MeshRenderer>().material = osm.onRaycastMat;
+        if(this.iOsm.meshRenderer is not null)
+        {
+            this.iOsm.meshRenderer.material = osm.onRaycastMat;
+        }        
         this.iOsm.isGrabbed = true;
         bsc = this.iOsm.currentInteractingObject.GetComponent<BaseActionComponent>();
         bsc.OnEntry(this.iOsm.gameObject);

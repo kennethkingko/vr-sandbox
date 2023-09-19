@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class HandObjectStateManager : ObjectStateManager
 {
+    [SerializeField] public GameObject hand;
+
+    protected virtual void Awake()
+    {
+        meshRenderer = hand.GetComponent<MeshRenderer>();
+        //Debug.Log(gameObject.name + " - " + meshRenderer);
+    }
+
     protected override void Start()
     {
         colliderObjects = new List<GameObject>();
         _layerMask = LayerMask.GetMask("Colliders");
+        
         this.currentState = objectGrabbedState;
         this.currentState.EnterState(this);
         // this.GetComponent<MeshRenderer>().material = defaultMat;
-    }
-
-    void Update()
-    {
-        Debug.Log(gameObject.name + " - " + this.currentState);
-        this.currentState.UpdateState(this);
-
-        HandleGrabState();
-        HandleTrigger();
     }
 
     public override void HandleGrabState()

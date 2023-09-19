@@ -8511,9 +8511,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827444e4b29edea409a9568cbb7388ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMat: {fileID: 0}
-  onGrabMat: {fileID: 0}
-  onRaycastMat: {fileID: 0}
+  defaultMat: {fileID: 2100000, guid: da21443650a347d4da1de69f0ec9070d, type: 2}
+  onGrabMat: {fileID: 2100000, guid: da21443650a347d4da1de69f0ec9070d, type: 2}
+  onRaycastMat: {fileID: 2100000, guid: 3bb1daaf14b9332429e5f6e82862c03f, type: 2}
   isEnabled: 1
   isGrabbed: 0
   isStatic: 0
@@ -8527,6 +8527,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 128
+  hand: {fileID: 1344781355}
 --- !u!1 &821400334
 GameObject:
   m_ObjectHideFlags: 0
@@ -15595,10 +15596,10 @@ MonoBehaviour:
   m_TrackingStateInput:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Tracking State Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: f8807fe9-e5e5-477c-a559-96b7373e6d0c
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -15808,7 +15809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1344781356
 Transform:
   m_ObjectHideFlags: 0
@@ -23817,7 +23818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2026032904
 Transform:
   m_ObjectHideFlags: 0

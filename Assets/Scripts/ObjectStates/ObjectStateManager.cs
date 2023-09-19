@@ -11,6 +11,7 @@ public class ObjectStateManager : MonoBehaviour
 {
     // Checking of current state, and changes on materials if necessary, can be changed as needed
     [SerializeField] public ObjectBaseState currentState;
+    [System.NonSerialized] public MeshRenderer meshRenderer;
     public Material defaultMat;
     public Material onGrabMat;
     public Material onRaycastMat;
@@ -39,10 +40,12 @@ public class ObjectStateManager : MonoBehaviour
     [SerializeField] protected LayerMask _layerMask;
 
     // Generates its own XRGrabInteractable to avoid separate dependency and declaration
-    void Awake()
+    protected virtual void Awake()
     {
         gameObject.AddComponent<XRGrabInteractable>();
         interactable = gameObject.GetComponent<XRGrabInteractable>();
+        meshRenderer = GetComponent<MeshRenderer>();
+        //Debug.Log(gameObject.name + " - " + meshRenderer);
     }
 
     protected virtual void Start()
