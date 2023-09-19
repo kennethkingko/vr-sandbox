@@ -7848,6 +7848,7 @@ GameObject:
   - component: {fileID: 818481488}
   - component: {fileID: 818481487}
   - component: {fileID: 818481492}
+  - component: {fileID: 818481493}
   m_Layer: 2
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -7868,6 +7869,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 875661745}
   - {fileID: 1344781356}
   m_Father: {fileID: 1147362896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8313,7 +8315,7 @@ MonoBehaviour:
       m_Name: Is Tracked
       m_Type: 1
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: fa51299e-7347-49ce-b901-e0399563d5ad
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -8409,7 +8411,7 @@ MonoBehaviour:
       m_Name: UI Scroll
       m_Type: 0
       m_ExpectedControlType: Vector2
-      m_Id: 
+      m_Id: 6ffcda68-5646-49f4-89e2-55c95512a394
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -8497,6 +8499,34 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 15759602096507913, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &818481493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818481485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827444e4b29edea409a9568cbb7388ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
+  onGrabMat: {fileID: 0}
+  onRaycastMat: {fileID: 0}
+  isEnabled: 1
+  isGrabbed: 0
+  isStatic: 0
+  isTriggerOn: 0
+  currentInteractingObject: {fileID: 0}
+  raycastOrigin: {fileID: 875661744}
+  raycastDirection: {x: 0, y: 0, z: 1}
+  colliderObjects: []
+  range: 2
+  angle: 180
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &821400334
 GameObject:
   m_ObjectHideFlags: 0
@@ -8962,6 +8992,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2103111313}
   m_SourcePrefab: {fileID: 100100000, guid: 25685ac1f5824f24a9ef53005873f080, type: 3}
+--- !u!1 &875661744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 875661745}
+  m_Layer: 0
+  m_Name: RayOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &875661745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875661744}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10.5, y: 11.66667, z: 11.66667}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 818481486}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &881808360
 PrefabInstance:
   m_ObjectHideFlags: 0

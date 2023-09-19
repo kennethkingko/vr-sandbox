@@ -45,7 +45,7 @@ public class ObjectStateManager : MonoBehaviour
         interactable = gameObject.GetComponent<XRGrabInteractable>();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         colliderObjects = new List<GameObject>();
         _layerMask = LayerMask.GetMask("Colliders");
@@ -76,7 +76,7 @@ public class ObjectStateManager : MonoBehaviour
     }
 
     // Handler function if the object is grabbeed
-    public void HandleGrabState()
+    public virtual void HandleGrabState()
     {
         if (interactable.isSelected && this.currentState is ObjectIdleState)
         {

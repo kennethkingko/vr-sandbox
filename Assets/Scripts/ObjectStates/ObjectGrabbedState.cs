@@ -12,7 +12,7 @@ public class ObjectGrabbedState : ObjectBaseState
     public override void EnterState(ObjectStateManager osm)
     {
         this.iOsm = osm;
-        this.iOsm.GetComponent<MeshRenderer>().material = osm.onGrabMat;
+        //this.iOsm.GetComponent<MeshRenderer>().material = osm.onGrabMat;
         this.iOsm.isGrabbed = true;
         Debug.Log("Holding a " + this.iOsm.gameObject.name);
     }
@@ -20,6 +20,7 @@ public class ObjectGrabbedState : ObjectBaseState
     // Might need to restructure to check whether the trigger is on, then check for emit ray to avoid consistent checks in UpdateState()
     public override void UpdateState(ObjectStateManager osm)
     {
+        Debug.Log(this.iOsm.gameObject.name + " : " + this.iOsm.isTriggerOn);
         if(this.iOsm.EmitRay() && this.iOsm.isTriggerOn)
         {
             this.iOsm.SwitchState(this.iOsm.objectGrabHoverState);
