@@ -5976,7 +5976,7 @@ GameObject:
   - component: {fileID: 273516213}
   - component: {fileID: 273516214}
   m_Layer: 7
-  m_Name: TwistCollider1
+  m_Name: TwistCollider1-Screwdriver
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6392,7 +6392,7 @@ GameObject:
   - component: {fileID: 382078491}
   - component: {fileID: 382078490}
   m_Layer: 7
-  m_Name: TurnCollider1
+  m_Name: TurnCollider1-RightHand Controller
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7156,7 +7156,7 @@ GameObject:
   - component: {fileID: 581740945}
   - component: {fileID: 581740944}
   m_Layer: 7
-  m_Name: TurnCollider1
+  m_Name: TurnCollider1-Wrench
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7403,7 +7403,7 @@ GameObject:
   - component: {fileID: 688073256}
   - component: {fileID: 688073257}
   m_Layer: 7
-  m_Name: TwistCollider1
+  m_Name: TwistCollider1-RightHand Controller
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7514,7 +7514,7 @@ GameObject:
   - component: {fileID: 691419013}
   - component: {fileID: 691419012}
   m_Layer: 7
-  m_Name: TurnCollider1
+  m_Name: TurnCollider1-Wrench
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7592,7 +7592,7 @@ GameObject:
   - component: {fileID: 710706992}
   - component: {fileID: 710706991}
   m_Layer: 7
-  m_Name: Vase-HitCollider
+  m_Name: HitCollider-Hammer
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7698,7 +7698,7 @@ GameObject:
   - component: {fileID: 783279842}
   - component: {fileID: 783279843}
   m_Layer: 7
-  m_Name: TwistCollider1
+  m_Name: TwistCollider1-RightHand Controller
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8721,7 +8721,7 @@ GameObject:
   - component: {fileID: 828966488}
   - component: {fileID: 828966487}
   m_Layer: 7
-  m_Name: TurnCollider1
+  m_Name: TurnCollider1-RightHand Controller
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8800,7 +8800,7 @@ GameObject:
   - component: {fileID: 834749596}
   - component: {fileID: 834749597}
   m_Layer: 7
-  m_Name: TwistCollider1
+  m_Name: TwistCollider1-RightHand Controller
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9361,7 +9361,7 @@ GameObject:
   - component: {fileID: 1006873442}
   - component: {fileID: 1006873441}
   m_Layer: 7
-  m_Name: Rock-HitCollider
+  m_Name: HitCollider-Hammer
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15007,7 +15007,7 @@ GameObject:
   - component: {fileID: 1244140775}
   - component: {fileID: 1244140774}
   m_Layer: 7
-  m_Name: Rock-HitCollider
+  m_Name: HitCollider-Hammer
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15695,7 +15695,7 @@ GameObject:
   - component: {fileID: 1337759344}
   - component: {fileID: 1337759343}
   m_Layer: 7
-  m_Name: TurnCollider1
+  m_Name: TurnCollider1-RightHand Controller
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15999,7 +15999,7 @@ GameObject:
   - component: {fileID: 1403845134}
   - component: {fileID: 1403845135}
   m_Layer: 7
-  m_Name: TwistCollider1
+  m_Name: TwistCollider1-RightHand Controller
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16110,7 +16110,7 @@ GameObject:
   - component: {fileID: 1406629237}
   - component: {fileID: 1406629236}
   m_Layer: 7
-  m_Name: TurnCollider1
+  m_Name: TurnCollider1-Wrench
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16190,7 +16190,7 @@ GameObject:
   - component: {fileID: 1416075677}
   - component: {fileID: 1416075678}
   m_Layer: 7
-  m_Name: TwistCollider1
+  m_Name: TwistCollider1-Screwdriver
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16982,7 +16982,7 @@ GameObject:
   - component: {fileID: 1435828844}
   - component: {fileID: 1435828845}
   m_Layer: 7
-  m_Name: TwistCollider1
+  m_Name: TwistCollider1-Screwdriver
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17243,7 +17243,7 @@ GameObject:
   - component: {fileID: 1519795244}
   - component: {fileID: 1519795243}
   m_Layer: 7
-  m_Name: TurnCollider1
+  m_Name: TurnCollider1-RightHand Controller
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23005,7 +23005,7 @@ GameObject:
   - component: {fileID: 1723562982}
   - component: {fileID: 1723562981}
   m_Layer: 7
-  m_Name: Vase-HitCollider
+  m_Name: HitCollider-Hammer
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23345,7 +23345,7 @@ GameObject:
   - component: {fileID: 1922970166}
   - component: {fileID: 1922970167}
   m_Layer: 7
-  m_Name: TwistCollider1
+  m_Name: TwistCollider1-Screwdriver
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28990,7 +28990,7 @@ GameObject:
   - component: {fileID: 2118491303}
   - component: {fileID: 2118491302}
   m_Layer: 7
-  m_Name: TurnCollider1
+  m_Name: TurnCollider1-Wrench
   m_TagString: Colliders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29269,7 +29269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3349045744330547629, guid: 8be90d50bc29b5046893ba21bf90dce8, type: 3}
       propertyPath: m_Name
-      value: Rock-HitCollider
+      value: HitCollider-Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 3349045744330547630, guid: 8be90d50bc29b5046893ba21bf90dce8, type: 3}
       propertyPath: m_RootOrder

@@ -134,9 +134,18 @@ public class ObjectStateManager : MonoBehaviour
     }
 
     // Customizable object check whether this object is interacting with the corresponding action component
-    public bool IsObjectCorrect()
+    public bool IsObjectCorrect(string colliderName)
     {
-        return true;
+        // Add the name of this osm's gameobject to the intended receiver objects
+        Debug.Log(colliderName + " - " + this.transform.name);
+        if(colliderName.Contains(this.transform.name))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     // Mathematical function check whether this object is within the angle of interaction
@@ -174,7 +183,7 @@ public class ObjectStateManager : MonoBehaviour
         isHitting = Physics.Linecast(start, end, out hit, _layerMask);
         Debug.DrawLine(start, end, Color.green);
 
-        if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, start, end, angle) && IsObjectCorrect() && hit.transform.tag == "Colliders")
+        if (isHitting && hit.transform.name != this.transform.name && IsObjectWithinDistance(hit, range) && IsHitObjectWithinAngle(hit, start, end, angle) && IsObjectCorrect(hit.transform.name) && hit.transform.tag == "Colliders")
         {
             
             float deg = Vector3.Angle(hit.transform.position - start, end - start);
