@@ -17,6 +17,10 @@ public class DropObjectOutcome : MonoBehaviour
     // Update is called once per frame
     void DropObject()
     {
+        if(TryGetComponent<MeshCollider>(out MeshCollider gameObjectsCollider))
+        {
+            gameObjectsCollider.convex = true;
+        }        
         Rigidbody gameObjectsRigidBody = parentObject.AddComponent<Rigidbody>();
         gameObjectsRigidBody.useGravity = true;
     }
