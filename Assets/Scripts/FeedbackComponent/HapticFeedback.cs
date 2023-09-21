@@ -5,13 +5,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HapticFeedback : MonoBehaviour
 {
-    TwistActionComponent actionComponent;
+    BaseActionComponent actionComponent;
     GameObject parentObject;
     private ActionBasedController xr;
     // Start is called before the first frame update
     void Start()
     {
-        actionComponent = gameObject.GetComponent<TwistActionComponent>();
+        actionComponent = gameObject.GetComponent<BaseActionComponent>();
         xr = (ActionBasedController) GameObject.FindObjectOfType(typeof(ActionBasedController));
     
         actionComponent.Feedback += Haptics;
