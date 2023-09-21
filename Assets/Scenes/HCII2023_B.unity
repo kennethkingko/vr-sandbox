@@ -445,7 +445,7 @@ Transform:
   m_GameObject: {fileID: 55694372}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -108.834, y: 99.799995, z: -57.974}
+  m_LocalPosition: {x: -108.834, y: 100.057, z: -57.974}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5779,7 +5779,7 @@ Transform:
   m_GameObject: {fileID: 218484394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -110.391, y: 99.799995, z: -58.067}
+  m_LocalPosition: {x: -110.391, y: 100.057, z: -58.067}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7078,10 +7078,10 @@ GameObject:
   m_Component:
   - component: {fileID: 567283778}
   - component: {fileID: 567283783}
-  - component: {fileID: 567283782}
   - component: {fileID: 567283781}
   - component: {fileID: 567283780}
   - component: {fileID: 567283779}
+  - component: {fileID: 567283784}
   m_Layer: 7
   m_Name: TurnCollider1-RightHand Controller
   m_TagString: Colliders
@@ -7141,24 +7141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &567283782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567283777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionCollider: {fileID: 567283783}
-  isCompleted: 0
-  requirement: 180
-  currentProgress: 0
-  totalProgress: 0
-  stopMoveBuffer: 0.1
 --- !u!64 &567283783
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7181,6 +7163,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: f011ce023c55f8c4eabf51282ebb8f1a, type: 3}
+--- !u!114 &567283784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567283777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 567283783}
+  isCompleted: 0
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 0.1
 --- !u!1 &581740942
 GameObject:
   m_ObjectHideFlags: 0
@@ -7191,10 +7191,10 @@ GameObject:
   m_Component:
   - component: {fileID: 581740943}
   - component: {fileID: 581740948}
-  - component: {fileID: 581740947}
   - component: {fileID: 581740946}
   - component: {fileID: 581740945}
   - component: {fileID: 581740944}
+  - component: {fileID: 581740949}
   m_Layer: 7
   m_Name: TurnCollider1-Wrench
   m_TagString: Colliders
@@ -7254,24 +7254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &581740947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 581740942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionCollider: {fileID: 581740948}
-  isCompleted: 0
-  requirement: 180
-  currentProgress: 0
-  totalProgress: 0
-  stopMoveBuffer: 0.1
 --- !u!64 &581740948
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7294,6 +7276,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: f011ce023c55f8c4eabf51282ebb8f1a, type: 3}
+--- !u!114 &581740949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581740942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 581740948}
+  isCompleted: 0
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 0.1
 --- !u!1 &603574916
 GameObject:
   m_ObjectHideFlags: 0
@@ -7388,10 +7388,10 @@ GameObject:
   m_Component:
   - component: {fileID: 629875984}
   - component: {fileID: 629875989}
-  - component: {fileID: 629875988}
   - component: {fileID: 629875987}
   - component: {fileID: 629875986}
   - component: {fileID: 629875985}
+  - component: {fileID: 629875990}
   m_Layer: 7
   m_Name: TurnCollider1-RightHand Controller
   m_TagString: Colliders
@@ -7451,24 +7451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &629875988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 629875983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionCollider: {fileID: 629875989}
-  isCompleted: 0
-  requirement: 180
-  currentProgress: 0
-  totalProgress: 0
-  stopMoveBuffer: 0.1
 --- !u!64 &629875989
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7491,6 +7473,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: f011ce023c55f8c4eabf51282ebb8f1a, type: 3}
+--- !u!114 &629875990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629875983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 629875989}
+  isCompleted: 0
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 0.1
 --- !u!1 &688073250
 GameObject:
   m_ObjectHideFlags: 0
@@ -7615,10 +7615,10 @@ GameObject:
   m_Component:
   - component: {fileID: 691419011}
   - component: {fileID: 691419016}
-  - component: {fileID: 691419015}
   - component: {fileID: 691419014}
   - component: {fileID: 691419013}
   - component: {fileID: 691419012}
+  - component: {fileID: 691419017}
   m_Layer: 7
   m_Name: TurnCollider1-Wrench
   m_TagString: Colliders
@@ -7678,24 +7678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &691419015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691419010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionCollider: {fileID: 691419016}
-  isCompleted: 0
-  requirement: 180
-  currentProgress: 0
-  totalProgress: 0
-  stopMoveBuffer: 0.1
 --- !u!64 &691419016
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7718,6 +7700,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: f011ce023c55f8c4eabf51282ebb8f1a, type: 3}
+--- !u!114 &691419017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691419010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 691419016}
+  isCompleted: 0
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 0.1
 --- !u!1 &710706987
 GameObject:
   m_ObjectHideFlags: 0
@@ -7850,7 +7850,7 @@ Transform:
   m_GameObject: {fileID: 741146795}
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -109.51, y: 99.799995, z: -57.293}
+  m_LocalPosition: {x: -109.51, y: 100.057, z: -57.293}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9857,8 +9857,6 @@ MonoBehaviour:
   requirement: 0
   currentProgress: 0
   totalProgress: 0
-  requiredAngle: 60
-  boundsDirection: {x: 0, y: 0, z: 0}
   stopMoveBuffer: 0
 --- !u!1 &1052675939
 GameObject:
@@ -15188,7 +15186,7 @@ Transform:
   m_GameObject: {fileID: 1253585996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -110.458, y: 98.63, z: -53.448}
+  m_LocalPosition: {x: -110.458, y: 98.736, z: -53.448}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15272,7 +15270,7 @@ Transform:
   m_GameObject: {fileID: 1262863021}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -108.23, y: 98.63, z: -53.458}
+  m_LocalPosition: {x: -108.23, y: 98.736, z: -53.458}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15893,10 +15891,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1349708669}
   - component: {fileID: 1349708674}
-  - component: {fileID: 1349708673}
   - component: {fileID: 1349708672}
   - component: {fileID: 1349708671}
   - component: {fileID: 1349708670}
+  - component: {fileID: 1349708675}
   m_Layer: 7
   m_Name: TurnCollider1-RightHand Controller
   m_TagString: Colliders
@@ -15956,24 +15954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1349708673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349708668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionCollider: {fileID: 1349708674}
-  isCompleted: 0
-  requirement: 180
-  currentProgress: 0
-  totalProgress: 0
-  stopMoveBuffer: 0.1
 --- !u!64 &1349708674
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15996,6 +15976,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: f011ce023c55f8c4eabf51282ebb8f1a, type: 3}
+--- !u!114 &1349708675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349708668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 1349708674}
+  isCompleted: 0
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 0.1
 --- !u!1001 &1356482715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16208,10 +16206,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1406629235}
   - component: {fileID: 1406629240}
-  - component: {fileID: 1406629239}
   - component: {fileID: 1406629238}
   - component: {fileID: 1406629237}
   - component: {fileID: 1406629236}
+  - component: {fileID: 1406629241}
   m_Layer: 7
   m_Name: TurnCollider1-Wrench
   m_TagString: Colliders
@@ -16271,24 +16269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1406629239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406629234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionCollider: {fileID: 1406629240}
-  isCompleted: 0
-  requirement: 180
-  currentProgress: 0
-  totalProgress: 0
-  stopMoveBuffer: 0.1
 --- !u!64 &1406629240
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16311,6 +16291,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: f011ce023c55f8c4eabf51282ebb8f1a, type: 3}
+--- !u!114 &1406629241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406629234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 1406629240}
+  isCompleted: 0
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 0.1
 --- !u!1 &1416075671
 GameObject:
   m_ObjectHideFlags: 0
@@ -23544,7 +23542,7 @@ Transform:
   m_GameObject: {fileID: 1939935046}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -109.51, y: 99.799995, z: -58.625}
+  m_LocalPosition: {x: -109.51, y: 100.057, z: -58.625}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -24089,10 +24087,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2047532670}
   - component: {fileID: 2047532675}
-  - component: {fileID: 2047532674}
   - component: {fileID: 2047532673}
   - component: {fileID: 2047532672}
   - component: {fileID: 2047532671}
+  - component: {fileID: 2047532676}
   m_Layer: 7
   m_Name: TurnCollider1-RightHand Controller
   m_TagString: Colliders
@@ -24152,24 +24150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2047532674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047532669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionCollider: {fileID: 2047532675}
-  isCompleted: 0
-  requirement: 180
-  currentProgress: 0
-  totalProgress: 0
-  stopMoveBuffer: 0.1
 --- !u!64 &2047532675
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24192,6 +24172,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: f011ce023c55f8c4eabf51282ebb8f1a, type: 3}
+--- !u!114 &2047532676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047532669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 2047532675}
+  isCompleted: 0
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 0.1
 --- !u!1 &2068070076
 GameObject:
   m_ObjectHideFlags: 0
@@ -29086,10 +29084,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2118491301}
   - component: {fileID: 2118491306}
-  - component: {fileID: 2118491305}
   - component: {fileID: 2118491304}
   - component: {fileID: 2118491303}
   - component: {fileID: 2118491302}
+  - component: {fileID: 2118491307}
   m_Layer: 7
   m_Name: TurnCollider1-Wrench
   m_TagString: Colliders
@@ -29149,24 +29147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e7b02b0a62e04b88ede2f6e4a5a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2118491305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118491300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd105ec94a0c4374ea4a3d50466dc4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionCollider: {fileID: 2118491306}
-  isCompleted: 0
-  requirement: 180
-  currentProgress: 0
-  totalProgress: 0
-  stopMoveBuffer: 0.1
 --- !u!64 &2118491306
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29189,6 +29169,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: f011ce023c55f8c4eabf51282ebb8f1a, type: 3}
+--- !u!114 &2118491307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118491300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04384cd4ee89f1f4d8b0f7dfccc36d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCollider: {fileID: 2118491306}
+  isCompleted: 0
+  requirement: 180
+  currentProgress: 0
+  totalProgress: 0
+  stopMoveBuffer: 0.1
 --- !u!23 &1049997400223578900
 MeshRenderer:
   m_ObjectHideFlags: 0
