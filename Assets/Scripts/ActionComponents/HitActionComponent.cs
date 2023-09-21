@@ -59,7 +59,7 @@ public class HitActionComponent : BaseActionComponent
                 }
                 totalProgress += currentProgress;
                 hitAlready = true;
-                //Debug.Log("totalProgress: " + totalProgress);
+                Debug.Log("totalProgress: " + totalProgress);
                 ShowFeedback();
             }
         }
