@@ -18,10 +18,21 @@ public class RotateFeedback : MonoBehaviour
 
     void Rotate()
     {
+        float zAngle;
+
+        if ((actionComponent.requirement < 0 && actionComponent.totalProgress <= actionComponent.requirement) || (actionComponent.requirement >= 0 && actionComponent.totalProgress >= actionComponent.requirement))
+        {
+            zAngle = parentObjAngleInitial + actionComponent.requirement;
+        }
+        else
+        {
+            zAngle = parentObjAngleInitial + actionComponent.totalProgress;
+        }
+
         // object rotation
         parentObject.transform.eulerAngles = new Vector3(
         parentObject.transform.eulerAngles.x,
         parentObject.transform.eulerAngles.y,
-        parentObjAngleInitial + actionComponent.currentProgress);
+        zAngle);
     }
 }

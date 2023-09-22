@@ -372,11 +372,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9389ae67bbd7e1d4fb2ca5d2b808fda3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9389ae67bbd7e1d4fb2ca5d2b808fda3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9389ae67bbd7e1d4fb2ca5d2b808fda3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -384,11 +384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9389ae67bbd7e1d4fb2ca5d2b808fda3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9389ae67bbd7e1d4fb2ca5d2b808fda3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9389ae67bbd7e1d4fb2ca5d2b808fda3, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -396,7 +396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9389ae67bbd7e1d4fb2ca5d2b808fda3, type: 3}
       propertyPath: m_Name
-      value: SpecialKey-Gear2
+      value: SpecialKey-Wheel2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9389ae67bbd7e1d4fb2ca5d2b808fda3, type: 3}
       propertyPath: m_Layer
@@ -5602,10 +5602,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 174342857}
   isCompleted: 0
-  requirement: 360
+  requirement: 270
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 360
+  stopMoveBuffer: -90
 --- !u!136 &174342857
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6089,10 +6089,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 273516210}
   isCompleted: 0
-  requirement: 180
+  requirement: -180
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 1
+  stopMoveBuffer: 20
 --- !u!136 &273516210
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6733,31 +6733,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -6826,31 +6826,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -6990,10 +6990,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 581740948}
   isCompleted: 0
-  requirement: 180
+  requirement: -180
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 0.1
+  stopMoveBuffer: 20
 --- !u!1 &603574916
 GameObject:
   m_ObjectHideFlags: 0
@@ -7367,10 +7367,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 691419016}
   isCompleted: 0
-  requirement: 180
+  requirement: -180
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 0.1
+  stopMoveBuffer: 20
 --- !u!1 &710706987
 GameObject:
   m_ObjectHideFlags: 0
@@ -15366,10 +15366,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1406629240}
   isCompleted: 0
-  requirement: 180
+  requirement: -180
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 0.1
+  stopMoveBuffer: 20
 --- !u!1 &1416075671
 GameObject:
   m_ObjectHideFlags: 0
@@ -15421,10 +15421,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1416075674}
   isCompleted: 0
-  requirement: 180
+  requirement: -180
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 1
+  stopMoveBuffer: 20
 --- !u!136 &1416075674
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16213,10 +16213,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1435828841}
   isCompleted: 0
-  requirement: 180
+  requirement: -180
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 1
+  stopMoveBuffer: 20
 --- !u!136 &1435828841
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21784,31 +21784,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -22242,13 +22242,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767466041}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.29898745, y: 2.9898744, z: 0.049009636}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.3125, y: 0.3125, z: 0.40034378}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2049259615}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1767466043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22297,10 +22297,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1767466045}
   isCompleted: 0
-  requirement: 360
+  requirement: -360
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 0
+  stopMoveBuffer: 90
 --- !u!1 &1788742732
 GameObject:
   m_ObjectHideFlags: 0
@@ -22313,7 +22313,6 @@ GameObject:
   - component: {fileID: 1788742737}
   - component: {fileID: 1788742736}
   - component: {fileID: 1788742735}
-  - component: {fileID: 1788742734}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -22337,23 +22336,6 @@ Transform:
   - {fileID: 1891706102}
   m_Father: {fileID: 986790977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1788742734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788742732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 297a9e950b277af42ace7bb062c5df26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  receiverObjects:
-  - {fileID: 1416075673}
-  - {fileID: 1435828840}
-  - {fileID: 273516209}
-  - {fileID: 1922970162}
 --- !u!65 &1788742735
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22758,10 +22740,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1922970163}
   isCompleted: 0
-  requirement: 180
+  requirement: -180
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 1
+  stopMoveBuffer: 20
 --- !u!136 &1922970163
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22950,31 +22932,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84af0d013ebbaa04082971bc613ffad6, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -28218,10 +28200,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 2118491306}
   isCompleted: 0
-  requirement: 180
+  requirement: -180
   currentProgress: 0
   totalProgress: 0
-  stopMoveBuffer: 0.1
+  stopMoveBuffer: 20
 --- !u!23 &1049997400223578900
 MeshRenderer:
   m_ObjectHideFlags: 0

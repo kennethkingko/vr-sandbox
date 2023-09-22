@@ -37,9 +37,8 @@ public class MoveForwardFeedback : MonoBehaviour
 
     void MoveForward()
     {
-        float move = (parentObjectLength * (actionComponent.totalProgress/actionComponent.requirement));
+        float move = parentObjectLength * (actionComponent.totalProgress/actionComponent.requirement);
         Vector3 move3d = transform.forward*move;
-    
         parentObject.transform.position = new Vector3(
         parentPosInitial.x + move3d.x,
         parentPosInitial.y + move3d.y,

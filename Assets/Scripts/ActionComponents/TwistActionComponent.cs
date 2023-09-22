@@ -10,7 +10,7 @@ public class TwistActionComponent : BaseActionComponent
 {
     // Set in Inspector
     public float stopMoveBuffer = 0;
-    // requirement = required angle
+    // requirement = required angle //set as negative if counterclockwise
     
     // currentProgress = deltaAngle + deltaAngleBuffer
     // totalProgress = pastProgress + currentProgress
@@ -59,6 +59,7 @@ public class TwistActionComponent : BaseActionComponent
             //this handles within an interaction of action object entering before exiting receiver object, user's interaction is greater than 180 or less than -180
             
             float deltaAngle = Mathf.DeltaAngle(rot.eulerAngles.z, interactingObjAngleInitial);
+            currentProgress = deltaAngleBuffer + deltaAngle;
             if (deltaAngle > 175)
             {
                 deltaAngleBuffer += 175;
@@ -69,22 +70,21 @@ public class TwistActionComponent : BaseActionComponent
                 deltaAngleBuffer -= 175;
                 interactingObjAngleInitial = rot.eulerAngles.z;
             }
-            currentProgress = deltaAngleBuffer + deltaAngle;
 
-            if(pastProgress - currentProgress > -stopMoveBuffer)
+            if ((requirement < 0 && (pastProgress + currentProgress < stopMoveBuffer)) || (requirement >= 0 && pastProgress + currentProgress > stopMoveBuffer))
             {
-                totalProgress = pastProgress - currentProgress;
+                totalProgress = pastProgress + currentProgress;
                 Debug.Log("current progress: " + currentProgress);
                 Debug.Log("total progress: " + totalProgress);
                 ShowFeedback();
-            }               
+            }
         }
         else
         {
             interactingObject = null;
         }
-
-        if (totalProgress >= requirement)
+        
+        if ((requirement < 0 && totalProgress <= requirement) || (requirement >= 0 && totalProgress >= requirement))
         {
             isCompleted = true;
             Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);

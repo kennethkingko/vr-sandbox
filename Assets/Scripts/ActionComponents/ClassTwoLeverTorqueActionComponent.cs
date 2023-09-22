@@ -9,7 +9,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 {
     // Set in Inspector
     public float stopMoveBuffer = 0;
-    // requirement = required angle
+    // requirement = required angle //set as negative if counterclockwise
     
     // currentProgress = deltaAngle + deltaAngleBuffer
     // totalProgress = pastProgress + currentProgress
@@ -74,10 +74,10 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
                 interactingObjectPosInitial = pos;
             }
             
-            if(pastProgress - currentProgress > -stopMoveBuffer)
+            if ((requirement < 0 && (pastProgress + currentProgress < stopMoveBuffer)) || (requirement >= 0 && pastProgress + currentProgress > stopMoveBuffer))
             {
-                totalProgress = pastProgress - currentProgress;
-                Debug.Log("current progress: " + currentProgress);
+                totalProgress = pastProgress + currentProgress;
+                //Debug.Log("current progress: " + currentProgress);
                 Debug.Log("total progress: " + totalProgress);
                 ShowFeedback();
             }
@@ -87,10 +87,10 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             interactingObject = null;
         }
 
-        if (totalProgress >= requirement)
+        if ((requirement < 0 && totalProgress <= requirement) || (requirement >= 0 && totalProgress >= requirement))
         {
             isCompleted = true;
-            Debug.Log("Twisting action completed on " + gameObject.transform.parent.name);
+            Debug.Log("Turning action completed on " + gameObject.transform.parent.name);
             ShowOutcome();
         }
     }
