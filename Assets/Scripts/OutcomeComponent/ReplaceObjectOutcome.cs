@@ -8,6 +8,8 @@ public class ReplaceObjectOutcome : MonoBehaviour
     BaseActionComponent actionComponent;
     GameObject parentObject;
     public GameObject newObject;
+    public AudioSource audioData;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,7 @@ public class ReplaceObjectOutcome : MonoBehaviour
     }
     void ReplaceObject()
     {
+        audioData.Play(0);
         Instantiate(newObject, parentObject.transform.position, parentObject.transform.rotation);
         Destroy(parentObject);
     }
