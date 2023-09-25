@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SimpleActionComponent : BaseActionComponent
 {
-    [SerializeField] GameObject interactingObject;
-    GameObject parentObject;
-    public GameObject destroyedVersion;
+    GameObject interactingObject;
 
     void Start()
     {
         actionCollider = gameObject.GetComponent<Collider>();
         interactingObject = null; 
-        parentObject = gameObject.transform.parent.gameObject; 
+        requirement = 1;
+        currentProgress = 0;
+        totalProgress = 0;
     }
 
     public override void Update()
@@ -28,19 +28,16 @@ public class SimpleActionComponent : BaseActionComponent
         }
     }
 
-     public void DestroyObject() {
-        Instantiate(destroyedVersion, parentObject.transform.position, parentObject.transform.rotation);
-        Destroy(parentObject);
-    }
-
     public override void CheckIfCompleted()
     {   
         if (interactingObject.GetComponent<ObjectStateManager>().currentState is ObjectGrabHoverState)
         {
+            currentProgress = 1;
+            totalProgress = 1;
             interactingObject = null;
             isCompleted = true;
             Debug.Log("Action completed on " + gameObject.transform.parent.name);
-            DestroyObject();
+            ShowOutcome();
         }
     }
 }
