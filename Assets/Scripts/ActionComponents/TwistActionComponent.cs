@@ -10,6 +10,7 @@ public class TwistActionComponent : BaseActionComponent
 {
     // Set in Inspector
     public float stopMoveBuffer = 0;
+    public AudioSource audioData;
     // requirement = required angle //set as negative if counterclockwise
     
     // currentProgress = deltaAngle + deltaAngleBuffer
@@ -45,6 +46,7 @@ public class TwistActionComponent : BaseActionComponent
             //Debug.Log("Entry transform: " + pos + " " + rot);        
             deltaAngleBuffer = 0;
             pastProgress = totalProgress;
+            audioData.Play(0);
         }
     }
 
@@ -73,6 +75,7 @@ public class TwistActionComponent : BaseActionComponent
 
             if ((requirement < 0 && (pastProgress + currentProgress < stopMoveBuffer)) || (requirement >= 0 && pastProgress + currentProgress > stopMoveBuffer))
             {
+                
                 totalProgress = pastProgress + currentProgress;
                 Debug.Log("current progress: " + currentProgress);
                 Debug.Log("total progress: " + totalProgress);
@@ -82,6 +85,7 @@ public class TwistActionComponent : BaseActionComponent
         else
         {
             interactingObject = null;
+            audioData.Pause();
         }
         
         if ((requirement < 0 && totalProgress <= requirement) || (requirement >= 0 && totalProgress >= requirement))

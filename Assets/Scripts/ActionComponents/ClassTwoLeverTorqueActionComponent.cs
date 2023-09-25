@@ -9,6 +9,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
 {
     // Set in Inspector
     public float stopMoveBuffer = 0;
+    public AudioSource audioData;
     // requirement = required angle //set as negative if counterclockwise
     
     // currentProgress = deltaAngle + deltaAngleBuffer
@@ -45,6 +46,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
             //Debug.Log("Entry transform: " + pos + " " + rot);        
             deltaAngleBuffer = 0;
             pastProgress = totalProgress;
+            audioData.Play(0);
         }
     }
 
@@ -85,6 +87,7 @@ public class ClassTwoLeverTorqueActionComponent : BaseActionComponent
         else
         {
             interactingObject = null;
+            audioData.Pause();
         }
 
         if ((requirement < 0 && totalProgress <= requirement) || (requirement >= 0 && totalProgress >= requirement))
