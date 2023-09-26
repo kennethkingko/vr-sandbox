@@ -6213,7 +6213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 273516210}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 20
@@ -7423,7 +7423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 581740948}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 20
@@ -7949,7 +7949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 691419016}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 20
@@ -8137,10 +8137,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 710706989}
   isCompleted: 0
-  requirement: 5
+  requirement: 3
   currentProgress: 0
   totalProgress: 0
-  simpler: 0
+  simpler: 1
   minDistance: 0.01
   range: 0.7
 --- !u!114 &710706991
@@ -8504,7 +8504,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d4a8a55bb0b358d4c8ef5f8d30942771, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -8735,13 +8735,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808937614}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5934, y: 0.13439178, z: 0.0352}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: -0.696, y: 0.0914, z: 0.0352}
   m_LocalScale: {x: 0.012499, y: 0.0059938533, z: 0.0067278366}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 855128159}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!65 &808937616
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10230,7 +10230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 940737093}
   isCompleted: 0
-  requirement: 270
+  requirement: 135
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: -10
@@ -10269,7 +10269,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d4a8a55bb0b358d4c8ef5f8d30942771, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -10583,10 +10583,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1006873439}
   isCompleted: 0
-  requirement: 5
+  requirement: 6
   currentProgress: 0
   totalProgress: 0
-  simpler: 0
+  simpler: 1
   minDistance: 0.01
   range: 0.7
 --- !u!114 &1006873441
@@ -16575,10 +16575,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1244140773}
   isCompleted: 0
-  requirement: 5
+  requirement: 6
   currentProgress: 0
   totalProgress: 0
-  simpler: 0
+  simpler: 1
   minDistance: 0.01
   range: 1
 --- !u!64 &1244140773
@@ -16865,7 +16865,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d2ca5f6ff8d8b134ab38d9be50c299c4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.706
   m_Pitch: 1
   Loop: 0
@@ -18134,7 +18134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1406629240}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 20
@@ -18300,7 +18300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1416075674}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 20
@@ -19195,7 +19195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1435828841}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 20
@@ -25280,10 +25280,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1723562980}
   isCompleted: 0
-  requirement: 5
+  requirement: 3
   currentProgress: 0
   totalProgress: 0
-  simpler: 0
+  simpler: 1
   minDistance: 0.01
   range: 0.7
 --- !u!64 &1723562980
@@ -25621,7 +25621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1767466045}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 0
@@ -26272,7 +26272,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c0c6b6ef74e97f54f8c1a52c52eb4cef, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -26424,7 +26424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 1922970163}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 10
@@ -27410,7 +27410,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d2ca5f6ff8d8b134ab38d9be50c299c4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -32531,7 +32531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 2118491306}
   isCompleted: 0
-  requirement: -180
+  requirement: -90
   currentProgress: 0
   totalProgress: 0
   stopMoveBuffer: 20
@@ -32856,7 +32856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3349045744330547624, guid: 8be90d50bc29b5046893ba21bf90dce8, type: 3}
       propertyPath: simpler
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3349045744330547624, guid: 8be90d50bc29b5046893ba21bf90dce8, type: 3}
       propertyPath: totalPower
@@ -32876,7 +32876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3349045744330547624, guid: 8be90d50bc29b5046893ba21bf90dce8, type: 3}
       propertyPath: requirement
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3349045744330547624, guid: 8be90d50bc29b5046893ba21bf90dce8, type: 3}
       propertyPath: requiredHits
