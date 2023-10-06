@@ -45,7 +45,7 @@ public class HitActionComponent : BaseActionComponent
             Vector3 pos = interactingObject.transform.position;
             float actorReceiverDistance = Vector3.Distance(pos, gameObject.transform.position);
             float startEndDistance = Vector3.Distance(posStart, pos);
-            Debug.Log("Dist: " + startEndDistance);
+            //Debug.Log("Dist: " + startEndDistance);
             if (!hitAlready && actorReceiverDistance < range && actorReceiverDistance < Vector3.Distance(posStart, gameObject.transform.position) && startEndDistance > minDistance)
             {
                 if(simpler)
@@ -59,7 +59,7 @@ public class HitActionComponent : BaseActionComponent
                 }
                 totalProgress += currentProgress;
                 hitAlready = true;
-                Debug.Log("totalProgress: " + totalProgress);
+                //Debug.Log("totalProgress: " + totalProgress);
                 ShowFeedback();
             }
         }

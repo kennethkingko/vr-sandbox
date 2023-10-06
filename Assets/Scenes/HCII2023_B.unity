@@ -8309,6 +8309,7 @@ GameObject:
   - component: {fileID: 737583675}
   - component: {fileID: 737583677}
   - component: {fileID: 737583676}
+  - component: {fileID: 737583678}
   m_Layer: 7
   m_Name: HitCollider-RightHand Controller
   m_TagString: Colliders
@@ -8345,12 +8346,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCollider: {fileID: 737583672}
   isCompleted: 0
-  requirement: 5
+  requirement: 3
   currentProgress: 0
   totalProgress: 0
   simpler: 1
-  minDistance: 0
-  range: 1
+  minDistance: 0.1
+  range: 0.5
 --- !u!65 &737583672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8603,6 +8604,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorObject: {fileID: 2143832259}
   audioData: {fileID: 737583676}
+--- !u!114 &737583678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737583669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfaf76a822050fe4790fd34ac3514477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &785736295
 GameObject:
   m_ObjectHideFlags: 0
@@ -11619,6 +11632,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewCamera: {fileID: 1317937194}
+--- !u!1 &1140068574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140068576}
+  - component: {fileID: 1140068575}
+  m_Layer: 0
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1140068575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140068574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a1223ff90116848afde27a2d399d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1140068576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140068574}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 297.3121, y: -38.3, z: -28.981}
+  m_LocalScale: {x: 1, y: 0.71375, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1147362895
 GameObject:
   m_ObjectHideFlags: 0
@@ -19725,7 +19782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1630639287
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32959,6 +33016,7 @@ SceneRoots:
   - {fileID: 953386047}
   - {fileID: 272735904}
   - {fileID: 1138427958}
+  - {fileID: 1140068576}
   - {fileID: 1898295862}
   - {fileID: 986790977}
   - {fileID: 1966380069}

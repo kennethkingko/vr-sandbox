@@ -22,8 +22,8 @@ public class ShardsFeedback : MonoBehaviour
     // Update is called once per frame
     void ShowShards()
     {
-        Debug.Log("percentage: " + (actionComponent.totalProgress/actionComponent.requirement));
-        emissionRate = emissionMin + ((emissionMax-emissionMin)*(actionComponent.totalProgress/actionComponent.requirement));
+        emissionRate = emissionMin + ((emissionMax-emissionMin)*(actionComponent.currentProgress/(actionComponent.requirement/2)));
+        Debug.Log("emmision: " + emissionRate);
         var emission = particleSys.emission;
         emission.rateOverTime = emissionRate;
         particleSys.Play();

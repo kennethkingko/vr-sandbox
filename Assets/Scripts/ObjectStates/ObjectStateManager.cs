@@ -39,6 +39,8 @@ public class ObjectStateManager : MonoBehaviour
     
     [SerializeField] protected LayerMask _layerMask;
 
+    TimeSession timer;
+
     // Generates its own XRGrabInteractable to avoid separate dependency and declaration
     protected virtual void Awake()
     {
@@ -55,6 +57,7 @@ public class ObjectStateManager : MonoBehaviour
         this.currentState = objectIdleState;
         this.currentState.EnterState(this);
         // this.GetComponent<MeshRenderer>().material = defaultMat;
+        timer = GameObject.Find("Timer").GetComponent<TimeSession>();
     }
 
     void Update()
@@ -84,6 +87,7 @@ public class ObjectStateManager : MonoBehaviour
         if (interactable.isSelected && this.currentState is ObjectIdleState)
         {
             EnterGrabbedState();
+            timer.StartWatch();
         }
         if (!interactable.isSelected)
         {
